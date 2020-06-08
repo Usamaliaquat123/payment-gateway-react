@@ -1,0 +1,28 @@
+table {
+  font-family: Calibri;
+  font-size: 11pt;
+  font-style: normal;
+  font-weight: bold;
+  border-collapse: collapse;
+}
+
+td {
+  padding: 10px;
+}
+
+table.inner {
+  border: 1px
+}
+
+.center_div {
+  margin: 0 auto;
+  width: 80%/* value of your choice which suits your alignment */
+}
+
+.modal {
+	position: relative !important;
+}
+
+body {
+  background-color: rgba(0,0,0,0.3);
+}

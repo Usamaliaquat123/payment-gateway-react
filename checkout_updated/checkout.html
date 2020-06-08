@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <link rel="stylesheet" href="./style.css" type="text/css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.15/jquery.mask.min.js"></script>
+</head>
+<body>
+<div class="modal show" id="myModal" tabindex="-1" role="dialog">
+    <div class="modal-dialog" style="width: 35%;">
+      <div class="modal-content">
+
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close" onclick="parent.closeIFrame()">
+            <span aria-hidden="true">&times;</span>
+          </button>
+          <h1 style="text-align: center;" class="modal-title" id="exampleModalLabel">Payment Method</h1>
+
+        </div>
+        <div class="modal-body">
+          <form class="needs-validation" novalidate>
+            <section class="panel panel-default">
+              <div class="panel-body">
+                <div class="form">
+                  <div class="col-md-8">
+                    <div class="form-group">
+                      <label>Card Number</label>
+                      <input type="text" class="form-control" data-inputmask='"mask": "9999 9999 9999"' id="card-number"
+                        style="width: 100%;" required>
+                    </div>
+                    <div class="form-group">
+                      <img id="mastercard" src="mastercard.png">
+                      <img id="visa" src="visa.png">
+                      <img id="unionpay" src="unionpay.png">
+                    </div>
+                  </div>
+                  <div class="col-md-4">
+                    <div class="form-group">
+                      <label>Amount</label>
+                      <input type="text" class="form-control" disabled="true" id="amount-set" style="width: 100%;"
+                        value="$ 10">
+                    </div>
+                  </div>
+                  <div class=col-md-6>
+                    <div class="form-group">
+                      <label>Expiry Month</label>
+                      <select class="form-control" id="expiry-month">
+                        <option value="-1">MM</option>
+                        <option value="1">01</option>
+                        <option value="2">02</option>
+                        <option value="3">03</option>
+                        <option value="4">04</option>
+                        <option value="5">05</option>
+                        <option value="6">06</option>
+                        <option value="7">07</option>
+                        <option value="8">08</option>
+                        <option value="9">09</option>
+                        <option value="10">10</option>
+                        <option value="11">11</option>
+                        <option value="12">12</option>
+                      </select>
+                    </div>
+                  </div>
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      <label>Expiry Year</label>
+                      <select class="form-control" id="expiry-year">
+                        <option value="-1">YY</option>
+                        <option value="19">19</option>
+                        <option value="20">20</option>
+                        <option value="21">21</option>
+                        <option value="22">22</option>
+                        <option value="23">23</option>
+                        <option value="24">24</option>
+                        <option value="25">25</option>
+                        <option value="26">26</option>
+                        <option value="27">27</option>
+                        <option value="28">28</option>
+                        <option value="29">20</option>
+                        <option value="30">30</option>
+                        <option value="31">31</option>
+                        <option value="32">32</option>
+                        <option value="33">33</option>
+                        <option value="34">34</option>
+                        <option value="35">35</option>
+                        <option value="36">36</option>
+                        <option value="37">37</option>
+                        <option value="38">38</option>
+                        <option value="39">39</option>
+                        <option value="40">40</option>
+                      </select>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </section>
+            <section class="panel panel-default">
+              <div class="panel-body">
+                <div class="form">
+                  <div class="col-md-12">
+                    <div class="form-group">
+                      <label>Card Holder Name</label>
+                      <input type="text" class="form-control" id="card-holder"
+                        style="width: 100%; text-transform: uppercase;">
+                    </div>
+                  </div>
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      <label>Security Code</label>
+                      <input type="text" class="form-control" id="security-code" maxlength="3" style="width: 100%;">
+                    </div>
+                  </div>
+                  <div class="col-md-6" style="padding-top: 5%;">
+                    <div class="form-group">
+                      <img src="csc_other.png">
+                      <span style="font-size: 10px;"><strong> 3 digits on back of your card</strong></span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </section>
+            <section class="panel panel-default">
+              <div class="panel-body">
+                <div class="form">
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      <label>SMS Code</label>
+                      <input type="password" maxlength="6" class="form-control" id="card-holder"
+                        style="width: 100%; text-transform: uppercase;">
+                    </div>
+                  </div>
+                  <div class="col-md-6">
+                    <div class="form-group" style="padding-top: 15%;">
+                      <button type="button" id="timerButton" class="btn btn-primary" onclick="timer()">Send SMS</button>
+                      <label id="countdown"></label>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </section>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <fieldset class="w-50">
+            <img width="20%" src="http://paysyslabs.com/img/PaysysPng.png">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            <button type="submit" id="payButton" class="btn btn-primary" onclick="submitForm()">Pay</button>
+          </fieldset>
+        </div>
+      </div>
+    </div>
+  </div>
+  </body>
+</html>

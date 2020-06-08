@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.15/jquery.mask.min.js"></script>
+
+
+  <!-- <script>
+    $('#checkout').click(function () {
+      Checkout.configure({
+        dataInfo: {
+          orderId: "789654",
+          merchantId: "123456789",
+          amount: document.getElementById("amountEnter").value,
+          phoneNo: "+92-3212406318",
+          merchantName: document.getElementById("merchantName").value,
+          operation: "purchase",
+          currency: "586",
+          description: "Ecommerce Secure Plus",
+          merchantLogo: "https://www.getsafepay.com/dashboard/static/media/visa.36bf2b8d.svg",
+          callbackURL: "http:localhost:8000"
+        }
+      });
+    });
+  </script> -->
+</head>
+
+<body style="background-color:transparent;">
+
+  <div class="form-group">
+    <div class="col-md-6">
+      <label>Merchant Name</label>
+      <input type="text" class="form-control" id="merchantName" style="width: 100%;">
+    </div>
+  </div>
+  <div class="form-group">
+    <div class="col-md-6">
+      <label>Amount</label>
+      <input type="text" class="form-control" id="amountEnter" style="width: 100%;">
+    </div>
+  </div>
+  <div class="form-group">
+    <div class="col-md-6" style="padding-top: 2%;">
+      <button type="button" class="btn btn-primary" id="checkout">Payment</button>
+      <button type="submit" id="externalPageButton" class="btn btn-primary" onclick="externalPageButton()">External Page
+        Popup</button>
+    </div>
+  </div>
+  <div id="content">
+
+  </div>
+</body>
+<script src="checkout.js"></script>
+<script>
+  $('#checkout').click(function () {
+    configure({
+      dataInfo: {
+        orderId: "00002919",
+        merchantId: "000000000000102",
+        amount: document.getElementById("amountEnter").value,
+        phoneNo: "86-13012345678",
+        merchantName: document.getElementById("merchantName").value,
+        operation: "purchase",
+        currency: "586",
+        description: "Ecommerce Secure Plus",
+        merchantLogo: "http://pngimg.com/uploads/kfc/kfc_PNG53.png",
+        callbackURL: "http://localhost:8000/checkout_updated/completed.html"
+      }
+    });
+  });
+</script>
+
+</html>
