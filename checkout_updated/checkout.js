@@ -4,18 +4,24 @@ const baseURI = "http://10.0.70.64:4999"
 const payCardUri = "http://localhost:7000"
 
 
-const configure = (dataInfo) => {
+
+
+const configure = (inf) => {
+
+
+    console.log(inf.dataInfo.merchantId.length)
+    
     var data = {
-        'amount': dataInfo.dataInfo.amount,
-        'orderId': dataInfo.dataInfo.orderId,
-        'currency': dataInfo.dataInfo.currency,
-        'phoneNo': dataInfo.dataInfo.phoneNo,
-        'operation': dataInfo.dataInfo.operation,
-        'description': dataInfo.dataInfo.description,
-        'merchantLogo': dataInfo.dataInfo.merchantLogo,
-        'merchantId': dataInfo.dataInfo.merchantId,
-        'merchantName': dataInfo.dataInfo.merchantName,
-        'callbackURL': dataInfo.dataInfo.callbackURL
+        'amount': inf.dataInfo.amount,
+        'orderId': inf.dataInfo.orderId,
+        'currency': inf.dataInfo.currency,
+        'phoneNo': inf.dataInfo.phoneNo,
+        'operation': inf.dataInfo.operation,
+        'description': inf.dataInfo.description,
+        'merchantLogo': inf.dataInfo.merchantLogo,
+        'merchantId': inf.dataInfo.merchantId,
+        'merchantName': inf.dataInfo.merchantName,
+        'callbackURL': inf.dataInfo.callbackURL
     }
     object = data;
     initialize();
