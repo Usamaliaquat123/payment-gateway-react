@@ -126,7 +126,7 @@ function smsSending() {
     })
 }
 
-function authentication() {
+const authentication = () => {
     $.ajax({
         url: 'http://localhost:5998/api/v1/authenticate',
         type: 'POST',
@@ -153,7 +153,7 @@ function authentication() {
 }
 
 
-function enrollmentVerfication(transferId) {
+const enrollmentVerfication = (transferId) => {
     console.log(transferId);
     debugger;
     $.ajax({

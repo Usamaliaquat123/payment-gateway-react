@@ -23,5 +23,3 @@ const masking = () => {
         }
     })
 }
-
-module.export =  masking

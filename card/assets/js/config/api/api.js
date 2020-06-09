@@ -1,5 +1,8 @@
 
 const baseUri = "http://10.0.70.64:4999"
+
+
+
 const enrollmentVerfication = (transferId) => {
     console.log(transferId);
     debugger;
@@ -66,16 +69,14 @@ const ResendButton = () => {
 }
 
 
-// $('document').ready(() => {
-//     c
-// })
+
 
 const sendSms = () => {
     return new Promise((resolve, reject) => {
         console.log(document.getElementById("cardNumber").value.replace('-', ''))
         $.ajax({
             url: `${baseUri}/api/v1/ecommerce/getSMSCode`,
-            type: 'POST',
+            type: 'POST', 
             contentType: 'application/json',
             data: JSON.stringify({
 
@@ -102,7 +103,6 @@ const sendSms = () => {
             success: function (response) {
                 if (response.responseCode == "00") {
                     transferId = response.data.transferId;
-                    /*console.log(response);*/
                     document.getElementById("payButton").disabled = false;
                 }
             },

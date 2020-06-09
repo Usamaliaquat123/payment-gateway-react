@@ -42,9 +42,6 @@ $(document).ready(function () {
     //     alert( "Handler for .click() called." );
     //   });
     
-    $('#formSub').click(() => {
-    console.log($('#selectMonth').val())
-    })
 
 
     cardNumber.on('keyup', (e) => {
@@ -104,7 +101,25 @@ $(document).ready(function () {
 
     })
 
-  sendSms()
+
+
+
+    // on submit
+    $('#formSub').click(() => {
+        var month = $('#selectMonth').val()
+        var years = $('#ddlYears').val()
+
+
+         var sli = years.slice(2)
+         
+
+
+    
+    
+    })
+        
+    
+//   sendSms()
 
 })
 
