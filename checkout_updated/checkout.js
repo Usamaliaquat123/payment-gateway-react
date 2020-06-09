@@ -1,4 +1,4 @@
-var object;
+var obj;
 var sessionId;
 const baseURI = "http://10.0.70.64:4999"
 const payCardUri = "http://localhost:7000"
@@ -8,22 +8,45 @@ const payCardUri = "http://localhost:7000"
 
 const configure = (inf) => {
 
-
-    console.log(inf.dataInfo.merchantId.length)
-    
-    var data = {
-        'amount': inf.dataInfo.amount,
-        'orderId': inf.dataInfo.orderId,
-        'currency': inf.dataInfo.currency,
-        'phoneNo': inf.dataInfo.phoneNo,
-        'operation': inf.dataInfo.operation,
-        'description': inf.dataInfo.description,
-        'merchantLogo': inf.dataInfo.merchantLogo,
-        'merchantId': inf.dataInfo.merchantId,
-        'merchantName': inf.dataInfo.merchantName,
-        'callbackURL': inf.dataInfo.callbackURL
+    const dta = inf.dataInfo
+    const data = {}
+    if (dta.merchantId.length != 15) {
+        console.log('Invalid Merchant id')
+    } else {
+        
     }
-    object = data;
+
+    var data = {
+        // 'amount': dta.amount,
+        // 'orderId': dta.orderId,
+        // 'currency': dta.currency,
+        // 'phoneNo': dta.phoneNo,
+        // 'operation': dta.operation,
+        // 'description': dta.description,
+        // 'merchantLogo': dta.merchantLogo,
+        // 'merchantId': dta.merchantId,
+        // 'merchantName': dta.merchantName,
+        // 'callbackURL': dta.callbackURL
+
+
+
+        "orderId": dta.orderId,
+        "merchantId": dta.merchantId, //merchantID
+        "amount": dta.amount,
+        "currency": dta.currency,
+        "description": dta.description,
+        "merchantLogo": dta.merchantLogo,
+        "merchantName": dta.merchantName,
+        "operationId": dta.operationId,
+        "tid": dta.tid
+    }
+
+
+    parseInt(dta.amount)
+    console.log(typeof dta.amount)
+
+
+    obj = data;
     initialize();
 }
 
@@ -38,7 +61,8 @@ const initialize = () => {
             'X-Auth-Username': '797ec08a-0ebd-4e3c-a723-d092a51c2d34',
             'X-Auth-Password': '86e97e60-e6a8-4744-af08-48d33b2db885',
         },
-        success:  (response) => {
+        success: (response) => {
+            console.log(response)
             console.log('Response Code : ->' + response.responseCode);
             console.log('Response Desc : ->' + response.responseDescription);
             if (response.responseCode == "00") {
@@ -47,36 +71,37 @@ const initialize = () => {
                 merchantConfigAPI(token);
             }
         },
-        error:  () => {
+        error: () => {
             console.log('Error!!');
         }
     })
 }
 
-const merchantConfigAPI = token => {
-    console.log(object);
+const merchantConfigAPI = (token) => {
+    console.log(obj);
     $.ajax({
         url: `${baseURI}/api/v1/ecommerce/validateMerchant`, //change
         type: 'POST',
         contentType: 'application/json',
         data: JSON.stringify({
-            "amount": "10",
+            "amount": "35",
             "currency": "586",
-            "description": "10",
-            "merchantId": "10",
-            "merchantLogo": "10",
-            "operationId": "10",
-            "orderId": "10",
-            "tid": "15211001"
+            "description": "Purchase",
+            "merchantId": "010210742100010", //merchantID
+            "merchantLogo": "",
+            "operationId": "",
+            "orderId": "00001440",
+            "tid": "152110012" //terminalID
         }),
         headers: {
             'X-Auth-Token': token
         },
-        success:  (response) => {
+        success: (response) => {
+            console.log(response);
 
             console.log('Response Code : ->' + response.responseDescription);
             if (response.responseCode == "00") {
-                showLightBox();
+                // showLightBox();
             }
         },
         error: () => {

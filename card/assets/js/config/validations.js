@@ -8,8 +8,6 @@ const getSMSvalue = () => {
             var val4 = $('#verifyCode4')
             var val5 = $('#verifyCode5')
             var val6 = $('#verifyCode6')
-
-
             val1.on('keyup',(e) => {})
             val2.on('keyup',(e) => {})
             val3.on('keyup',(e) => {})
@@ -37,10 +35,16 @@ const cardNumberValid = () => {
 $(document).ready(function () {
     // debugger;
     masking()
-
     const cardNumber = $('#cardNumber')
     getSMSvalue()
- 
+    
+    // $( "#formSub" ).click(function() {
+    //     alert( "Handler for .click() called." );
+    //   });
+    
+    $('#formSub').click(() => {
+    console.log($('#selectMonth').val())
+    })
 
 
     cardNumber.on('keyup', (e) => {
@@ -94,20 +98,19 @@ $(document).ready(function () {
             visa.style.opacity = "0.1";
             visa.style.filter = 'alpha(opacity=10)'; // IE fallback
         } else {
-            // card number isn't valid
             console.log('error')
-            // reject("Card isn't valid")
         }
 
 
     })
 
-
+  sendSms()
 
 })
 
 
-module.exports ={
-    cardNumberValid,
-    getSMSvalue
-}
+
+// module.exports ={
+//     cardNumberValid,
+//     getSMSvalue
+// }

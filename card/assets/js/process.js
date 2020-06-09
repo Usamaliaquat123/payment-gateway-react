@@ -19,8 +19,6 @@ var merchantInfo;
 
 
 
-
-
 Date.prototype.YYYYMMDDHHMMSS = function () {
     var yyyy = this.getFullYear().toString();
     var MM = pad(this.getMonth() + 1, 2);
