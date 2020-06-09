@@ -14,9 +14,6 @@ const enrollmentVerfication = (transferId) => {
             smsVerifyCode: document.getElementById("smsCode").value,
             transferId: transferId
         }),
-        headers: {
-            'X-Auth-Token': token
-        },
         success: function (response) {
             if (response.responseCode == "00") {
                 console.log(response);
@@ -51,9 +48,6 @@ const ResendButton = () => {
             txnAmount: merchantInfo.amount,
             txnTime: d.YYYYMMDDHHMMSS(),
         }),
-        headers: {
-            'X-Auth-Token': token
-        },
         success: function (response) {
             if (response.responseCode == "00") {
                 transferId = response.data.transferId;
@@ -71,7 +65,7 @@ const ResendButton = () => {
 
 
 
-const sendSms = () => {
+const sendSms = (dta) => {
     return new Promise((resolve, reject) => {
         console.log(document.getElementById("cardNumber").value.replace('-', ''))
         $.ajax({
@@ -80,31 +74,44 @@ const sendSms = () => {
             contentType: 'application/json',
             data: JSON.stringify({
 
+                cardExpiredDate: dta.date, YYMM,
+                cardName: dta.cardName,
+                cardNumber: dta.cardNumber,
+                cardPin: dta.cardPin,
+                sessionId: dta.sessionId
+            }),
+            success: function (response) {
+                console.log(response)
+            },
+            error: function () {
+                document.getElementById("errorMessage").style.display = "block";
+                document.getElementById("errorMessage").value = "Error";
+            }
+        })
+      })  
+}
 
-                // "cardExpiredDate": "3312", YYMM
-                // "cardName": "WAHEED KHAN AFRIDI",
-                // "cardNumber": "6222821234560017",
-                // "cardPin": "123",
-                // "sessionId": "40309c05-14f0-4a12-8bd7-22d434a72928"
-                cardExpiredDate: document.getElementById("expiry-month").value + document.getElementById("expiry-year").value,
-                cardNumber: document.getElementById("cardNumber").value.replace('-', ''),
-                cardPin: document.getElementById("security-code").value,
-                channelType: "07",
-                currencyCode: merchantInfo.currency,
-                merId: merchantInfo.merchantId,
-                orderId: merchantInfo.orderId,
-                phoneNo: merchantInfo.phone,
-                txnAmount: merchantInfo.amount,
-                txnTime: d.YYYYMMDDHHMMSS(),
+
+const sendSms = (dta) => {
+    return new Promise((resolve, reject) => {
+        console.log(document.getElementById("cardNumber").value.replace('-', ''))
+        $.ajax({
+            url: `${baseUri}/api/v1/ecommerce/getSMSCode`,
+            type: 'POST', 
+            contentType: 'application/json',
+            data: JSON.stringify({
+
+                cardExpiredDate: dta.date, YYMM,
+                cardName: dta.cardName,
+                cardNumber: dta.cardNumber,
+                cardPin: dta.cardPin,
+                sessionId: dta.sessionId
             }),
             headers: {
-                'X-Auth-Token': token
+                'X-Auth-Token': dta.token
             },
             success: function (response) {
-                if (response.responseCode == "00") {
-                    transferId = response.data.transferId;
-                    document.getElementById("payButton").disabled = false;
-                }
+                console.log(response)
             },
             error: function () {
                 document.getElementById("errorMessage").style.display = "block";

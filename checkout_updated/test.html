@@ -3,8 +3,8 @@
 
 <head>
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script  type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.15/jquery.mask.min.js"></script>
 
@@ -57,18 +57,18 @@
 <script src="checkout.js"></script>
 <script>
   $('#checkout').click(function () {
-      ({
+      configure({
       dataInfo: {
-        orderId: "00002919",
-        merchantId: "000000000000102",
-        amount: document.getElementById("amountEnter").value,
-        phoneNo: "86-13012345678",
-        merchantName: document.getElementById("merchantName").value,
-        operation: "purchase",
+        orderId: "00012443",
+        merchantId: "010210742100010",
+        amount: "40.00",
+        merchantName: "",
         currency: "586",
-        description: "Ecommerce Secure Plus",
-        merchantLogo: "http://pngimg.com/uploads/kfc/kfc_PNG53.png",
-        callbackURL: "http://localhost:8000/checkout_updated/completed.html"  
+        tid:"15211001",
+        operationId: "",
+        description: "Purchase",
+        merchantLogo: "",
+        callbackURL: "" 
       }
     });
   });

@@ -8,43 +8,65 @@ const payCardUri = "http://localhost:7000"
 
 const configure = (inf) => {
     console.log(inf.dataInfo.merchantId.length)
-    var data = {
-        'amount': inf.dataInfo.amount,
-        'orderId': inf.dataInfo.orderId,
-        'currency': inf.dataInfo.currency,
-        'phoneNo': inf.dataInfo.phoneNo,
-        'operation': inf.dataInfo.operation,
-        'description': inf.dataInfo.description,
-        'merchantLogo': inf.dataInfo.merchantLogo,
-        'merchantId': inf.dataInfo.merchantId,
-        'merchantName': inf.dataInfo.merchantName,
-        'callbackURL': inf.dataInfo.callbackURL
+    const dta = inf.dataInfo
+    const data = {}
+    if (dta.merchantId.length == 15) {
+        if (dta.orderId.length == 8) {
+            data['amount'] = ('0' + dta.amount).slice(-2)
+        } else {
+            data['amount'] = dta.amount
+        }
+        if (dta.amount.length == 1) { data['amount'] = ('0' + dta.amount).slice(-2) } else { data['amount'] = dta.amount }
+
+        data['orderId'] = dta.orderId
+        data['currency'] = dta.currency
+        data['description'] = dta.description
+        data['merchantLogo'] = dta.merchantLogo
+        data['merchantId'] = dta.merchantId
+        data['operationId'] = dta.operationId
+        data['merchantName'] = dta.merchantName
+        data['tid'] = dta.tid
+
+        object = data;
+        console.log(object)
+        validateMerchant();
+    } else {
+
     }
-    object = data;
-    initialize();
+
 }
 
-const initialize = () => {
+const validateMerchant = () => {
+    console.log(object)
     $.ajax({
-        url: `${baseURI}/api/v1/authenticate`,
+        url: `${baseURI}/api/v1/ecommerce/validateMerchant`,
         type: 'POST',
         contentType: 'application/json',
+        data: JSON.stringify({
+            "amount": object.amount,
+            "currency": object.currency,
+            "description": object.description,
+            "merchantId": object.merchantId,
+            "merchantLogo": object.merchantLogo,
+            "operationId": object.operationId,
+            "orderId": object.orderId,
+            "tid": object.tid ,
+            "callBackURL": ""
+        }),
         headers: {
-            'Access-Control-Allow-Origin': '*',
-            'Access-Control-Allow-Credentials': 'true',
-            'X-Auth-Username': '797ec08a-0ebd-4e3c-a723-d092a51c2d34',
-            'X-Auth-Password': '86e97e60-e6a8-4744-af08-48d33b2db885',
+            "Authorization": "Basic Nzk3ZWMwOGEtMGViZC00ZTNjLWE3MjMtZDA5MmE1MWMyZDM0Ojg2ZTk3ZTYwLWU2YTgtNDc0NC1hZjA4LTQ4ZDMzYjJkYjg4NQ=="
         },
-        success:  (response) => {
+        success: (response) => {
             console.log('Response Code : ->' + response.responseCode);
             console.log('Response Desc : ->' + response.responseDescription);
             if (response.responseCode == "00") {
-                token = response.data.token;
-                //token save in object
-                merchantConfigAPI(token);
+                console.log(response)
+                sess = response.data.sessionId;
+                object['sessionId'] = sess
+                showLightBox();
             }
         },
-        error:  () => {
+        error: () => {
             console.log('Error!!');
         }
     })
@@ -69,7 +91,7 @@ const merchantConfigAPI = token => {
         headers: {
             'X-Auth-Token': token
         },
-        success:  (response) => {
+        success: (response) => {
 
             console.log('Response Code : ->' + response.responseDescription);
             if (response.responseCode == "00") {
