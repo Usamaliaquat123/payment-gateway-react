@@ -96,11 +96,10 @@ const sendSms = (dta) => {
     return new Promise((resolve, reject) => {
         console.log(document.getElementById("cardNumber").value.replace('-', ''))
         $.ajax({
-            url: `${baseUri}/api/v1/ecommerce/getSMSCode`,
+            url: `${baseUri}/api/v1/ecommerce/payTransaction`,
             type: 'POST', 
             contentType: 'application/json',
             data: JSON.stringify({
-
                 cardExpiredDate: dta.date, YYMM,
                 cardName: dta.cardName,
                 cardNumber: dta.cardNumber,

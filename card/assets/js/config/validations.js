@@ -21,11 +21,15 @@ const getSMSvalue = () => {
     })
 }
 
-// card Number Validations
+// cvc number Validations
 
-const cardNumberValid = () => {
+const cvcNumberValid = (n) => {
     return new Promise((resolve, reject) => {
-        
+        if(n.length == 3){
+            resolve(true)
+        }else{
+            reject(false)
+        }
     })
 }
 
@@ -42,6 +46,10 @@ $(document).ready(function () {
     //     alert( "Handler for .click() called." );
     //   });
     
+
+    var cvcInput = $('#cvcInput')
+    // cvcNumberValid(cvcInput)
+    console.log(cvcInput)
 
 
     cardNumber.on('keyup', (e) => {
@@ -111,7 +119,7 @@ $(document).ready(function () {
 
 
          var sli = years.slice(2)
-         
+
 
 
     
