@@ -101,12 +101,18 @@ $(document).ready(function () {
 
 
     })
-// card digit validations
+// card digit filter and validations
     const cardDigitValid = (cardNum) => {
+        
+        // console.log(carNum.length == 16)
         return new Promise((resolve, reject) => {
-            if(cardNum == 16){
-                resolve(true)
+            cardNum = cardNum.replace(/\s/g,'')
+            cardNum = cardNum.replace(/\-/g, '')  
+            if(cardNum.length == 16){
+                // console.log(cardNum)
+                resolve(cardNum)
             }else{
+                console.log("sdsds")
                 reject(false)
             }
         })
@@ -121,8 +127,6 @@ $(document).ready(function () {
         // cardNum.trim()
 
 
-
-        console.log(cardNum.replace("-",""))
          var sli = years.slice(2)
 
          var cvcInput = $('#cvcInput').val()
@@ -131,12 +135,9 @@ $(document).ready(function () {
 
          cvcNumberValid(cvcInput).then(cvcVal => {
             cardDigitValid(cardNum).then(crdVal => {
-                
+                console.log(crdVal)
             }).catch(err => console.log(err))
          }).catch(err => console.log(err))
-
-    
-    
     })
         
     

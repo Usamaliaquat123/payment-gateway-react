@@ -4,7 +4,40 @@ const baseURI = "http://10.0.70.64:4999"
 const payCardUri = "http://localhost:7000"
 
 
+const checkout  = () => {
+    return new Promise((resolve, reject) => {
+        
+    })
+}
 
+const config = (data) => {
+    return new Promise((resolve, reject) => {
+        // console.log(inf.dataInfo.merchantId.length)
+        const dta = inf.dataInfo
+        const data = {}
+        if (dta.merchantId.length == 15) {
+            if (dta.orderId.length == 8) {
+                data['amount'] = ('0' + dta.amount).slice(-2)
+            } else {
+                data['amount'] = dta.amount
+            }
+            if (dta.amount.length == 1) { data['amount'] = ('0' + dta.amount).slice(-2) } else { data['amount'] = dta.amount }
+    
+            data['orderId'] = dta.orderId
+            data['currency'] = dta.currency
+            data['description'] = dta.description
+            data['merchantLogo'] = dta.merchantLogo
+            data['merchantId'] = dta.merchantId
+            data['operationId'] = dta.operationId
+            data['merchantName'] = dta.merchantName
+            data['tid'] = dta.tid
+    
+            object = data;
+            console.log(object)
+            validateMerchant();
+        }    
+    })
+}
 
 const configure = (inf) => {
     console.log(inf.dataInfo.merchantId.length)
