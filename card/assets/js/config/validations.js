@@ -41,7 +41,6 @@ $(document).ready(function () {
     masking()
     const cardNumber = $('#cardNumber')
     getSMSvalue()
-    
 
 
 
@@ -59,7 +58,7 @@ $(document).ready(function () {
             var unionpay = document.getElementById('unionpay');
             unionpay.style.opacity = "1";
             unionpay.style.filter = 'alpha(opacity=100)'; // IE fallback
-        } else if (val[0] == '4') {
+        } else if (val[0] == 5) {
             var visa = document.getElementById('visa');
             visa.style.opacity = "1";
             visa.style.filter = 'alpha(opacity=100)'; // IE fallback
@@ -102,8 +101,7 @@ $(document).ready(function () {
 
     })
 // card digit filter and validations
-    const cardDigitValid = (cardNum) => {
-        
+    const cardDigitValid = (cardNum) => {        
         // console.log(carNum.length == 16)
         return new Promise((resolve, reject) => {
             cardNum = cardNum.replace(/\s/g,'')
@@ -141,7 +139,6 @@ $(document).ready(function () {
     })
         
     
-//   sendSms()
 
 })
 

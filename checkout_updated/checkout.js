@@ -4,7 +4,7 @@ const baseURI = "http://10.0.70.64:4999"
 const payCardUri = "http://localhost:7000"
 
 
-const checkout  = () => {
+const checkout  = (basicInformation,) => {
     return new Promise((resolve, reject) => {
         
     })
