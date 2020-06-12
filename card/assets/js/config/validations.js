@@ -47,9 +47,6 @@ $(document).ready(function () {
     //   });
     
 
-    var cvcInput = $('#cvcInput')
-    // cvcNumberValid(cvcInput)
-    console.log(cvcInput)
 
 
     cardNumber.on('keyup', (e) => {
@@ -121,6 +118,16 @@ $(document).ready(function () {
          var sli = years.slice(2)
 
 
+         var cvcInput = $('#cvcInput')
+         // cvcNumberValid(cvcInput)
+         console.log(cvcInput)
+
+         cvcNumberValid(cvcInput.val()).then(res => {
+
+         }).catch(err => {
+            //  err cvc not valid
+            
+         })
 
     
     
