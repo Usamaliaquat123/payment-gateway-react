@@ -124,16 +124,15 @@ $(document).ready(function () {
         var cardNum = $('#cardNumber').val()
         // cardNum.trim()
 
-
-         var sli = years.slice(2)
-
-         var cvcInput = $('#cvcInput').val()
-         // cvcNumberValid(cvcInput)
-         console.log(cvcInput)
-
-         cvcNumberValid(cvcInput).then(cvcVal => {
+        var sli = years.slice(2)
+        
+        var cvcInput = $('#cvcInput').val()
+        // cvcNumberValid(cvcInput)
+        
+        cvcNumberValid(cvcInput).then(cvcVal => {
             cardDigitValid(cardNum).then(crdVal => {
-                console.log(crdVal)
+                if (month.length != 2) month = '0' + month  
+                
             }).catch(err => console.log(err))
          }).catch(err => console.log(err))
     })
