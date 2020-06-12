@@ -42,10 +42,6 @@ $(document).ready(function () {
     const cardNumber = $('#cardNumber')
     getSMSvalue()
     
-    // $( "#formSub" ).click(function() {
-    //     alert( "Handler for .click() called." );
-    //   });
-    
 
 
 
@@ -105,29 +101,39 @@ $(document).ready(function () {
 
 
     })
+// card digit validations
+    const cardDigitValid = (cardNum) => {
+        return new Promise((resolve, reject) => {
+            if(cardNum == 16){
+                resolve(true)
+            }else{
+                reject(false)
+            }
+        })
+    }
 
 
-
-
-    // on submit
+// Form submit
     $('#formSub').click(() => {
         var month = $('#selectMonth').val()
         var years = $('#ddlYears').val()
+        var cardNum = $('#cardNumber').val()
+        // cardNum.trim()
 
 
+
+        console.log(cardNum.replace("-",""))
          var sli = years.slice(2)
 
-
-         var cvcInput = $('#cvcInput')
+         var cvcInput = $('#cvcInput').val()
          // cvcNumberValid(cvcInput)
          console.log(cvcInput)
 
-         cvcNumberValid(cvcInput.val()).then(res => {
-
-         }).catch(err => {
-            //  err cvc not valid
-            
-         })
+         cvcNumberValid(cvcInput).then(cvcVal => {
+            cardDigitValid(cardNum).then(crdVal => {
+                
+            }).catch(err => console.log(err))
+         }).catch(err => console.log(err))
 
     
     
