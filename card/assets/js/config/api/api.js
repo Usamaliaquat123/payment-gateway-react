@@ -1,39 +1,71 @@
 
-const baseUri = "http://10.0.70.64:4999"
+const baseUri = "https://gateway.paysyslabs.com/"
+const API_VERSION = "1.0.0" 
 
 
 
-const enrollmentVerfication = (transferId) => {
-    console.log(transferId);
-    debugger;
-    $.ajax({
-        url: `${baseUri}/api/v1/inquiry/enrollmentVerification`,
-        type: 'POST',
-        contentType: 'application/json',
-        data: JSON.stringify({
-            smsVerifyCode: document.getElementById("smsCode").value,
-            transferId: transferId
-        }),
-        success: function (response) {
-            if (response.responseCode == "00") {
-                console.log(response);
-                //closeIFrame();
+// Pay Transactions API
+const payTransaction = (dta) => {
+    return new Promise((resolve, reject) => {
+        console.log(document.getElementById("cardNumber").value.replace('-', ''))
+        $.ajax({
+            url: `${baseUri}/payTransaction/${API_VERSION}`,
+            type: 'POST', 
+            contentType: 'application/json',
+            data: JSON.stringify({
+                cardExpiredDate: dta.date, YYMM,
+                cardName: dta.cardName,
+                cardNumber: dta.cardNumber,
+                cardPin: dta.cardPin,
+                sessionId: dta.sessionId
+            }),
+            headers: {
+                'X-Auth-Token': dta.token
+            },
+            success: function (response) {
+                console.log(response)
+            },
+            error: function () {
                 document.getElementById("errorMessage").style.display = "block";
                 document.getElementById("errorMessage").value = "Error";
             }
-        },
-        error: function () {
-            document.getElementById("errorMessage").style.display = "block";
-            document.getElementById("errorMessage").value = "Error";
-        }
-    })
+        })
+      })  
 }
 
-// reseend bu
+// SEND sms code API
+const sendSms = (dta) => {
+    return new Promise((resolve, reject) => {
+        console.log(document.getElementById("cardNumber").value.replace('-', ''))
+        $.ajax({
+            url: `${baseUri}/getSmsCode/${API_VERSION}`,
+            type: 'POST', 
+            contentType: 'application/json',
+            data: JSON.stringify({
+
+                cardExpiredDate: dta.date, YYMM,
+                cardName: dta.cardName,
+                cardNumber: dta.cardNumber,
+                cardPin: dta.cardPin,
+                sessionId: dta.sessionId
+            }),
+            success: function (response) {
+                console.log(response)
+            },
+            error: function () {
+                document.getElementById("errorMessage").style.display = "block";
+                document.getElementById("errorMessage").value = "Error";
+            }
+        })
+      })  
+}
+
+
+// RESEND Email api
 const ResendButton = () => {
     document.getElementById("errorMessage").style.display = "none";
     $.ajax({
-        url: `${baseUri}/api/v1/ecommerce/resendSMSCode`,
+        url: `${baseUri}/resendSmsCode/${API_VERSION}`,
         type: 'POST',
         contentType: 'application/json',
         data: JSON.stringify({
@@ -62,60 +94,78 @@ const ResendButton = () => {
     })
 }
 
-
-
-
-const sendSms = (dta) => {
-    return new Promise((resolve, reject) => {
-        console.log(document.getElementById("cardNumber").value.replace('-', ''))
-        $.ajax({
-            url: `${baseUri}/api/v1/ecommerce/getSMSCode`,
-            type: 'POST', 
-            contentType: 'application/json',
-            data: JSON.stringify({
-
-                cardExpiredDate: dta.date, YYMM,
-                cardName: dta.cardName,
-                cardNumber: dta.cardNumber,
-                cardPin: dta.cardPin,
-                sessionId: dta.sessionId
-            }),
-            success: function (response) {
-                console.log(response)
-            },
-            error: function () {
-                document.getElementById("errorMessage").style.display = "block";
-                document.getElementById("errorMessage").value = "Error";
+// Purchase QRC API
+const purchaseQRCapi = () => {
+    document.getElementById("errorMessage").style.display = "none";
+    $.ajax({
+        url: `${baseUri}/purchaseQRC/${API_VERSION}`,
+        type: 'POST',
+        contentType: 'application/json',
+        data: JSON.stringify({
+            // DATA
+            
+        }),
+        success: function (response) {
+            if (response.responseCode == "00") {
+                transferId = response.data.transferId;
+                /*console.log(response);*/
+                document.getElementById("payButton").disabled = false;
             }
-        })
-      })  
+        },
+        error: function () {
+            document.getElementById("errorMessage").style.display = "block";
+            document.getElementById("errorMessage").value = "Error";
+        }
+    })
 }
 
+// inquryQRC api
+const inquiryQRCapi = () => {
+    document.getElementById("errorMessage").style.display = "none";
+    $.ajax({
+        url: `${baseUri}/inquryQRC/${API_VERSION}`,
+        type: 'POST',
+        contentType: 'application/json',
+        data: JSON.stringify({
+            // DATA
 
-const sendSms = (dta) => {
-    return new Promise((resolve, reject) => {
-        console.log(document.getElementById("cardNumber").value.replace('-', ''))
-        $.ajax({
-            url: `${baseUri}/api/v1/ecommerce/payTransaction`,
-            type: 'POST', 
-            contentType: 'application/json',
-            data: JSON.stringify({
-                cardExpiredDate: dta.date, YYMM,
-                cardName: dta.cardName,
-                cardNumber: dta.cardNumber,
-                cardPin: dta.cardPin,
-                sessionId: dta.sessionId
-            }),
-            headers: {
-                'X-Auth-Token': dta.token
-            },
-            success: function (response) {
-                console.log(response)
-            },
-            error: function () {
-                document.getElementById("errorMessage").style.display = "block";
-                document.getElementById("errorMessage").value = "Error";
+        }),
+        success: function (response) {
+            if (response.responseCode == "00") {
+                transferId = response.data.transferId;
+                /*console.log(response);*/
+                document.getElementById("payButton").disabled = false;
             }
-        })
-      })  
+        },
+        error: function () {
+            document.getElementById("errorMessage").style.display = "block";
+            document.getElementById("errorMessage").value = "Error";
+        }
+    })
 }
+
+// validateMerchant api
+const validateMerchant = () => {
+    document.getElementById("errorMessage").style.display = "none";
+    $.ajax({
+        url: `${baseUri}/validateMerchant/${API_VERSION}`,
+        type: 'POST',
+        contentType: 'application/json',
+        data: JSON.stringify({
+            // DATA
+
+        }),
+        success: function (response) {
+            if (response.responseCode == "00") {
+                transferId = response.data.transferId;
+                /*console.log(response);*/
+                document.getElementById("payButton").disabled = false;
+            }
+        },
+        error: function () {
+            document.getElementById("errorMessage").style.display = "block";
+            document.getElementById("errorMessage").value = "Error";
+        }
+    })
+}
+
