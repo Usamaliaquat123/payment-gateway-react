@@ -21,6 +21,25 @@ const getSMSvalue = () => {
     })
 }
 
+// firstname and lastname 
+const mergeName = () => {
+    return new Promise((resolve, reject) =>{
+        var firstname = $('#FirstName').val()
+        var lastname = $('#LastName').val()
+
+        if(firstname != ""){
+            if(lastname != ""){
+                resolve(firstname + ' ' + lastname)
+            }else{
+                reject("401")
+            }
+        }else{
+            reject("400")
+        }
+    })
+}
+
+
 // cvc number Validations
 
 const cvcNumberValid = (n) => {
@@ -123,7 +142,7 @@ $(document).ready(function () {
         var years = $('#ddlYears').val()
         var cardNum = $('#cardNumber').val()
         // cardNum.trim()
-
+        mergeName().then(r => console.log(r))
         var sli = years.slice(2)
         
         var cvcInput = $('#cvcInput').val()

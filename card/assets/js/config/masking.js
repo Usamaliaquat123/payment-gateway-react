@@ -3,6 +3,7 @@ const masking = () => {
         try {
             let cardNumber = $('#cardNumber')
             let cvcInput = $('#cvcInput')
+            let expDate = $('#expDate')
             let verifyCode = $('#verifyCode')
             let verifyCode2 = $('#verifyCode2')
             let verifyCode3 = $('#verifyCode3')
@@ -11,6 +12,7 @@ const masking = () => {
             let verifyCode6 = $('#verifyCode6')
             cardNumber.mask('0000 - 0000 - 0000 - 0000');
             cvcInput.mask('000')
+            expDate.mask('00 / 00')
             verifyCode.mask('0')
             verifyCode2.mask('0')
             verifyCode3.mask('0')
@@ -23,3 +25,4 @@ const masking = () => {
         }
     })
 }
+

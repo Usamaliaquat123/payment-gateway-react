@@ -12,7 +12,7 @@
     <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.0.0/animate.min.css" />
     <!-- <script src="./assets/js/process.js"></script> -->
-    <link rel="stylesheet" th:href="@{/css/smscode.css}" >
+    <link rel="stylesheet" th:href="@{/css/smscode.css}">
     <!-- external -->
     <script src="./assets/js/external/jquery-3.5.1.min.js"></script>
     <script src="./assets/js/external/jquery.mask.min.js"></script>
@@ -31,96 +31,103 @@
 <body>
     <div id="cardContainer" class="container-card animate__animated animate__backInUp">
         <!-- <form> -->
-            <div>
-                <p class="acnameTag">Merchant Ac Name</p>
-                <div style="flex-direction: row;">
-                    <input type="phone" placeholder="0000 - 0000 - 0000 - 0000"
-                        data-inputmask='"mask": "9999 9999 9999 9999"' id="cardNumber" class="inputline" maxlength="16"
-                        required>
-                    <label class="amountLable"> 200</label>
-                </div>
+        <div>
+            <p class="acnameTag">Merchant Ac Name</p>
+            <div style="flex-direction: row;">
+                <input type="phone" placeholder="0000 - 0000 - 0000 - 0000"
+                    data-inputmask='"mask": "9999 9999 9999 9999"' id="cardNumber" class="inputline" maxlength="16"
+                    required>
 
-
-                <div class="row">
-                    <div class="col">
-                        <img id="mastercard" class="cardsImgs" src="./assets/images/mastercard.png" />
-                        <img id="visa" class="cardsImgs" src="./assets/images/visa.png" />
-                        <img class="cardsImgs" id="unionpay" src="./assets/images/unionpay.png" />
-                        <!-- <img class="cardsImgs" id="paypak" src="./assets/images/paypak.png" /> -->
-                    </div>
-                </div>
-
-                <div class="expDateMen">
-                    <p class="expDateText">Expiration Date</p>
-                    <div class="row">
-                        <div class="col-md-6 ">
-                            <select id="selectMonth" required>
-                                <option value="1">01</option>
-                                <option value="2">02</option>
-                                <option value="3">03</option>
-                                <option value="4">04</option>
-                                <option value="5">05</option>
-                                <option value="6">06</option>
-                                <option value="7">07</option>
-                                <option value="8">08</option>
-                                <option value="9">09</option>
-                                <option value="10">10</option>
-                                <option value="11">11</option>
-                                <option value="12">12</option>
-                            </select>
-                        </div>
-                        <div class="col-md-6">
-                            <select required id="ddlYears"></select>
-                        </div>
-                    </div>
-                </div>
-            
-            <input class="cardHolderInput "  placeholder="Card Holder Name"
-            id="cardHolderName" required>
-        <div style="flex-direction: row;">
-
-            <label class="scodeText">Security code</label>
-            <input id="cvcInput"  data-inputmask='"mask": "9999"' type="password" class="scode"
-                maxlength="3">
-            <img class="imgscode" src="./assets/images//csc_other.png" alt="">
-
-        </div>
-
-        <div class="row">
-            <div id="formSub" round class="btn btn-dark btn-custom ">Proceed</div>
-        </div>
+                <label class="amountLable"> 200</label>
             </div>
+            <div style="flex-direction: row;">
+                <input class="expiryDate" type="phone" id="expDate" placeholder="MM / YY" required>
+                <input class="cvcNumber" type="phone" id="cvcInput" placeholder="CVC"  required>
+            </div>
+            <div style="flex-direction: row;">
+                <input class="expiryDate" type="text"  placeholder="First Name" id="FirstName" required>
+                <input class="cvcNumber" type="text"  placeholder="Last Name" id="LastName" required>
+            </div>
+
+
+            <div class="row">
+                <div class="col">
+                    <img id="mastercard" class="cardsImgs" src="./assets/images/mastercard.png" />
+                    <img id="visa" class="cardsImgs" src="./assets/images/visa.png" />
+                    <img class="cardsImgs" id="unionpay" src="./assets/images/unionpay.png" />
+                    <!-- <img class="cardsImgs" id="paypak" src="./assets/images/paypak.png" /> -->
+                </div>
+            </div>
+
+            <div class="expDateMen">
+                <p class="expDateText">Expiration Date</p>
+                <div class="row">
+                    <div class="col-md-6 ">
+                        <select id="selectMonth" required>
+                            <option value="1">01</option>
+                            <option value="2">02</option>
+                            <option value="3">03</option>
+                            <option value="4">04</option>
+                            <option value="5">05</option>
+                            <option value="6">06</option>
+                            <option value="7">07</option>
+                            <option value="8">08</option>
+                            <option value="9">09</option>
+                            <option value="10">10</option>
+                            <option value="11">11</option>
+                            <option value="12">12</option>
+                        </select>
+                    </div>
+                    <div class="col-md-6">
+                        <select required id="ddlYears"></select>
+                    </div>
+                </div>
+            </div>
+
+            <input class="cardHolderInput " placeholder="Card Holder Name" id="cardHolderName" required>
+            <div style="flex-direction: row;">
+
+                <label class="scodeText">Security code</label>
+                <input id="cvcInput" data-inputmask='"mask": "9999"' type="password" class="scode" maxlength="3">
+                <img class="imgscode" src="./assets/images//csc_other.png" alt="">
+
+            </div>
+
+            <div class="row">
+                <div id="formSub" round class="btn btn-dark btn-custom ">Proceed</div>
+            </div>
+        </div>
     </div>
 
-            <div>   
-                <div class="container-card-sms animate__animated animate__backInRight">
-                    <div class="loadingContainer"></div>
-                    <div class="container-sms">
-                        <p class="acnameTag">Merchant Ac Name</p>
-                        <p class="validCodeText">Enter 6-digit verification code</p>
-                        <div class="customContainer">
-                            <div class="vcode" id="vcode">
-                                <input id="verifyCode" type="phone" class="vcode-input" maxlength="1">
-                                <input id="verifyCode2" type="phone" class="vcode-input" maxlength="1">
-                                <input id="verifyCode3" type="phone" style="margin-right: 5%;" class="vcode-input"
-                                    maxlength="1">
-                                <input id="verifyCode4" type="phone" class="vcode-input" maxlength="1">
-                                <input id="verifyCode5" type="phone" class="vcode-input" maxlength="1">
-                                <input id="verifyCode6" type="phone" class="vcode-input" maxlength="1">
-                            </div>
-                        </div>
-                        <div style="float: right;">
-                            <div class="resendCode">
-                                <p>Resend code</p>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <button round class="btn btn-dark btn-custom " type="submit">Pay</button>
-                        </div>
+    <div>
+        <div class="container-card-sms animate__animated animate__backInRight">
+            <div class="loadingContainer"></div>
+            <div class="container-sms">
+                <p class="acnameTag">Merchant Ac Name</p>
+                <p class="validCodeText">Enter 6-digit verification code</p>
+                <div class="customContainer">
+                    <div class="vcode" id="vcode">
+                        <input id="verifyCode" type="phone" class="vcode-input" maxlength="1">
+                        <input id="verifyCode2" type="phone" class="vcode-input" maxlength="1">
+                        <input id="verifyCode3" type="phone" style="margin-right: 5%;" class="vcode-input"
+                            maxlength="1">
+                        <input id="verifyCode4" type="phone" class="vcode-input" maxlength="1">
+                        <input id="verifyCode5" type="phone" class="vcode-input" maxlength="1">
+                        <input id="verifyCode6" type="phone" class="vcode-input" maxlength="1">
                     </div>
-
+                </div>
+                <div style="float: right;">
+                    <div class="resendCode">
+                        <p>Resend code</p>
+                    </div>
+                </div>
+                <div class="row">
+                    <button round class="btn btn-dark btn-custom " type="submit">Pay</button>
                 </div>
             </div>
+
+        </div>
+    </div>
 
 </body>
 
