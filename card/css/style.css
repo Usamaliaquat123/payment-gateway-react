@@ -141,7 +141,7 @@ select:active {
 }
 .container-card {
   max-width: 25em;
-  padding: 1em 3em 2em 3em;
+  padding:1em 3em 3em 3em;
   margin: 0em auto;
   background-color: #fff;
   border-radius: 4.2px;
@@ -150,13 +150,14 @@ select:active {
 }
 
 .inputline{
-    width: 72%;
+    width: 71%;
     /* text-transform: uppercase;S */
-    background: white no-repeat;
+    background: #ffff no-repeat;
     background-image: linear-gradient(to bottom , #D94255, #D94255), linear-gradient(to bottom,grey, grey);
     background-size: 0 2px, 100% 1px;
     background-position: 50% 100%, 50% 100%;
     transition: background-size 0.6s cubic-bezier(0.64, 0.09, 0.08, 1);
+    
 }
 .inputline:focus{
       /* sizes for the 2 images (focus state) */
@@ -196,33 +197,6 @@ select:active {
     text-align: center;
     margin-top: 33%;
 }
-.row {
-  zoom: 1;
-}
-.row:before,
-.row:after {
-  content: "";
-  display: table;
-}
-.row:after {
-  clear: both;
-}
-.col-half {
-  padding-right: 10px;
-  float: left;
-  width: 50%;
-}
-.col-half:last-of-type {
-  padding-right: 0;
-}
-.col-third {
-  padding-right: 10px;
-  float: left;
-  width: 33.33333333%;
-}
-.col-third:last-of-type {
-  padding-right: 0;
-}
 @media only screen and (max-width: 540px) {
   .col-half {
     width: 100%;
@@ -231,8 +205,14 @@ select:active {
 }
 
 .cardsImgs{
-    padding-left: 10px;
-    margin-top: 10%;
+  width: 23%;
+  background-color: #fff;
+  padding: 5%;
+}
+.crdImgBox{
+  background-color: #fff;
+  padding: 6%;
+  max-width: 30%;
 }
 .expDateMen{
     margin-top: 10%;
@@ -240,15 +220,12 @@ select:active {
 .scode{
   width: 19%;
     margin-left: 8%;
-  /* text-transform: uppercase;S */
   background: white no-repeat;
   background-image: linear-gradient(to bottom , #D94255, #D94255), linear-gradient(to bottom,grey, grey);
   background-size: 0 2px, 100% 1px;
   background-position: 50% 100%, 50% 100%;
-  /* transition: background-size 0.6s cubic-bezier(0.64, 0.09, 0.08, 1); */
 }
 .scode:focus{
-    /* sizes for the 2 images (focus state) */
 	background-size: 100% 1px, 88% 1px;
 	outline: none;
 }
@@ -260,7 +237,6 @@ select:active {
 }
 .scodeText{
   margin-top: 9%;
-  /* font-weight: bold; */
 }
 
 .partitioned {
@@ -281,8 +257,12 @@ select:active {
     margin-top: 10%;
 }
 
-
-
+.contactD{
+  margin-top: 10%;
+}
+.iti{
+  display: grid;
+}
 .expDateText{
   font-size: 15px;
   font-weight:bold;
@@ -315,13 +295,11 @@ select:active {
   transition: background-size 0.6s cubic-bezier(0.64, 0.09, 0.08, 1);
 }
 .cvcNumber:focus {
-  /* sizes for the 2 images (focus state) */
 background-size: 100% 1px, 100% 1px;
 outline: none;
 }
 
 .expiryDate:focus {
-  /* sizes for the 2 images (focus state) */
 background-size: 100% 1px, 100% 1px;
 outline: none;
 }

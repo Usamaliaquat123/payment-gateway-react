@@ -60,10 +60,26 @@ $(document).ready(function () {
     masking()
     const cardNumber = $('#cardNumber')
     getSMSvalue()
+    $("#phoneField").CcPicker();
 
 
 
     cardNumber.on('keyup', (e) => {
+        cardNum = e.target.value.replace(/\s/g,'')
+        cardNum = e.target.value.replace(/\-/g, '')  
+        if(cardNum.length != 16){
+            console.log('sds')
+            setTimeout(() => {
+                cardNumber.css('background-size','100% 1px, 100% 1px')
+                cardNumber.css('outline','none')
+            }, 1000);
+        }else{
+            console.log('sds')
+            setTimeout(() => {
+                cardNumber.css('background-size','0 2px, 100% 1px')
+                cardNumber.css('outline','')
+            }, 1000);
+        }
         const val = e.target.value
         if (val == "") {
             var mastercard = document.getElementById('mastercard');
@@ -139,7 +155,7 @@ $(document).ready(function () {
 
 
 const dateValidation=(date) => {
-    
+    var expDate = $('#')
 }
 
 
