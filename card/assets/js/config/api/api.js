@@ -62,14 +62,14 @@ const sendSms = (dta) => {
 
 
 // RESEND Email api
-const ResendButton = () => {
+const ResendButton = (dta) => {
     document.getElementById("errorMessage").style.display = "none";
     $.ajax({
         url: `${baseUri}/resendSmsCode/${API_VERSION}`,
         type: 'POST',
         contentType: 'application/json',
         data: JSON.stringify({
-            cardExpiredDate: document.getElementById("expiry-month").value + document.getElementById("expiry-year").value,
+            cardExpiredDate: dta,
             cardNumber: document.getElementById("cardNumber").value.replace('-', ''),
             cardPin: document.getElementById("security-code").value,
             channelType: "07",

@@ -140,10 +140,3 @@ $(document).ready(function () {
     
 
 })
-
-
-
-// module.exports ={
-//     cardNumberValid,
-//     getSMSvalue
-// }
