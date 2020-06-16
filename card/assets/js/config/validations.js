@@ -135,6 +135,14 @@ $(document).ready(function () {
         })
     }
 
+// date validation 
+
+
+const dateValidation=(date) => {
+    
+}
+
+
 
 // Form submit
     $('#formSub').click(() => {
