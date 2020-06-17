@@ -99,7 +99,16 @@ $(document).ready(function () {
     getSMSvalue()
     // $("#phoneField").CcPicker();    
 
-
+    const init = {
+        "amount": "30.00",
+        "currency": "586",
+        "description": "Ecommerce",
+        "merchantId": "010210742100010",
+        "operationId": "",
+        "orderId": "01112475",
+        "tid": "15211001"
+    }
+    validateMerchant(init).then(res => console.log(res))
 
     cardNumber.on('keyup', (e) => {
         cardNum = e.target.value.replace(/\s/g, '')
@@ -233,15 +242,18 @@ $(document).ready(function () {
         var years = $('#ddlYears').val()
         var cardNum = $('#cardNumber').val()
          
-
         const cardInfo = {
-            cardName: '',
-            cardNumber: '',
-            cardPin: '',
-            sessionId: '',
-            cardExpiredDate:''
+                cardExpiredDate: "3312",
+                cardName: "WAHEED KHAN AFRIDI",
+                cardNumber: "6222821234560017",
+                cardPin: "123",
+                merchantId: "010210742100010", //SHOULD BE SAME AS VALIDATE MERCHANT REQUEST
+                sessionId: "072f7813-877c-441b-8665-dade821b8d74"
         }
-        payTransaction()
+
+
+        
+       
     })
 
 
