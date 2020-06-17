@@ -242,18 +242,28 @@ $(document).ready(function () {
         var years = $('#ddlYears').val()
         var cardNum = $('#cardNumber').val()
          
+        console.log(localStorage.getItem('sessionId'))
+        
         const cardInfo = {
                 cardExpiredDate: "3312",
                 cardName: "WAHEED KHAN AFRIDI",
                 cardNumber: "6222821234560017",
                 cardPin: "123",
-                merchantId: "010210742100010", //SHOULD BE SAME AS VALIDATE MERCHANT REQUEST
-                sessionId: "072f7813-877c-441b-8665-dade821b8d74"
+                merchantId: `${localStorage.getItem('merchantId')}`, //SHOULD BE SAME AS VALIDATE MERCHANT REQUEST
+                sessionId: `${localStorage.getItem('sessionId')}`
         }
+        const payTrans = {
+            sessionId : `${localStorage.getItem('sessionId')}`,
+            merchantId : `${localStorage.getItem('merchantId')}`,
+            smsCode : `${111111}`
+        }
+        sendSms(cardInfo).then(res => console.log(res))
+        // resendSmsCode(cardInfo).then(res => console.log(res))
 
-
-        
-       
+        setTimeout(() => {
+            payTransaction(payTrans).then(res => console.log(res))
+            
+        }, 1000);
     })
 
 

@@ -41,6 +41,8 @@ const validateMerchant = (dta) => {
                 if(response.responseCode == 00){
                     localStorage.setItem('sessionId',`${response.data.sessionId}`)
                     localStorage.setItem('merchantId',`${dta.merchantId}`)
+                }else{
+                    reject(response)
                 }
             },
             error: function (e) {
@@ -70,10 +72,15 @@ const sendSms = (dta) => {
                 sessionId: dta.sessionId
             }),
             headers: {
-                "Authorization": `Bearer ${ACCESS_TOKEN}`
+                "Authorization": `${ACCESS_TOKEN}`
             },
             success: function (response) {
-                console.log(response)
+                if(response.responseCode == 00){
+                    localStorage.setItem('sessionId',`${response.data.sessionId}`)
+                    resolve(response)
+                }else{
+                    reject(response)
+                }
             },
             error: function (error) {
                 console.log(e)
@@ -83,6 +90,38 @@ const sendSms = (dta) => {
 }
 
 
+// RESEND Email api
+const resendSmsCode = (dta) => {
+    return new Promise((resolve, reject) => {
+        $.ajax({
+            url: `${baseUri}/resendSmsCode/${API_VERSION}`,
+            type: 'POST',
+            contentType: 'application/json',
+            data: JSON.stringify({
+                cardExpiredDate: dta.cardExpiredDate,
+                cardName: dta.cardName,
+                cardNumber: dta.cardNumber,
+                cardPin: dta.cardPin,
+                merchantId: dta.merchantId, //SHOULD BE SAME AS VALIDATE MERCHANT REQUEST
+                sessionId: dta.sessionId
+            }),
+            headers: {
+                "Authorization": `${ACCESS_TOKEN}`
+            },
+            success: function (response) {
+                if (response.responseCode == "00") {
+                    localStorage.setItem('sessionId',`${response.data.sessionId}`)
+                    resolve(response.data.sessionId)
+                    /*console.log(response);*/
+                }else{
+                    reject(response)
+                }
+                console.log(response)
+            },
+        })
+    })
+   
+}
 
 
 
@@ -97,22 +136,20 @@ const payTransaction = (dta) => {
             type: 'POST', 
             contentType: 'application/json',
             data: JSON.stringify({
-                cardExpiredDate: dta.date, YYMM,
-                cardName: dta.cardName,
-                cardNumber: dta.cardNumber,
-                cardPin: dta.cardPin,
-                sessionId: dta.sessionId
+                sessionId: dta.sessionId,
+                merchantId: dta.merchantId,//SHOULD BE SAME AS VALIDATE MERCHANT REQUEST
+                smsCode: dta.smsCode
             }),
             headers: {
-                "Authorization": `Bearer ${ACCESS_TOKEN}`
+                "Authorization": `${ACCESS_TOKEN}`
             },
             success: function (response) {
-                console.log(response)
+                if(response.responseCode == 00){
+                    resolve(response.data.message)
+                }else{
+                    reject(response)
+                }
             },
-            error: function () {
-                document.getElementById("errorMessage").style.display = "block";
-                document.getElementById("errorMessage").value = "Error";
-            }
         })
       })  
 }
@@ -120,41 +157,19 @@ const payTransaction = (dta) => {
 // SEND sms code API
 
 
-// RESEND Email api
-const resendSmsCode = (dta) => {
-    document.getElementById("errorMessage").style.display = "none";
-    $.ajax({
-        url: `${baseUri}/resendSmsCode/${API_VERSION}`,
-        type: 'POST',
-        contentType: 'application/json',
-        data: JSON.stringify({
-            cardExpiredDate: dta,
-            cardNumber: document.getElementById("cardNumber").value.replace('-', ''),
-            cardPin: document.getElementById("security-code").value,
-            channelType: "07",
-            currencyCode: merchantInfo.currency,
-            merId: merchantInfo.merchantId,
-            orderId: merchantInfo.orderId,
-            phoneNo: merchantInfo.phone,
-            txnAmount: merchantInfo.amount,
-            txnTime: d.YYYYMMDDHHMMSS(),
-        }),
-        headers: {
-            "Authorization": `Bearer ${ACCESS_TOKEN}`
-        },
-        success: function (response) {
-            if (response.responseCode == "00") {
-                transferId = response.data.transferId;
-                /*console.log(response);*/
-                document.getElementById("payButton").disabled = false;
-            }
-        },
-        error: function () {
-            document.getElementById("errorMessage").style.display = "block";
-            document.getElementById("errorMessage").value = "Error";
-        }
-    })
-}
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 // Purchase QRC API
 const purchaseQRCapi = () => {
@@ -181,14 +196,14 @@ const purchaseQRCapi = () => {
 }
 
 // inquryQRC api
-const inquiryQRCapi = () => {
+const inquiryQRCapi = (dta) => {
     document.getElementById("errorMessage").style.display = "none";
     $.ajax({
         url: `${baseUri}/inquryQRC/${API_VERSION}`,
         type: 'POST',
         contentType: 'application/json',
         data: JSON.stringify({
-            // DATA
+            
 
         }),
         headers: {
