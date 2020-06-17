@@ -13,7 +13,7 @@ const masking = () => {
             let verifyCode6 = $('#verifyCode6')
             cardNumber.mask('0000 - 0000 - 0000 - 0000');
             cvcInput.mask('000')
-            phCode.mask('000-00000000000')
+            phCode.mask('000-00000000000000000')
             expDate.mask('00 / 00')
             verifyCode.mask('0')
             verifyCode2.mask('0')

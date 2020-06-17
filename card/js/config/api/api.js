@@ -1,7 +1,7 @@
 
 const baseUri = "https://gateway.paysyslabs.com/"
 const API_VERSION = "1.0.0" 
-
+const ACCESS_TOKEN = "4c280096-0db9-44f3-8b4d-71747e630ea6"
 
 
 // Pay Transactions API
@@ -20,7 +20,7 @@ const payTransaction = (dta) => {
                 sessionId: dta.sessionId
             }),
             headers: {
-                'X-Auth-Token': dta.token
+                "Authorization": `Bearer ${ACCESS_TOKEN}`
             },
             success: function (response) {
                 console.log(response)
@@ -42,13 +42,15 @@ const sendSms = (dta) => {
             type: 'POST', 
             contentType: 'application/json',
             data: JSON.stringify({
-
                 cardExpiredDate: dta.date, YYMM,
                 cardName: dta.cardName,
                 cardNumber: dta.cardNumber,
                 cardPin: dta.cardPin,
                 sessionId: dta.sessionId
             }),
+            headers: {
+                "Authorization": `Bearer ${ACCESS_TOKEN}`
+            },
             success: function (response) {
                 console.log(response)
             },
@@ -80,6 +82,9 @@ const ResendButton = (dta) => {
             txnAmount: merchantInfo.amount,
             txnTime: d.YYYYMMDDHHMMSS(),
         }),
+        headers: {
+            "Authorization": `Bearer ${ACCESS_TOKEN}`
+        },
         success: function (response) {
             if (response.responseCode == "00") {
                 transferId = response.data.transferId;
@@ -108,7 +113,6 @@ const purchaseQRCapi = () => {
         success: function (response) {
             if (response.responseCode == "00") {
                 transferId = response.data.transferId;
-                /*console.log(response);*/
                 document.getElementById("payButton").disabled = false;
             }
         },
@@ -130,6 +134,9 @@ const inquiryQRCapi = () => {
             // DATA
 
         }),
+        headers: {
+            "Authorization": `Bearer ${ACCESS_TOKEN}`
+        },
         success: function (response) {
             if (response.responseCode == "00") {
                 transferId = response.data.transferId;
@@ -155,6 +162,9 @@ const validateMerchant = () => {
             // DATA
 
         }),
+        headers : {
+            "Authorization": `Bearer ${ACCESS_TOKEN}`
+        },
         success: function (response) {
             if (response.responseCode == "00") {
                 transferId = response.data.transferId;

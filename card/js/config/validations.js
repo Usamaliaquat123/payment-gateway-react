@@ -66,6 +66,9 @@ const cvcNumberValid = (n) => {
 }
 
 
+const regexEmail = () => {
+    
+}
 
 // Card Identifier
 $(document).ready(function () {
@@ -229,19 +232,16 @@ $(document).ready(function () {
         var month = $('#selectMonth').val()
         var years = $('#ddlYears').val()
         var cardNum = $('#cardNumber').val()
-        // cardNum.trim()
-        mergeName().then(r => console.log(r))
-        var sli = years.slice(2)
+         
 
-        var cvcInput = $('#cvcInput').val()
-        // cvcNumberValid(cvcInput)
-
-        cvcNumberValid(cvcInput).then(cvcVal => {
-            // cardDigitValid(cardNum).then(crdVal => {
-                if (month.length != 2) month = '0' + month
-
-            // }).catch(err => console.log(err))
-        }).catch(err => console.log(err))
+        const cardInfo = {
+            cardName: '',
+            cardNumber: '',
+            cardPin: '',
+            sessionId: '',
+            cardExpiredDate:''
+        }
+        payTransaction()
     })
 
 
