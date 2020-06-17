@@ -59,8 +59,29 @@ $(document).ready(function () {
     // debugger;
     masking()
     const cardNumber = $('#cardNumber')
+    const expDate = $('#expDate')
+
+
+
+
+    expDate.on('keyup',(e) => {
+        if(e.target.value.length == 2){
+            if(e.target.value < 12){
+                console.log(e.target.value)
+            }else{
+               e.target.value  = ""
+            }
+        }
+    })
+
+
+
+
+    
+
+
     getSMSvalue()
-    $("#phoneField").CcPicker();
+    $("#phoneField").CcPicker();    
 
 
 
@@ -152,11 +173,6 @@ $(document).ready(function () {
     }
 
 // date validation 
-
-
-const dateValidation=(date) => {
-    var expDate = $('#')
-}
 
 
 

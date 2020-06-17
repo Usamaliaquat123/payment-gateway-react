@@ -11,6 +11,24 @@ var merchantInfo;
 
 // Maksing var
 
+// var input = document.querySelector("#phoneCode");
+// // var country = document.querySelector('#selectMonth')
+
+
+// function lettersOnly(inp){
+//     var regex = /[^a-z]/gi;
+//     inp.value = inp.value.replace(regex, "")
+// }
+// window.intlTelInput(input, {
+//     initialCountry: "auto",
+//     separateDialCode: true,
+//     geoIpLookup: function (success, failure) {
+//         $.get("https://ipinfo.io", function () { }, "jsonp").always(function (resp) {
+//             var countryCode = (resp && resp.country) ? resp.country : "";
+//             success(countryCode);
+//         });
+//     },
+// })
 
 
 

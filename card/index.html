@@ -26,6 +26,8 @@
     <script src="./js/config/masking.js"></script>
     <script src="./js/config/validations.js"></script>
 
+
+   
 </head>
 
 
@@ -46,19 +48,11 @@
 
             </div>
             <p class="expDateText">Card Details</p>
+
+
             <div style="flex-direction: row;">
-                <input class="expiryDate" type="text" placeholder="First Name" id="FirstName" required>
-                <input class="lastNames" type="text" placeholder="Last Name" id="LastName" required>
-            </div>
-            <div style="flex-direction: row;">
-                <input class="expiryDate" type="phone" id="expDate" placeholder="MM / YY" required>
-                <input class="cvcNumber" type="phone" id="cvcInput" placeholder="CVC" required>
-                <img class="imgscode" src="./img/csc_other.png" alt="">
-            </div>
-            <div style="flex-direction: row;">
-                <input type="phone" placeholder="Enter your card number"
-                    data-inputmask='"mask": "9999 9999 9999 9999"' id="cardNumber" class="inputline" maxlength="16"
-                    required>
+                <input type="phone" placeholder="Enter your card number" data-inputmask='"mask": "9999 9999 9999 9999"'
+                    id="cardNumber" class="inputline" maxlength="16" required>
 
                 <!-- <div> -->
 
@@ -67,8 +61,17 @@
 
                 <!-- <label class="amountLable"> 200</label> -->
             </div>
-
-
+            <div style="flex-direction: row;">
+                <input class="expiryDate" type="phone" id="expDate" placeholder="MM / YY" required>
+                <input class="cvcNumber" type="phone" id="cvcInput" placeholder="CVC" required>
+                <img class="imgscode" src="./img/csc_other.png" alt="">
+            </div>
+            <div style="flex-direction: row;">
+                <input class="expiryDate" onkeyup="lettersOnly(this)" type="text" placeholder="First Name"
+                    id="FirstName" required>
+                <input class="lastNames" onkeyup="lettersOnly(this)" type="text" placeholder="Last Name" id="LastName"
+                    required>
+            </div>
 
             <div class="expDateMen">
                 <p class="expDateText">Billing Details</p>
@@ -334,7 +337,7 @@
 
 
 
-                <input class="cardHolderInput" type="tel" id="phone" placeholder="Contact Number">
+                <input class="cardHolderInput" type="tel" id="phoneCode" placeholder="Contact Number">
                 <!-- <input  placeholder="Phone  " id="streetAddr" required> -->
             </div>
             <input class="cardHolderInput " type="email" placeholder="Email Address" id="streetAddr" required>
@@ -381,9 +384,14 @@
 
 
     <script>
-        var input = document.querySelector("#phone");
-        var country = document.querySelector('#selectMonth')
+        var input = document.querySelector("#phoneCode");
+        // var country = document.querySelector('#selectMonth')
 
+
+        function lettersOnly(inp){
+            var regex = /[^a-z]/gi;
+            inp.value = inp.value.replace(regex, "")
+        }
         window.intlTelInput(input, {
             initialCountry: "auto",
             separateDialCode: true,
@@ -394,8 +402,12 @@
                 });
             },
         })
+        for (let i = 0; i < window.intlTelInputGlobals.getCountryData().length; i++) {
+                
+        }
 
     </script>
+        <script src="./js/process.js"></script>
 </body>
 
 </html>
