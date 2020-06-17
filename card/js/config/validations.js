@@ -1,3 +1,16 @@
+const errorState = {
+    cardNumber: false,
+    cardDate: false,
+    cardcvc: false,
+    firstname: false,
+    lastname: false,
+    country: false,
+    street: false,
+    city: false,
+    phNumber: false,
+    email: false
+}
+
 // sms code validations
 const getSMSvalue = () => {
     return new Promise((resolve, reject) => {
@@ -8,12 +21,12 @@ const getSMSvalue = () => {
             var val4 = $('#verifyCode4')
             var val5 = $('#verifyCode5')
             var val6 = $('#verifyCode6')
-            val1.on('keyup',(e) => {})
-            val2.on('keyup',(e) => {})
-            val3.on('keyup',(e) => {})
-            val4.on('keyup',(e) => {})
-            val5.on('keyup',(e) => {})
-            val6.on('keyup',(e) => {})
+            val1.on('keyup', (e) => { })
+            val2.on('keyup', (e) => { })
+            val3.on('keyup', (e) => { })
+            val4.on('keyup', (e) => { })
+            val5.on('keyup', (e) => { })
+            val6.on('keyup', (e) => { })
             resolve(true)
         } catch (e) {
             reject(e)
@@ -23,17 +36,17 @@ const getSMSvalue = () => {
 
 // firstname and lastname 
 const mergeName = () => {
-    return new Promise((resolve, reject) =>{
+    return new Promise((resolve, reject) => {
         var firstname = $('#FirstName').val()
         var lastname = $('#LastName').val()
 
-        if(firstname != ""){
-            if(lastname != ""){
+        if (firstname != "") {
+            if (lastname != "") {
                 resolve(firstname + ' ' + lastname)
-            }else{
+            } else {
                 reject("401")
             }
-        }else{
+        } else {
             reject("400")
         }
     })
@@ -44,9 +57,9 @@ const mergeName = () => {
 
 const cvcNumberValid = (n) => {
     return new Promise((resolve, reject) => {
-        if(n.length == 3){
+        if (n.length == 3) {
             resolve(true)
-        }else{
+        } else {
             reject(false)
         }
     })
@@ -64,12 +77,12 @@ $(document).ready(function () {
 
 
 
-    expDate.on('keyup',(e) => {
-        if(e.target.value.length == 2){
-            if(e.target.value < 12){
+    expDate.on('keyup', (e) => {
+        if (e.target.value.length == 2) {
+            if (e.target.value < 12) {
                 console.log(e.target.value)
-            }else{
-               e.target.value  = ""
+            } else {
+                e.target.value = ""
             }
         }
     })
@@ -77,7 +90,7 @@ $(document).ready(function () {
 
 
 
-    
+
 
 
     getSMSvalue()
@@ -86,19 +99,21 @@ $(document).ready(function () {
 
 
     cardNumber.on('keyup', (e) => {
-        cardNum = e.target.value.replace(/\s/g,'')
+        cardNum = e.target.value.replace(/\s/g, '')
         // cardNum = e.target.value.replace(/\s/g, '')  
         console.log(cardNum)
-        if(cardNum.length == 19){
-                cardNumber.css('background-size','0 2px, 100% 1px')
-                cardNumber.css('outline','')
-        }else{
-                        cardNumber.css('background-size','100% 1px, 100% 1px')
-                        cardNumber.css('outline','none')
-           
+        if (cardNum.length == 19) {
+            errorState['cardNumber'] = false
+            cardNumber.css('background-size', '0 2px, 100% 1px')
+            cardNumber.css('outline', '')
+        } else {
+            errorState['cardNumber'] = true
+            cardNumber.css('background-size', '100% 1px, 100% 1px')
+            cardNumber.css('outline', 'none')
         }
         const val = e.target.value
         if (val == "") {
+            errorState['cardNumber'] = true
             var mastercard = document.getElementById('mastercard');
             mastercard.style.opacity = "1";
             mastercard.style.filter = 'alpha(opacity=100)'; // IE fallback
@@ -115,6 +130,7 @@ $(document).ready(function () {
             paypak.style.opacity = "1";
             paypak.style.filter = 'alpha(opacity=10)'; // IE fallback
         } else if (val[0] == 5) {
+            errorState['cardNumber'] = false
             var visa = document.getElementById('visa');
             visa.style.opacity = "1";
             visa.style.filter = 'alpha(opacity=100)'; // IE fallback
@@ -131,6 +147,7 @@ $(document).ready(function () {
             paypak.style.opacity = "0.1";
             paypak.style.filter = 'alpha(opacity=10)'; // IE fallback
         } else if (val[0] == '5') {
+            errorState['cardNumber'] = false
             var mastercard = document.getElementById('mastercard');
             mastercard.style.opacity = "1";
             mastercard.style.filter = 'alpha(opacity=100)'; // IE fallback
@@ -147,6 +164,7 @@ $(document).ready(function () {
             paypak.style.opacity = "0.1";
             paypak.style.filter = 'alpha(opacity=10)'; // IE fallback
         } else if (val[0] == '6') {
+            errorState['cardNumber'] = false
             var unionpay = document.getElementById('unionpay');
             unionpay.style.opacity = "1";
             unionpay.style.filter = 'alpha(opacity=100)'; // IE fallback
@@ -162,7 +180,8 @@ $(document).ready(function () {
             var paypak = document.getElementById('paypak');
             paypak.style.opacity = "0.1";
             paypak.style.filter = 'alpha(opacity=10)'; // IE fallback
-        }else if (val[0] == '2') {
+        } else if (val[0] == '2') {
+            errorState['cardNumber'] = false
             var paypak = document.getElementById('paypak');
             paypak.style.opacity = "1";
             paypak.style.filter = 'alpha(opacity=10)'; // IE fallback
@@ -179,32 +198,33 @@ $(document).ready(function () {
             visa.style.opacity = "0.1";
             visa.style.filter = 'alpha(opacity=10)'; // IE fallback
         } else {
+            errorState['cardNumber'] = true
             console.log('error')
         }
 
 
     })
-// card digit filter and validations
-    const cardDigitValid = (cardNum) => {        
+    // card digit filter and validations
+    const cardDigitValid = (cardNum) => {
         // console.log(carNum.length == 16)
         return new Promise((resolve, reject) => {
-            cardNum = cardNum.replace(/\s/g,'')
-            cardNum = cardNum.replace(/\-/g, '')  
-            if(cardNum.length == 16){
+            cardNum = cardNum.replace(/\s/g, '')
+            cardNum = cardNum.replace(/\-/g, '')
+            if (cardNum.length == 16) {
                 // console.log(cardNum)
                 resolve(cardNum)
-            }else{
+            } else {
                 console.log("sdsds")
                 reject(false)
             }
         })
     }
 
-// date validation 
+    // date validation 
 
 
 
-// Form submit
+    // Form submit
     $('#formSub').click(() => {
         var month = $('#selectMonth').val()
         var years = $('#ddlYears').val()
@@ -212,18 +232,18 @@ $(document).ready(function () {
         // cardNum.trim()
         mergeName().then(r => console.log(r))
         var sli = years.slice(2)
-        
+
         var cvcInput = $('#cvcInput').val()
         // cvcNumberValid(cvcInput)
-        
+
         cvcNumberValid(cvcInput).then(cvcVal => {
-            cardDigitValid(cardNum).then(crdVal => {
-                if (month.length != 2) month = '0' + month  
-                
-            }).catch(err => console.log(err))
-         }).catch(err => console.log(err))
+            // cardDigitValid(cardNum).then(crdVal => {
+                if (month.length != 2) month = '0' + month
+
+            // }).catch(err => console.log(err))
+        }).catch(err => console.log(err))
     })
-        
-    
+
+
 
 })
