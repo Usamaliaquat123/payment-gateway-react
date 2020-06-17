@@ -15,7 +15,7 @@
     <link rel="stylesheet" href="./css/smscode.css">
     <!-- external -->
     <link rel="stylesheet" href="./css/intlTelInput.css">
-   
+
     <script src="./js/external/jquery-3.5.1.min.js"></script>
     <script src="./js/external/jquery.mask.min.js"></script>
     <!-- modules -->
@@ -25,7 +25,7 @@
     <script src="./js/config/date.js"></script>
     <script src="./js/config/masking.js"></script>
     <script src="./js/config/validations.js"></script>
-    
+
 </head>
 
 
@@ -39,24 +39,24 @@
                 <!-- <div class="crdImgBox"><img id="visa" class="cardsImgs" src="./images/visa.png" /></div> -->
                 <!-- <div class="crdImgBox"><img class="cardsImgs" id="unionpay" src="./images/unionpay.png" /></div> -->
                 <!-- <div class="crdImgBox"></div> -->
-                <img id="mastercard" class="cardsImgs" src="./images/mastercard.png" />
-                <img id="mastercard" class="cardsImgs" src="./images/visa.png" />
-                <img id="mastercard" class="cardsImgs" src="./images/unionpay.png" />
-                <img id="mastercard" class="cardsImgs" src="./images/paypak.png" />
+                <img id="mastercard" class="cardsImgs" src="./img/mastercard.png" />
+                <img id="mastercard" class="cardsImgs" src="./img/visa.png" />
+                <img id="mastercard" class="cardsImgs" src="./img/unionpay.png" />
+                <img id="mastercard" class="cardsImgs" src="./img/paypak.png" />
 
             </div>
             <p class="expDateText">Card Details</p>
             <div style="flex-direction: row;">
                 <input class="expiryDate" type="text" placeholder="First Name" id="FirstName" required>
-                <input class="cvcNumber" type="text" placeholder="Last Name" id="LastName" required>
+                <input class="lastNames" type="text" placeholder="Last Name" id="LastName" required>
             </div>
             <div style="flex-direction: row;">
                 <input class="expiryDate" type="phone" id="expDate" placeholder="MM / YY" required>
                 <input class="cvcNumber" type="phone" id="cvcInput" placeholder="CVC" required>
-                <img class="imgscode" src="./images//csc_other.png" alt="">
+                <img class="imgscode" src="./img/csc_other.png" alt="">
             </div>
             <div style="flex-direction: row;">
-                <input type="phone" placeholder="0000 - 0000 - 0000 - 0000"
+                <input type="phone" placeholder="Enter your card number"
                     data-inputmask='"mask": "9999 9999 9999 9999"' id="cardNumber" class="inputline" maxlength="16"
                     required>
 
@@ -324,17 +324,17 @@
                     <option value="ZW">Zimbabwe</option>
                 </select>
                 <input class="cardHolderInput " placeholder="Street Address" id="streetAddr" required>
-            <input id="city" type="city" placeholder="City" class="cardHolderInput" >
+                <input id="city" type="city" placeholder="City" class="cardHolderInput">
             </div>
 
-            
+
             <p class="expDateText contactD">Contact Details</p>
-            <div style="flex-direction: row;">
-             
+            <div style="flex-direction: row;" class="phContent">
 
 
 
-                <input class="cardHolderInput "type="tel" id="phone" placeholder="Contact Number">
+
+                <input class="cardHolderInput" type="tel" id="phone" placeholder="Contact Number">
                 <!-- <input  placeholder="Phone  " id="streetAddr" required> -->
             </div>
             <input class="cardHolderInput " type="email" placeholder="Email Address" id="streetAddr" required>
@@ -377,13 +377,25 @@
 
 
     <script src="./js/intlTelInput.js"></script>
-    
+
 
 
     <script>
         var input = document.querySelector("#phone");
-        window.intlTelInput(input);
-        </script>
+        var country = document.querySelector('#selectMonth')
+
+        window.intlTelInput(input, {
+            initialCountry: "auto",
+            separateDialCode: true,
+            geoIpLookup: function (success, failure) {
+                $.get("https://ipinfo.io", function () { }, "jsonp").always(function (resp) {
+                    var countryCode = (resp && resp.country) ? resp.country : "";
+                    success(countryCode);
+                });
+            },
+        })
+
+    </script>
 </body>
 
 </html>

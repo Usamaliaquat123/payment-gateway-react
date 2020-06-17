@@ -150,7 +150,7 @@ select:active {
 }
 
 .inputline{
-    width: 71%;
+    width: 100%;
     /* text-transform: uppercase;S */
     background: #ffff no-repeat;
     background-image: linear-gradient(to bottom , #D94255, #D94255), linear-gradient(to bottom,grey, grey);
@@ -230,9 +230,9 @@ select:active {
 	outline: none;
 }
 .imgscode{
-  width: 16%;
+  width: 12%;
   float: right;
-  margin-top: 10%;
+  margin-top: 5%;
   height: auto;
 }
 .scodeText{
@@ -260,9 +260,7 @@ select:active {
 .contactD{
   margin-top: 10%;
 }
-.iti{
-  display: grid;
-}
+
 .expDateText{
   font-size: 15px;
   font-weight:bold;
@@ -287,7 +285,8 @@ select:active {
   transition: background-size 0.6s cubic-bezier(0.64, 0.09, 0.08, 1);
 }
 .cvcNumber {
-  width: 49%;
+  width: 21%;
+  margin-left: 10%;
   background: white no-repeat;
   background-image: linear-gradient(to bottom , #D94255, #D94255), linear-gradient(to bottom,grey, grey);
   background-size: 0 2px, 100% 1px;
@@ -298,7 +297,18 @@ select:active {
 background-size: 100% 1px, 100% 1px;
 outline: none;
 }
-
+.lastNames{
+  width: 49%;
+  background: white no-repeat;
+  background-image: linear-gradient(to bottom , #D94255, #D94255), linear-gradient(to bottom,grey, grey);
+  background-size: 0 2px, 100% 1px;
+  background-position: 50% 100%, 50% 100%;
+  transition: background-size 0.6s cubic-bezier(0.64, 0.09, 0.08, 1);
+}
+.lastNames:focus {
+  background-size: 100% 1px, 100% 1px;
+  outline: none;
+  }
 .expiryDate:focus {
 background-size: 100% 1px, 100% 1px;
 outline: none;
