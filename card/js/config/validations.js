@@ -64,7 +64,6 @@ const getSMSvalue = () => {
         }
     })
 }
-
 // firstname and lastname 
 const mergeName = () => {
     return new Promise((resolve, reject) => {
@@ -130,7 +129,8 @@ $(document).ready(function () {
     // lastname
     lastname.on('keyup',(e) => {
         if (e.target.value == "") {
-            
+             errorState.lastname.val == ""
+            errorState.lastname.err == true
         }else{
 
         }
@@ -138,14 +138,19 @@ $(document).ready(function () {
     // phoneNumber
     phNumber.on('keyup',(e) => {
         if(e.target.value == ""){
-
-        }else{
+            errorState.phNumber.val == ""
+            errorState.phNumber.err == true
+        }else{  
 
         }
     })
     // Country
-  
+    
     // city
+
+
+
+
 
     console.log(city.val())
     city.on('keyup',(e) => {
@@ -359,15 +364,50 @@ $(document).ready(function () {
         var month = $('#selectMonth').val()
         var years = $('#ddlYears').val()
         var cardNum = $('#cardNumber').val()
-
+        const formData = {}
         console.log(localStorage.getItem('sessionId'))
-
-        console.log(errorState)
-        const payTrans = {
-            sessionId: `${localStorage.getItem('sessionId')}`,
-            merchantId: `${localStorage.getItem('merchantId')}`,
-            smsCode: `${111111}`
+        // check card Number
+        if(errorState.cardNumber.err == true){
+            cardNumber.css('background-size', '100% 1px, 100% 1px')
+            cardNumber.css('outline', 'none')
+        }else{
+            cardNumber.css('background-size', '0 2px, 100% 1px')
+            cardNumber.css('outline', '')
         }
+        // check cvc numbr
+        if (errorState.cardcvc.err == true) {
+            cvcNumber.css('background-size', '100% 1px, 100% 1px')
+            cvcNumber.css('outline', 'none')
+        } else {
+            cvcNumber.css('background-size', '0 2px, 100% 1px')
+            cvcNumber.css('outline', '')
+        }
+        // check date 
+        if (errorState.cardDate.err == true) {
+            expDate.css('background-size', '100% 1px, 100% 1px')
+            expDate.css('outline', 'none')
+        } else {
+            expDate.css('background-size', '0 2px, 100% 1px')
+            expDate.css('outline', '')
+        }
+        ///////////////////////////////////////////////////////
+        // check fName
+        if (errorState.firstname.err == true) {
+            firstname.css('background-size', '100% 1px, 100% 1px')
+            firstname.css('outline', 'none')
+        } else {
+            firstname.css('background-size', '0 2px, 100% 1px')
+            firstname.css('outline', '')
+        }
+        // check lname
+        if (errorState.lastname.err == true) {
+            lastname.css('background-size', '100% 1px, 100% 1px')
+            lastname.css('outline', 'none')
+        } else {
+            lastname.css('background-size', '0 2px, 100% 1px')
+            lastname.css('outline', '')
+        }
+
         sendSms(cardInfo).then(res => console.log(res))
     })
 
