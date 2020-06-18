@@ -332,8 +332,8 @@ $(document).ready(function () {
         cardName: "WAHEED KHAN AFRIDI",
         cardNumber: "6222821234560017",
         cardPin: "123",
-        merchantId: `${localStorage.getItem('merchantId')}`, //SHOULD BE SAME AS VALIDATE MERCHANT REQUEST
-        sessionId: `${localStorage.getItem('sessionId')}`
+        merchantId: sessionStorage.getItem('merchantId'), //SHOULD BE SAME AS VALIDATE MERCHANT REQUEST
+        sessionId: sessionStorage.getItem('sessionId')
     }
 
 
@@ -467,14 +467,7 @@ $(document).ready(function () {
         //     smsCode: `${111111}`
         // }
 
-        const cardInfo = {
-            cardExpiredDate: "3312",
-            cardName: "WAHEED KHAN AFRIDI",
-            cardNumber: "6222821234560017",
-            cardPin: "123",
-            merchantId: sessionStorage.getItem('merchantId'), //SHOULD BE SAME AS VALIDATE MERCHANT REQUEST
-            sessionId: sessionStorage.getItem('sessionId')
-        }
+       
         sendSms(cardInfo).then(res => {
             $('#cardContainer').hide()
             $('#loading').show()
@@ -513,7 +506,6 @@ $(document).ready(function () {
                 }
             }
         }
-
     })
 
 

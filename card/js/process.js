@@ -7,8 +7,6 @@ var merchantInfo;
 
 
 
-
-
 // Maksing var
 
 // var input = document.querySelector("#phoneCode");

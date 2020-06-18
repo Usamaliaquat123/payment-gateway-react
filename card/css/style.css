@@ -274,7 +274,11 @@ select:active {
   padding: 0;
   border-bottom: 0.5px solid grey;
 }
-
+.sucessTickText{
+  font-size: 21px;
+    font-weight: bold;
+    margin-top: 4%;
+}
 
 .expiryDate {
   width: 49%;

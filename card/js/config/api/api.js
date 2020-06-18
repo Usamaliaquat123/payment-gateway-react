@@ -76,7 +76,7 @@ const sendSms = (dta) => {
             },
             success: function (response) {
                 if(response.responseCode == 00){
-                    localStorage.setItem('sessionId',`${response.data.sessionId}`)
+                    sessionStorage.setItem('sessionId',`${response.data.sessionId}`)
                     resolve(response)
                 }else{
                     reject(response)
@@ -110,7 +110,7 @@ const resendSmsCode = (dta) => {
             },
             success: function (response) {
                 if (response.responseCode == "00") {
-                    localStorage.setItem('sessionId',`${response.data.sessionId}`)
+                    sessionStorage.setItem('sessionId',`${response.data.sessionId}`)
                     resolve(response.data.sessionId)
                     /*console.log(response);*/
                 }else{
