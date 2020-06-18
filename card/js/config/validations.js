@@ -76,18 +76,30 @@ $(document).ready(function () {
     masking()
     const cardNumber = $('#cardNumber')
     const expDate = $('#expDate')
-
-
-
-
+    
     expDate.on('keyup', (e) => {
+        if(e.target.value.length == 1){
+            if(e.target.value > 1){
+                e.target.value = e.target.value.padStart(2, "0")
+            }
+        }
         if (e.target.value.length == 2) {
-            if (e.target.value < 12) {
+            if (e.target.value < 13) {
                 console.log(e.target.value)
             } else {
                 e.target.value = ""
             }
         }
+        if(e.target.value.length == 7){
+            var currentYear = (new Date()).getFullYear();
+            var str = currentYear.toString().slice(-2)
+            var usr_dte = e.target.value.toString().slice(-2)
+            console.log(usr_dte)
+            if(str > usr_dte){
+                e.target.value = e.target.value.substring(0, e.target.value.length -2)
+            }
+        }
+        console.log(e.target.value.length)
     })
 
 
@@ -109,6 +121,9 @@ $(document).ready(function () {
         "tid": "15211001"
     }
     validateMerchant(init).then(res => console.log(res))
+
+
+    console.log(sessionStorage.getItem('sessionId'))
 
     cardNumber.on('keyup', (e) => {
         cardNum = e.target.value.replace(/\s/g, '')
@@ -258,12 +273,6 @@ $(document).ready(function () {
             smsCode : `${111111}`
         }
         sendSms(cardInfo).then(res => console.log(res))
-        // resendSmsCode(cardInfo).then(res => console.log(res))
-
-        setTimeout(() => {
-            payTransaction(payTrans).then(res => console.log(res))
-            
-        }, 1000);
     })
 
 
@@ -281,20 +290,28 @@ $(document).ready(function () {
                 i = 0;
               } else {
                 width++;
-
                 $('#loadingContainer').show()  
                 $('#loadingContainer').css("width",`${width}%`)
-                $('#resendCode').css("display","hidden")
+                $('#resendCode').hide()
             if(width == 100){ 
                 resendSmsCode(cardInfo).then().catch(err => console.log(err))
                 $('#loadingContainer').hide()
                 $('#resendCode').css("display","block")  
             }
-              }
+        }
             }
           }
 
     })
 
+
+    $('#onPay').click(() => {
+        const payTrans = {
+            sessionId : `${localStorage.getItem('sessionId')}`,
+            merchantId : `${localStorage.getItem('merchantId')}`,
+            smsCode : `${111111}`
+        }
+        payTransaction(payTrans).then(res => console.log(res))
+    })
 
 })

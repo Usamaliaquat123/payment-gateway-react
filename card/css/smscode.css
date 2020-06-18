@@ -17,11 +17,11 @@
     background:#FFF;
   }
 
-  .resendCode,  .resendCode > p{
+  .resendCode{
       cursor: pointer;
       text-decoration: underline;
     font-size: 11px;
-    /* margin-top: 5% */
+    margin-top: 5%;
   }
 
 

@@ -39,8 +39,8 @@ const validateMerchant = (dta) => {
             success: function (response) {
                 resolve(response)
                 if(response.responseCode == 00){
-                    localStorage.setItem('sessionId',`${response.data.sessionId}`)
-                    localStorage.setItem('merchantId',`${dta.merchantId}`)
+                    sessionStorage.setItem('sessionId',`${response.data.sessionId}`)
+                    sessionStorage.setItem('merchantId',`${dta.merchantId}`)
                 }else{
                     reject(response)
                 }
