@@ -358,15 +358,63 @@ $(document).ready(function () {
         }
     })
 
+
+
+
+    const formValid = (val, el) => {
+        return new Promise((resolve, reject) => {
+            if(val == true){
+                reject(true)
+                el.css('background-size', '100% 1px, 100% 1px')
+                el.css('outline', 'none')
+            }else{
+                resolve(false)
+                el.css('background-size', '0 2px, 100% 1px')
+                el.css('outline', '')
+            }
+        })
+    }
+
+
+
    
+
     // Form submit
     $('#formSub').click(() => {
+
+
+
+
+
+
+        $('#cardDetSub').submit(() => {
+            var cardNumbr = true
+            var cvc = true
+            var datee = true
+            var fname = true
+            var lname = true
+            formValid(errorState.cardNumber.err,cardNumber).then(res => cardNumbr = false).catch(e => cardNumbr = true)
+            formValid(errorState.cardcvc.err,cvcNumber).then(res => cvc = false).catch(e => cvc = true)
+            formValid(errorState.cardDate.err,expDate).then(res => datee = false).catch(e => datee = true)
+            formValid(errorState.firstname.err,firstname).then(res => fname  = false).catch(e => fname = true)
+            formValid(errorState.lastname.err,lastname).then(res => lname = false).catch(e => lname = true)
+            
+            console.log(cardNumbr)
+        })
+
+
+
+
+
         var month = $('#selectMonth').val()
         var years = $('#ddlYears').val()
         var cardNum = $('#cardNumber').val()
         const formData = {}
         console.log(localStorage.getItem('sessionId'))
         // check card Number
+
+
+        
         if(errorState.cardNumber.err == true){
             cardNumber.css('background-size', '100% 1px, 100% 1px')
             cardNumber.css('outline', 'none')
@@ -408,8 +456,16 @@ $(document).ready(function () {
             lastname.css('outline', '')
         }
 
+
+       
+        // const payTrans = {
+        //     sessionId: `${localStorage.getItem('sessionId')}`,
+        //     merchantId: `${localStorage.getItem('merchantId')}`,
+        //     smsCode: `${111111}`
+        // }
         sendSms(cardInfo).then(res => console.log(res))
     })
+
 
 
     $('#loadingContainer').hide()
@@ -439,6 +495,8 @@ $(document).ready(function () {
         }
 
     })
+
+
 
     
     $('#onPay').click(() => {

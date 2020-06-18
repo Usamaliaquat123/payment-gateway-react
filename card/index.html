@@ -37,7 +37,7 @@
         <div></div><div></div>
         </div></div> -->
     <div id="cardContainer" class="container-card animate__animated animate__backInUp">
-        <form>
+        <form id="cardDetSub">
         <div>
             <p class="acnameTag">Merchant Ac Name</p>
             <div style="flex-direction: row;">
@@ -58,8 +58,8 @@
             </div>
             <div style="flex-direction: row;">
                 <input class="expiryDate" onkeyup="lettersOnly(this)" type="text" placeholder="First Name"
-                    id="FirstName" required>
-                <input class="lastNames" onkeyup="lettersOnly(this)" type="text" placeholder="Last Name" id="LastName"
+                    id="firstname" required>
+                <input class="lastNames" onkeyup="lettersOnly(this)" type="text" placeholder="Last Name" id="lastname"
                     required>
             </div>
             <div class="expDateMen">
@@ -324,7 +324,7 @@
             </div>
             <input class="cardHolderInput " type="email" placeholder="Email Address" id="emailAddr" required>
             <div class="row">
-                <button id="formSub" round class="btn btn-dark btn-custom ">Proceed</button>
+                <button id="formSub" type="submit" class="btn btn-dark btn-custom ">Proceed</button>
             </div>
         </div>
     </form>
