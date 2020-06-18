@@ -202,6 +202,8 @@ const enrollmentVerfication = (transferId) => {
 
 
 
+
+
 function showModal() {
     $('#modal-form').modal('show');
 }

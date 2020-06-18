@@ -21,7 +21,7 @@
       cursor: pointer;
       text-decoration: underline;
     font-size: 11px;
-    margin-top: 5%
+    /* margin-top: 5% */
   }
 
 
@@ -42,6 +42,7 @@
   
   }
   .loadingContainer{
+    width: 1%;
     border: 1px solid #24282C;
-    width: 100%;
   }
+    

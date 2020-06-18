@@ -234,7 +234,14 @@ $(document).ready(function () {
 
     // date validation 
 
-
+    const cardInfo = {
+        cardExpiredDate: "3312",
+        cardName: "WAHEED KHAN AFRIDI",
+        cardNumber: "6222821234560017",
+        cardPin: "123",
+        merchantId: `${localStorage.getItem('merchantId')}`, //SHOULD BE SAME AS VALIDATE MERCHANT REQUEST
+        sessionId: `${localStorage.getItem('sessionId')}`
+}
 
     // Form submit
     $('#formSub').click(() => {
@@ -244,14 +251,7 @@ $(document).ready(function () {
          
         console.log(localStorage.getItem('sessionId'))
         
-        const cardInfo = {
-                cardExpiredDate: "3312",
-                cardName: "WAHEED KHAN AFRIDI",
-                cardNumber: "6222821234560017",
-                cardPin: "123",
-                merchantId: `${localStorage.getItem('merchantId')}`, //SHOULD BE SAME AS VALIDATE MERCHANT REQUEST
-                sessionId: `${localStorage.getItem('sessionId')}`
-        }
+       
         const payTrans = {
             sessionId : `${localStorage.getItem('sessionId')}`,
             merchantId : `${localStorage.getItem('merchantId')}`,
@@ -266,6 +266,35 @@ $(document).ready(function () {
         }, 1000);
     })
 
+
+    $('#loadingContainer').hide()  
+
+    $('#resendCode').click(() => {
+        var i = 0
+        if (i == 0) {
+            i = 1;
+            var width = 1;
+            var id = setInterval(frame, 60);
+            function frame() {
+              if (width >= 100) {
+                clearInterval(id);
+                i = 0;
+              } else {
+                width++;
+
+                $('#loadingContainer').show()  
+                $('#loadingContainer').css("width",`${width}%`)
+                $('#resendCode').css("display","hidden")
+            if(width == 100){ 
+                resendSmsCode(cardInfo).then().catch(err => console.log(err))
+                $('#loadingContainer').hide()
+                $('#resendCode').css("display","block")  
+            }
+              }
+            }
+          }
+
+    })
 
 
 })
