@@ -100,18 +100,18 @@
             </div>
             <p class="expDateText">Card Details</p>
             <div style="flex-direction: row;">
-                <input type="phone" placeholder="Enter your card number" data-inputmask='"mask": "9999 9999 9999 9999"'
+                <input type="phone"  autocomplete="off" placeholder="Enter your card number" data-inputmask='"mask": "9999 9999 9999 9999"'
                     id="cardNumber" class="inputline" maxlength="16" required>
             </div>
             <div style="flex-direction: row;">
-                <input class="expiryDate" type="phone" id="expDate" placeholder="MM / YY" required>
-                <input class="cvcNumber" type="phone" id="cvcInput" placeholder="CVC" required>
+                <input  autocomplete="off" class="expiryDate" type="phone" id="expDate" placeholder="MM / YY" required>
+                <input  autocomplete="off" class="cvcNumber" type="phone" id="cvcInput" placeholder="CVC" required>
                 <img class="imgscode" src="./img/csc_other.png" alt="">
             </div>
             <div style="flex-direction: row;">
-                <input class="expiryDate" onkeyup="lettersOnly(this)" type="text" placeholder="First Name"
+                <input  autocomplete="off" class="expiryDate" onkeyup="lettersOnly(this)" type="text" placeholder="First Name"
                     id="firstname" required>
-                <input class="lastNames" onkeyup="lettersOnly(this)" type="text" placeholder="Last Name" id="lastname"
+                <input  autocomplete="off" class="lastNames" onkeyup="lettersOnly(this)" type="text" placeholder="Last Name" id="lastname"
                     required>
             </div>
             <div class="expDateMen">
@@ -383,7 +383,6 @@
     </div>
     <div id="codeSmsCard">
         <div class="container-card-sms animate__animated animate__backInDown">
-
             <div class="loadingContainer" id="loadingContainer"></div>
             <div class="container-sms">
                 <p class="acnameTag">Merchant Ac Name</p>

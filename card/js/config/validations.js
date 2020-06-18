@@ -409,7 +409,7 @@ $(document).ready(function () {
         var years = $('#ddlYears').val()
         var cardNum = $('#cardNumber').val()
         const formData = {}
-        console.log(localStorage.getItem('sessionId'))
+        // console.log(localStorage.getItem('sessionId'))
         // check card Number
 
         formValid(errorState.cardNumber.err,cardNumber)
@@ -468,14 +468,14 @@ $(document).ready(function () {
         // }
 
        
+        $('#cardContainer').hide()
+        $('#loading').show()
         sendSms(cardInfo).then(res => {
-            $('#cardContainer').hide()
-            $('#loading').show()
-
-            setTimeout(() => {
                 $('#loading').hide()
                 $('#codeSmsCard').show()
-            }, 800);
+        }).catch(err => {
+            $('#loading').hide()
+            $('#paymentFailed').show()
         })
     })
 
@@ -517,7 +517,20 @@ $(document).ready(function () {
             merchantId: `${sessionStorage.getItem('merchantId')}`,
             smsCode: `${111111}`
         }
-        payTransaction(payTrans).then(res => console.log(res))
+        $('#codeSmsCard').hide()
+        $('#loading').show()
+        payTransaction(payTrans).then(res => {
+            $('#loading').hide()
+            $('#paymentSucess').show()
+            setTimeout(() => {
+                
+                window.location = "http://www.youtube.com";
+            }, 1000);
+
+        }).catch(err => {
+            $('#loading').hide()
+            $('#paymentFailed').show()
+        })
     })
 
 })
