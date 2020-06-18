@@ -117,8 +117,6 @@ $(document).ready(function () {
         if (e.target.value.length == 1) {
             if (e.target.value > 1) {
                 e.target.value = e.target.value.padStart(2, "0")
-            }else{
-                
             }
         }
         if (e.target.value.length == 2) {
@@ -129,14 +127,22 @@ $(document).ready(function () {
             }
         }
         if (e.target.value.length == 7) {
+         
             var currentYear = (new Date()).getFullYear();
             var str = currentYear.toString().slice(-2)
             var usr_dte = e.target.value.toString().slice(-2)
             console.log(usr_dte)
             if (str > usr_dte) {
                 e.target.value = e.target.value.substring(0, e.target.value.length - 2)
+            }else{
+                var crdDte = e.target.value.replace(/\s/g, '')
+                errorState.cardDate.err = false
+                errorState.cardDate.val = crdDte
+                expDate.css('background-size', '0 2px, 100% 1px')
+                expDate.css('outline', '')
             }
         }else{
+            errorState.cardDate.err = true
             expDate.css('background-size', '100% 1px, 100% 1px')
             expDate.css('outline', 'none')
         }
@@ -150,7 +156,6 @@ $(document).ready(function () {
 
 
     getSMSvalue()
-    // $("#phoneField").CcPicker();    
 
     const init = {
         "amount": "30.00",
@@ -172,6 +177,7 @@ $(document).ready(function () {
         console.log(cardNum)
         if (cardNum.length == 19) {
             errorState['cardNumber'] = false
+            errorState.cardNumber.val = e.target.value
             cardNumber.css('background-size', '0 2px, 100% 1px')
             cardNumber.css('outline', '')
         } else {
