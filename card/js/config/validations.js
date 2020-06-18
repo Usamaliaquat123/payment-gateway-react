@@ -2,43 +2,43 @@ const errorState = {
 
     cardNumber: {
         val: '',
-        err: false
+        err: true
     },
     cardDate: {
         val: '',
-        err: false
+        err: true
     },
     cardcvc: {
         val: '',
-        err: false
+        err: true
     },
     firstname: {
         val: '',
-        err: false
+        err: true
     },
     lastname: {
         val: '',
-        err: false
+        err: true
     },
     country: {
         val: '',
-        err: false
+        err: true
     },
     street: {
         val: '',
-        err: false
+        err: true
     },
     city: {
         val: '',
-        err: false
+        err: true
     },
     phNumber: {
         val: '',
-        err: false
+        err: true
     },
     email: {
         val: '',
-        err: false
+        err: true
     }
 }
 
@@ -99,6 +99,11 @@ $(document).ready(function () {
     const emailAddr = $('#emailAddr')
     const firstname = $('#firstname')
     const lastname = $('#lastname')
+    const phNumber = $('#phNumber')
+    const country = $('#selectMonth')
+    const city = $('#city')
+
+
     cvcNumber.on('keyup', (e) => {
         if (e.target.value.length == 3) {
             errorState.cardcvc.err = false
@@ -115,13 +120,37 @@ $(document).ready(function () {
 
     // Firstname 
     firstname.on('keyup',(e) => {
-        
+        if(e.target.value == ""){
+            errorState.firstname.val == ""
+            errorState.firstname.err == true
+        }else{
+
+        }
     })  
     // lastname
     lastname.on('keyup',(e) => {
-        
-    })
+        if (e.target.value == "") {
+            
+        }else{
 
+        }
+    })
+    // phoneNumber
+    phNumber.on('keyup',(e) => {
+        if(e.target.value == ""){
+
+        }else{
+
+        }
+    })
+    // Country
+  
+    // city
+
+    console.log(city.val())
+    city.on('keyup',(e) => {
+
+    })
     // expDate Validations
     expDate.on('keyup', (e) => {
         if (e.target.value.length == 1) {
