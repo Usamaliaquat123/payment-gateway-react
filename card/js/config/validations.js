@@ -1,14 +1,45 @@
 const errorState = {
-    cardNumber: false,
-    cardDate: false,
-    cardcvc: false,
-    firstname: false,
-    lastname: false,
-    country: false,
-    street: false,
-    city: false,
-    phNumber: false,
-    email: false
+
+    cardNumber: {
+        val: '',
+        err: false
+    },
+    cardDate: {
+        val: '',
+        err: false
+    },
+    cardcvc: {
+        val: '',
+        err: false
+    },
+    firstname: {
+        val: '',
+        err: false
+    },
+    lastname: {
+        val: '',
+        err: false
+    },
+    country: {
+        val: '',
+        err: false
+    },
+    street: {
+        val: '',
+        err: false
+    },
+    city: {
+        val: '',
+        err: false
+    },
+    phNumber: {
+        val: '',
+        err: false
+    },
+    email: {
+        val: '',
+        err: false
+    }
 }
 
 // sms code validations
@@ -53,21 +84,9 @@ const mergeName = () => {
 }
 
 
-// cvc number Validations
-
-const cvcNumberValid = (n) => {
-    return new Promise((resolve, reject) => {
-        if (n.length == 3) {
-            resolve(true)
-        } else {
-            reject(false)
-        }
-    })
-}
-
 
 const regexEmail = () => {
-    
+
 }
 
 // Card Identifier
@@ -76,11 +95,30 @@ $(document).ready(function () {
     masking()
     const cardNumber = $('#cardNumber')
     const expDate = $('#expDate')
-    
+    const cvcNumber = $('#cvcInput')
+
+
+    cvcNumber.on('keyup', (e) => {
+        if (e.target.value.length == 3) {
+            errorState.cardcvc.err = false
+            errorState.cardcvc.val = e.target.value
+            cvcNumber.css('background-size', '0 2px, 100% 1px')
+            cvcNumber.css('outline', '')
+        } else {
+            errorState.cardcvc.err = true
+            cvcNumber.css('background-size', '100% 1px, 100% 1px')
+            cvcNumber.css('outline', 'none')
+        }
+    })
+
+
+    // expDate Validations
     expDate.on('keyup', (e) => {
-        if(e.target.value.length == 1){
-            if(e.target.value > 1){
+        if (e.target.value.length == 1) {
+            if (e.target.value > 1) {
                 e.target.value = e.target.value.padStart(2, "0")
+            }else{
+                
             }
         }
         if (e.target.value.length == 2) {
@@ -90,16 +128,19 @@ $(document).ready(function () {
                 e.target.value = ""
             }
         }
-        if(e.target.value.length == 7){
+        if (e.target.value.length == 7) {
             var currentYear = (new Date()).getFullYear();
             var str = currentYear.toString().slice(-2)
             var usr_dte = e.target.value.toString().slice(-2)
             console.log(usr_dte)
-            if(str > usr_dte){
-                e.target.value = e.target.value.substring(0, e.target.value.length -2)
+            if (str > usr_dte) {
+                e.target.value = e.target.value.substring(0, e.target.value.length - 2)
             }
+        }else{
+            expDate.css('background-size', '100% 1px, 100% 1px')
+            expDate.css('outline', 'none')
         }
-        console.log(e.target.value.length)
+        // console.log(e.target.value.length)
     })
 
 
@@ -256,27 +297,27 @@ $(document).ready(function () {
         cardPin: "123",
         merchantId: `${localStorage.getItem('merchantId')}`, //SHOULD BE SAME AS VALIDATE MERCHANT REQUEST
         sessionId: `${localStorage.getItem('sessionId')}`
-}
+    }
 
     // Form submit
     $('#formSub').click(() => {
         var month = $('#selectMonth').val()
         var years = $('#ddlYears').val()
         var cardNum = $('#cardNumber').val()
-         
+
         console.log(localStorage.getItem('sessionId'))
-        
-       
+
+
         const payTrans = {
-            sessionId : `${localStorage.getItem('sessionId')}`,
-            merchantId : `${localStorage.getItem('merchantId')}`,
-            smsCode : `${111111}`
+            sessionId: `${localStorage.getItem('sessionId')}`,
+            merchantId: `${localStorage.getItem('merchantId')}`,
+            smsCode: `${111111}`
         }
         sendSms(cardInfo).then(res => console.log(res))
     })
 
 
-    $('#loadingContainer').hide()  
+    $('#loadingContainer').hide()
 
     $('#resendCode').click(() => {
         var i = 0
@@ -285,31 +326,31 @@ $(document).ready(function () {
             var width = 1;
             var id = setInterval(frame, 60);
             function frame() {
-              if (width >= 100) {
-                clearInterval(id);
-                i = 0;
-              } else {
-                width++;
-                $('#loadingContainer').show()  
-                $('#loadingContainer').css("width",`${width}%`)
-                $('#resendCode').hide()
-            if(width == 100){ 
-                resendSmsCode(cardInfo).then().catch(err => console.log(err))
-                $('#loadingContainer').hide()
-                $('#resendCode').css("display","block")  
+                if (width >= 100) {
+                    clearInterval(id);
+                    i = 0;
+                } else {
+                    width++;
+                    $('#loadingContainer').show()
+                    $('#loadingContainer').css("width", `${width}%`)
+                    $('#resendCode').hide()
+                    if (width == 100) {
+                        resendSmsCode(cardInfo).then().catch(err => console.log(err))
+                        $('#loadingContainer').hide()
+                        $('#resendCode').css("display", "block")
+                    }
+                }
             }
         }
-            }
-          }
 
     })
 
 
     $('#onPay').click(() => {
         const payTrans = {
-            sessionId : `${localStorage.getItem('sessionId')}`,
-            merchantId : `${localStorage.getItem('merchantId')}`,
-            smsCode : `${111111}`
+            sessionId: `${localStorage.getItem('sessionId')}`,
+            merchantId: `${localStorage.getItem('merchantId')}`,
+            smsCode: `${111111}`
         }
         payTransaction(payTrans).then(res => console.log(res))
     })
