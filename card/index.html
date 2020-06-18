@@ -13,6 +13,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.0.0/animate.min.css" />
     <!-- <script src="./js/process.js"></script> -->
     <link rel="stylesheet" href="./css/smscode.css">
+    <link rel="stylesheet" href="./css/ripple.css">
     <!-- external -->
     <link rel="stylesheet" href="./css/intlTelInput.css">
 
@@ -27,11 +28,14 @@
     <script src="./js/config/validations.js"></script>
     <script src="./js/external/store.legacy.min.js"></script>
 
-   
+
 </head>
 
 
 <body>
+    <!-- <div class="loadingio-spinner-ripple-3kz1c5wc9u2"><div class="ldio-3ri99if0g0m">
+        <div></div><div></div>
+        </div></div> -->
     <div id="cardContainer" class="container-card animate__animated animate__backInUp">
         <!-- <form> -->
         <div>
@@ -318,7 +322,7 @@
             <div style="flex-direction: row;" class="phContent">
                 <input class="cardHolderInput" type="tel" id="phoneCode" placeholder="Contact Number">
             </div>
-            <input class="cardHolderInput " type="email" placeholder="Email Address" id="streetAddr" required>
+            <input class="cardHolderInput " type="email" placeholder="Email Address" id="emailAddr" required>
             <div class="row">
                 <div id="formSub" round class="btn btn-dark btn-custom ">Proceed</div>
             </div>
@@ -328,7 +332,7 @@
     <div>
         <div class="container-card-sms animate__animated animate__backInRight">
 
-                <div class="loadingContainer" id="loadingContainer"></div>
+            <div class="loadingContainer" id="loadingContainer"></div>
             <div class="container-sms">
                 <p class="acnameTag">Merchant Ac Name</p>
                 <p class="validCodeText">Enter 6-digit verification code</p>
@@ -344,10 +348,10 @@
                     </div>
                 </div>
                 <div class="row">
-                     <p class="resendCode"  id="resendCode">Resend code</p>
+                    <p class="resendCode" id="resendCode">Resend code</p>
                 </div>
                 <div class="row">
-                    <button round class="btn btn-dark btn-custom "  id="onPay" >Pay</button>
+                    <button round class="btn btn-dark btn-custom " id="onPay">Pay</button>
                 </div>
             </div>
 
@@ -363,18 +367,23 @@
         // var country = document.querySelector('#selectMonth')
 
 
-        function lettersOnly(inp){
+        function lettersOnly(inp) {
             var regex = /[^a-z]/gi;
             inp.value = inp.value.replace(regex, "")
         }
+        var iti = intlTelInput(input)
         window.intlTelInput(input, {
             initialCountry: "auto",
             separateDialCode: true,
+            
             geoIpLookup: function (success, failure) {
                 console.log(success)
                 $.get("https://ipinfo.io", function () { }, "jsonp").always(function (resp) {
-                    localStorage.setItem('country',resp.country)
+                    sessionStorage.setItem('country', resp.city)
+                    sessionStorage.setItem('country', resp.country)
+
                     $('#selectMonth').val(resp.country)
+                    $('#city').val(resp.city)
                     var countryCode = (resp && resp.country) ? resp.country : "";
                     success(countryCode);
                 });
@@ -384,7 +393,7 @@
 
 
     </script>
-        <script src="./js/process.js"></script>
+    <script src="./js/process.js"></script>
 </body>
 
 </html>

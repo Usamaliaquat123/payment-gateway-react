@@ -96,8 +96,9 @@ $(document).ready(function () {
     const cardNumber = $('#cardNumber')
     const expDate = $('#expDate')
     const cvcNumber = $('#cvcInput')
-
-
+    const emailAddr = $('#emailAddr')
+    const firstname = $('#firstname')
+    const lastname = $('#lastname')
     cvcNumber.on('keyup', (e) => {
         if (e.target.value.length == 3) {
             errorState.cardcvc.err = false
@@ -111,6 +112,15 @@ $(document).ready(function () {
         }
     })
 
+
+    // Firstname 
+    firstname.on('keyup',(e) => {
+        
+    })  
+    // lastname
+    lastname.on('keyup',(e) => {
+        
+    })
 
     // expDate Validations
     expDate.on('keyup', (e) => {
@@ -127,21 +137,21 @@ $(document).ready(function () {
             }
         }
         if (e.target.value.length == 7) {
-         
+
             var currentYear = (new Date()).getFullYear();
             var str = currentYear.toString().slice(-2)
             var usr_dte = e.target.value.toString().slice(-2)
             console.log(usr_dte)
             if (str > usr_dte) {
                 e.target.value = e.target.value.substring(0, e.target.value.length - 2)
-            }else{
+            } else {
                 var crdDte = e.target.value.replace(/\s/g, '')
                 errorState.cardDate.err = false
                 errorState.cardDate.val = crdDte
                 expDate.css('background-size', '0 2px, 100% 1px')
                 expDate.css('outline', '')
             }
-        }else{
+        } else {
             errorState.cardDate.err = true
             expDate.css('background-size', '100% 1px, 100% 1px')
             expDate.css('outline', 'none')
@@ -176,18 +186,19 @@ $(document).ready(function () {
         // cardNum = e.target.value.replace(/\s/g, '')  
         console.log(cardNum)
         if (cardNum.length == 19) {
-            errorState['cardNumber'] = false
             errorState.cardNumber.val = e.target.value
+            errorState.cardNumber.err = false
             cardNumber.css('background-size', '0 2px, 100% 1px')
             cardNumber.css('outline', '')
         } else {
-            errorState['cardNumber'] = true
+            errorState.cardNumber.err = true
+            errorState.cardNumber.val = ""
             cardNumber.css('background-size', '100% 1px, 100% 1px')
             cardNumber.css('outline', 'none')
         }
         const val = e.target.value
         if (val == "") {
-            errorState['cardNumber'] = true
+            errorState.cardNumber.err = false
             var mastercard = document.getElementById('mastercard');
             mastercard.style.opacity = "1";
             mastercard.style.filter = 'alpha(opacity=100)'; // IE fallback
@@ -204,7 +215,7 @@ $(document).ready(function () {
             paypak.style.opacity = "1";
             paypak.style.filter = 'alpha(opacity=10)'; // IE fallback
         } else if (val[0] == 5) {
-            errorState['cardNumber'] = false
+            errorState.cardNumber.err = false
             var visa = document.getElementById('visa');
             visa.style.opacity = "1";
             visa.style.filter = 'alpha(opacity=100)'; // IE fallback
@@ -221,7 +232,7 @@ $(document).ready(function () {
             paypak.style.opacity = "0.1";
             paypak.style.filter = 'alpha(opacity=10)'; // IE fallback
         } else if (val[0] == '5') {
-            errorState['cardNumber'] = false
+            errorState.cardNumber.err = false
             var mastercard = document.getElementById('mastercard');
             mastercard.style.opacity = "1";
             mastercard.style.filter = 'alpha(opacity=100)'; // IE fallback
@@ -238,7 +249,7 @@ $(document).ready(function () {
             paypak.style.opacity = "0.1";
             paypak.style.filter = 'alpha(opacity=10)'; // IE fallback
         } else if (val[0] == '6') {
-            errorState['cardNumber'] = false
+            errorState.cardNumber.err = false
             var unionpay = document.getElementById('unionpay');
             unionpay.style.opacity = "1";
             unionpay.style.filter = 'alpha(opacity=100)'; // IE fallback
@@ -255,7 +266,7 @@ $(document).ready(function () {
             paypak.style.opacity = "0.1";
             paypak.style.filter = 'alpha(opacity=10)'; // IE fallback
         } else if (val[0] == '2') {
-            errorState['cardNumber'] = false
+            errorState.cardNumber.err = false
             var paypak = document.getElementById('paypak');
             paypak.style.opacity = "1";
             paypak.style.filter = 'alpha(opacity=10)'; // IE fallback
@@ -272,27 +283,13 @@ $(document).ready(function () {
             visa.style.opacity = "0.1";
             visa.style.filter = 'alpha(opacity=10)'; // IE fallback
         } else {
-            errorState['cardNumber'] = true
+            errorState.cardNumber.err = true
             console.log('error')
         }
 
 
     })
-    // card digit filter and validations
-    const cardDigitValid = (cardNum) => {
-        // console.log(carNum.length == 16)
-        return new Promise((resolve, reject) => {
-            cardNum = cardNum.replace(/\s/g, '')
-            cardNum = cardNum.replace(/\-/g, '')
-            if (cardNum.length == 16) {
-                // console.log(cardNum)
-                resolve(cardNum)
-            } else {
-                console.log("sdsds")
-                reject(false)
-            }
-        })
-    }
+
 
     // date validation 
 
@@ -305,6 +302,29 @@ $(document).ready(function () {
         sessionId: `${localStorage.getItem('sessionId')}`
     }
 
+
+    emailAddr.on('keyup',(e) => {
+        var mailformat = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+        console.log(e.target.value)
+       
+        if (e.target.value.match(mailformat)) {
+            errorState.email.val = e.target.value
+            errorState.email.err = false
+            emailAddr.css('background-size', '0 2px, 100% 1px')
+            emailAddr.css('outline', '')
+        }
+        else {
+            errorState.email.err = true
+            emailAddr.css('background-size', '100% 1px, 100% 1px')
+            emailAddr.css('outline', 'none')
+        }
+        if(e.target.value == ""){
+            emailAddr.css('background-size', '0 2px, 100% 1px')
+            emailAddr.css('outline', '')
+        }
+    })
+
+   
     // Form submit
     $('#formSub').click(() => {
         var month = $('#selectMonth').val()
@@ -313,7 +333,7 @@ $(document).ready(function () {
 
         console.log(localStorage.getItem('sessionId'))
 
-
+        console.log(errorState)
         const payTrans = {
             sessionId: `${localStorage.getItem('sessionId')}`,
             merchantId: `${localStorage.getItem('merchantId')}`,
@@ -351,7 +371,7 @@ $(document).ready(function () {
 
     })
 
-
+    
     $('#onPay').click(() => {
         const payTrans = {
             sessionId: `${localStorage.getItem('sessionId')}`,
