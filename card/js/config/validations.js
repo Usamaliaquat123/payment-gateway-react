@@ -364,7 +364,6 @@ $(document).ready(function () {
     const formValid = (val, el) => {
         return new Promise((resolve, reject) => {
             if(val == true){
-                reject(true)
                 el.css('background-size', '100% 1px, 100% 1px')
                 el.css('outline', 'none')
             }else{
@@ -387,20 +386,20 @@ $(document).ready(function () {
 
 
 
-        $('#cardDetSub').submit(() => {
-            var cardNumbr = true
-            var cvc = true
-            var datee = true
-            var fname = true
-            var lname = true
-            formValid(errorState.cardNumber.err,cardNumber).then(res => cardNumbr = false).catch(e => cardNumbr = true)
-            formValid(errorState.cardcvc.err,cvcNumber).then(res => cvc = false).catch(e => cvc = true)
-            formValid(errorState.cardDate.err,expDate).then(res => datee = false).catch(e => datee = true)
-            formValid(errorState.firstname.err,firstname).then(res => fname  = false).catch(e => fname = true)
-            formValid(errorState.lastname.err,lastname).then(res => lname = false).catch(e => lname = true)
+        // $('#cardDetSub').submit(() => {
+        //     var cardNumbr = true
+        //     var cvc = true
+        //     var datee = true
+        //     var fname = true
+        //     var lname = true
+        //     formValid(errorState.cardNumber.err,cardNumber).then(res => cardNumbr = false).catch(e => cardNumbr = true)
+        //     formValid(errorState.cardcvc.err,cvcNumber).then(res => cvc = false).catch(e => cvc = true)
+        //     formValid(errorState.cardDate.err,expDate).then(res => datee = false).catch(e => datee = true)
+        //     formValid(errorState.firstname.err,firstname).then(res => fname  = false).catch(e => fname = true)
+        //     formValid(errorState.lastname.err,lastname).then(res => lname = false).catch(e => lname = true)
             
-            console.log(cardNumbr)
-        })
+        //     console.log(cardNumbr)
+        // })
 
 
 
@@ -413,32 +412,36 @@ $(document).ready(function () {
         console.log(localStorage.getItem('sessionId'))
         // check card Number
 
-
+        formValid(errorState.cardNumber.err,cardNumber)
+        formValid(errorState.cardcvc.err,cvcNumber)
+        formValid(errorState.cardDate.err,expDate)
+        // formValid(errorState.firstname.err,firstname)
+        // formValid(errorState.lastname.err,lastname)
         
-        if(errorState.cardNumber.err == true){
-            cardNumber.css('background-size', '100% 1px, 100% 1px')
-            cardNumber.css('outline', 'none')
-        }else{
-            cardNumber.css('background-size', '0 2px, 100% 1px')
-            cardNumber.css('outline', '')
-        }
-        // check cvc numbr
-        if (errorState.cardcvc.err == true) {
-            cvcNumber.css('background-size', '100% 1px, 100% 1px')
-            cvcNumber.css('outline', 'none')
-        } else {
-            cvcNumber.css('background-size', '0 2px, 100% 1px')
-            cvcNumber.css('outline', '')
-        }
-        // check date 
-        if (errorState.cardDate.err == true) {
-            expDate.css('background-size', '100% 1px, 100% 1px')
-            expDate.css('outline', 'none')
-        } else {
-            expDate.css('background-size', '0 2px, 100% 1px')
-            expDate.css('outline', '')
-        }
-        ///////////////////////////////////////////////////////
+        // if(errorState.cardNumber.err == true){
+        //     cardNumber.css('background-size', '100% 1px, 100% 1px')
+        //     cardNumber.css('outline', 'none')
+        // }else{
+        //     cardNumber.css('background-size', '0 2px, 100% 1px')
+        //     cardNumber.css('outline', '')
+        // }
+        // // check cvc numbr
+        // if (errorState.cardcvc.err == true) {
+        //     cvcNumber.css('background-size', '100% 1px, 100% 1px')
+        //     cvcNumber.css('outline', 'none')
+        // } else {
+        //     cvcNumber.css('background-size', '0 2px, 100% 1px')
+        //     cvcNumber.css('outline', '')
+        // }
+        // // check date 
+        // if (errorState.cardDate.err == true) {
+        //     expDate.css('background-size', '100% 1px, 100% 1px')
+        //     expDate.css('outline', 'none')
+        // } else {
+        //     expDate.css('background-size', '0 2px, 100% 1px')
+        //     expDate.css('outline', '')
+        // }
+        // ///////////////////////////////////////////////////////
         // check fName
         if (errorState.firstname.err == true) {
             firstname.css('background-size', '100% 1px, 100% 1px')
@@ -463,7 +466,24 @@ $(document).ready(function () {
         //     merchantId: `${localStorage.getItem('merchantId')}`,
         //     smsCode: `${111111}`
         // }
-        sendSms(cardInfo).then(res => console.log(res))
+
+        const cardInfo = {
+            cardExpiredDate: "3312",
+            cardName: "WAHEED KHAN AFRIDI",
+            cardNumber: "6222821234560017",
+            cardPin: "123",
+            merchantId: sessionStorage.getItem('merchantId'), //SHOULD BE SAME AS VALIDATE MERCHANT REQUEST
+            sessionId: sessionStorage.getItem('sessionId')
+        }
+        sendSms(cardInfo).then(res => {
+            $('#cardContainer').hide()
+            $('#loading').show()
+
+            setTimeout(() => {
+                $('#loading').hide()
+                $('#codeSmsCard').show()
+            }, 800);
+        })
     })
 
 
@@ -501,8 +521,8 @@ $(document).ready(function () {
     
     $('#onPay').click(() => {
         const payTrans = {
-            sessionId: `${localStorage.getItem('sessionId')}`,
-            merchantId: `${localStorage.getItem('merchantId')}`,
+            sessionId: `${sessionStorage.getItem('sessionId')}`,
+            merchantId: `${sessionStorage.getItem('merchantId')}`,
             smsCode: `${111111}`
         }
         payTransaction(payTrans).then(res => console.log(res))

@@ -37,7 +37,7 @@ const validateMerchant = (dta) => {
                 "Authorization": `${ACCESS_TOKEN}`
             },
             success: function (response) {
-                resolve(response)
+                resolve(response.data.sessionId)
                 if(response.responseCode == 00){
                     sessionStorage.setItem('sessionId',`${response.data.sessionId}`)
                     sessionStorage.setItem('merchantId',`${dta.merchantId}`)

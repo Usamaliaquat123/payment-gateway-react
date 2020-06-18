@@ -33,9 +33,10 @@
 
 
 <body>
-    <!-- <div class="loadingio-spinner-ripple-3kz1c5wc9u2"><div class="ldio-3ri99if0g0m">
+
+    <div id="loading" class="loadingio-spinner-ripple-3kz1c5wc9u2"><div class="ldio-3ri99if0g0m">
         <div></div><div></div>
-        </div></div> -->
+        </div></div>
     <div id="cardContainer" class="container-card animate__animated animate__backInUp">
         <form id="cardDetSub">
         <div>
@@ -315,22 +316,22 @@
                     <option value="ZM">Zambia</option>
                     <option value="ZW">Zimbabwe</option>
                 </select>
-                <input class="cardHolderInput " placeholder="Street Address" id="streetAddr" required>
+                <input class="cardHolderInput " placeholder="Street Address" id="streetAddr" >
                 <input id="city" type="city" placeholder="City" class="cardHolderInput">
             </div>
             <p class="expDateText contactD">Contact Details</p>
             <div style="flex-direction: row;" class="phContent">
                 <input class="cardHolderInput" type="tel" id="phoneCode" placeholder="Contact Number">
             </div>
-            <input class="cardHolderInput " type="email" placeholder="Email Address" id="emailAddr" required>
+            <input class="cardHolderInput " type="email" placeholder="Email Address" id="emailAddr" >
             <div class="row">
-                <button id="formSub" type="submit" class="btn btn-dark btn-custom ">Proceed</button>
+                <div id="formSub"  class="btn btn-dark btn-custom ">Proceed</div>
             </div>
         </div>
     </form>
     </div>
-    <div>
-        <div class="container-card-sms animate__animated animate__backInRight">
+    <div id="codeSmsCard">
+        <div class="container-card-sms animate__animated animate__backInUp">
 
             <div class="loadingContainer" id="loadingContainer"></div>
             <div class="container-sms">
@@ -365,8 +366,9 @@
     <script>
         var input = document.querySelector("#phoneCode");
         // var country = document.querySelector('#selectMonth')
-
-
+        $('#codeSmsCard').hide()
+        $('#loading').hide()
+        // $('cardContainer').hide()
         function lettersOnly(inp) {
             var regex = /[^a-z]/gi;
             inp.value = inp.value.replace(regex, "")
