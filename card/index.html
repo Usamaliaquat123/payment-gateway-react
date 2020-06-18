@@ -13,7 +13,6 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.0.0/animate.min.css" />
     <!-- <script src="./js/process.js"></script> -->
     <link rel="stylesheet" href="./css/smscode.css">
-    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <!-- external -->
     <link rel="stylesheet" href="./css/intlTelInput.css">
 
@@ -38,29 +37,15 @@
         <div>
             <p class="acnameTag">Merchant Ac Name</p>
             <div style="flex-direction: row;">
-                <!-- <div class="crdImgBox"></div> -->
-                <!-- <div class="crdImgBox"><img id="visa" class="cardsImgs" src="./images/visa.png" /></div> -->
-                <!-- <div class="crdImgBox"><img class="cardsImgs" id="unionpay" src="./images/unionpay.png" /></div> -->
-                <!-- <div class="crdImgBox"></div> -->
                 <img id="mastercard" class="cardsImgs" src="./img/mastercard.png" />
                 <img id="visa" class="cardsImgs" src="./img/visa.png" />
                 <img id="unionpay" class="cardsImgs" src="./img/unionpay.png" />
                 <img id="paypak" class="cardsImgs" src="./img/paypak.png" />
-
             </div>
             <p class="expDateText">Card Details</p>
-
-
             <div style="flex-direction: row;">
                 <input type="phone" placeholder="Enter your card number" data-inputmask='"mask": "9999 9999 9999 9999"'
                     id="cardNumber" class="inputline" maxlength="16" required>
-
-                <!-- <div> -->
-
-                <!-- </div>   -->
-
-
-                <!-- <label class="amountLable"> 200</label> -->
             </div>
             <div style="flex-direction: row;">
                 <input class="expiryDate" type="phone" id="expDate" placeholder="MM / YY" required>
@@ -73,7 +58,6 @@
                 <input class="lastNames" onkeyup="lettersOnly(this)" type="text" placeholder="Last Name" id="LastName"
                     required>
             </div>
-
             <div class="expDateMen">
                 <p class="expDateText">Billing Details</p>
                 <select id="selectMonth" required>
@@ -330,16 +314,9 @@
                 <input class="cardHolderInput " placeholder="Street Address" id="streetAddr" required>
                 <input id="city" type="city" placeholder="City" class="cardHolderInput">
             </div>
-
-
             <p class="expDateText contactD">Contact Details</p>
             <div style="flex-direction: row;" class="phContent">
-
-
-
-
                 <input class="cardHolderInput" type="tel" id="phoneCode" placeholder="Contact Number">
-                <!-- <input  placeholder="Phone  " id="streetAddr" required> -->
             </div>
             <input class="cardHolderInput " type="email" placeholder="Email Address" id="streetAddr" required>
             <div class="row">
@@ -382,8 +359,6 @@
 
     <script src="./js/intlTelInput.js"></script>
 
-
-
     <script>
         var input = document.querySelector("#phoneCode");
         // var country = document.querySelector('#selectMonth')
@@ -397,15 +372,16 @@
             initialCountry: "auto",
             separateDialCode: true,
             geoIpLookup: function (success, failure) {
+                console.log(success)
                 $.get("https://ipinfo.io", function () { }, "jsonp").always(function (resp) {
+                    localStorage.setItem('country',resp.country)
+                    $('#selectMonth').val(resp.country)
                     var countryCode = (resp && resp.country) ? resp.country : "";
                     success(countryCode);
                 });
             },
         })
-        for (let i = 0; i < window.intlTelInputGlobals.getCountryData().length; i++) {
-
-        }
+        
 
     </script>
         <script src="./js/process.js"></script>
