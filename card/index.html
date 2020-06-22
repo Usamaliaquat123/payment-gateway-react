@@ -34,7 +34,7 @@
 
 
 <body>
-    <div id="overlay" ></div>
+    <!-- <div id="overlay" ></div> -->
   
 
 
@@ -113,7 +113,7 @@
                 </div>
                 <div style="flex-direction: row;">
                     <input  autocomplete="off" class="expiryDate" type="phone" id="expDate" placeholder="MM / YY" required>
-                    <input  autocomplete="off" class="cvcNumber" type="phone" id="cvcInput" placeholder="CVC" required>
+                    <input type="password" autocomplete="off" class="cvcNumber" type="phone" id="cvcInput" placeholder="CVC" required>
                     <img class="imgscode" src="./img/csc_other.png" alt="">
                 </div>
                 <div style="flex-direction: row;">
@@ -391,24 +391,6 @@
     </div>
 </div>
 
-
-     
-
-
-
-
-
-
-
-
-
-
-
-
-    
-    <!-- <div id="cardContainer" class="container-card animate__animated animate__backInUp">
-      
-    </div> -->
     <div id="codeSmsCard">
         <div class="container-card-sms animate__animated animate__backInDown">
             <div class="loadingContainer" id="loadingContainer"></div>
@@ -445,24 +427,21 @@
 
     <script>
 
-
-// function on() {
-//   document.getElementById("overlay").style.display = "block";
-// }
         var input = document.querySelector("#phoneCode");
 
 
-        function paymentDetail(e){
-            $('#loading').show()
-            $('#paymentMethods').hide()
-            setTimeout(() => {
-                $('#loading').hide()
-                $('#cardContainer').show()
+        // function paymentDetail(e){
+        //     $('#loading').show()
+        //     $('#paymentMethods').hide()
+        //     setTimeout(() => {
+        //         $('#loading').hide()
+        //         $('#cardContainer').show()
                 
-            }, 800);
-        }
+        //     }, 800);
+        // }
         $('document').ready(() =>{
-            $('#cardContainer').hide()
+            $('#cardContainer').show()
+            $('#paymentMethods').hide()
             $('#codeSmsCard').hide()
             $('#loading').hide()
             $('#sucessTick').hide()
