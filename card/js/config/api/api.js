@@ -170,8 +170,8 @@ const payTransaction = (dta) => {
 
 // Purchase QRC API
 const purchaseQRCapi = (dta) => {
-    // document.getElementById("errorMessage").style.display = "none";
-   return new Promise((resolve, reject) => {
+    console.log(dta)
+    return new Promise((resolve, reject) => {
     $.ajax({
         url: `${baseUri}/purchaseQRC/${API_VERSION}`,
         type: 'POST',
@@ -179,13 +179,16 @@ const purchaseQRCapi = (dta) => {
         data: JSON.stringify({
             // DATA
             cardNumber: dta.cardNumber,
-            merId: dta.merchantId,
+            merId: dta.merId,
             sessionId: dta.sessionId
         }),
+        headers: {
+            "Authorization": `${ACCESS_TOKEN}`
+        },
         success: function (response) {
+            console.log(response)
             if (response.responseCode == "00") {
-                console.log(response)
-                resolve(response)
+                resolve(response.data)
                 // transferId = response.data.transferId;
                 // document.getElementById("payButton").disabled = false;
             }
@@ -199,6 +202,7 @@ const purchaseQRCapi = (dta) => {
 
 // inquryQRC api
 const inquiryQRCapi = (dta) => {
+    console.log('sds')
     return new Promise((resolve, reject) => {
         $.ajax({
             url: `${baseUri}/inquryQRC/${API_VERSION}`,
@@ -217,8 +221,8 @@ const inquiryQRCapi = (dta) => {
                 "Authorization": `${ACCESS_TOKEN}`
             },
             success: function (response) {
+                console.log(response)
                 if (response.responseCode == "00") {
-                    console.log(response)
                     resolve(response)
                     transferId = response.data.transferId;
                     /*console.log(response);*/

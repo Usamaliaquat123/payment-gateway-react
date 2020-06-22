@@ -1,36 +1,36 @@
 var qrcode = new QRCode("qrcode");
 var cardNumVal = 1
 let errccqc = $('#errccqc')
-function makeCode () {      
-    var elText = document.getElementById("text");
+// function makeCode () {      
+//     var elText = document.getElementById("text");
     
-    if (!elText.value) {
-        alert("Input a text");
-        elText.focus();
-        return;
-    }
+//     if (!elText.value) {
+//         alert("Input a text");
+//         elText.focus();
+//         return;
+//     }
     
-    qrcode.makeCode(elText.value);
-}
+//     qrcode.makeCode(elText.value);
+// }
 
-makeCode();
+// makeCode();
 
-$("#text").
-    on("blur", function () {
-        makeCode();
-    }).
-    on("keydown", function (e) {
-        if (e.keyCode == 13) {
-            makeCode();
-        }
-    });
+// $("#text").
+//     on("blur", function () {
+//         makeCode();
+//     }).
+//     on("keydown", function (e) {
+//         if (e.keyCode == 13) {
+//             makeCode();
+//         }
+//     });
 
 
 
     
-function makeCode () {      
+function makeCode (e) {      
 
-    var elText = "00020101021215314182058600049992010210742100010520407425303586540530.005802PK5915Test Merchant 56008Karachi 626001202020061518020230093005202020061518020230093007088913100163040d79";
+    var elText = e;
     
     // if (!elText.value) {
     //     alert("Input a text");
@@ -77,8 +77,6 @@ function genQRcode(e){
         cardNumberQRC.css('background-size', '100% 1px, 100% 1px')
         cardNumberQRC.css('outline', 'none')
     }
-
-  
 }
 
 
@@ -94,17 +92,14 @@ function validateQRc() {
         orderId: "00112475",
         tid: "89131001"
     }
+    $('#qrcodeloading').show()
+    $('#paymentMethods').hide()
 
     validateMerchant(dta).then(res => {
-        console.log(res)
-        $('#qrcodeloading').show()
-        $('#paymentMethods').hide()
-        
-        setTimeout(() => {
-            $('#qrcodeloading').hide()
-            $('#qrcodeContainer').show()
-            $('#qrcodeDisply').hide()
-        }, 800);
+        $('#qrcodeloading').hide()
+        $('#qrcodeContainer').show()
+        $('#qrcodeDisply').hide()
+      
     }).catch(err => {
         console.log(err)
     })
@@ -115,11 +110,22 @@ genCode = (e) => {
     console.log(e)
     console.log(sessionStorage.getItem('merchantId'))
     console.log(sessionStorage.getItem('sessionId'))
-        const dta = {
+    const dta = {
         cardNumber : e,
         merId :  sessionStorage.getItem('merchantId'),
         sessionId : sessionStorage.getItem('sessionId')
     }
-    purchaseQRCapi(dta).then(res => console.log(res)).catch(err => console.log(err))
+    $('#qrcodeloading').show()
+    $('#qrcodeCardNum').hide()
+    purchaseQRCapi(dta).then(res => {
+        
+        $('#qrcodeloading').hide()
+        $('#qrcodeContainer').show()
+        $('#qrcodeDisply').show()
+        console.log(res)
+
+        makeCode(res.qrString)
+        $('.acnameTag').text(`${res.merchantName}`)
+    }).catch(err => console.log(err))
 }
 
