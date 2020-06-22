@@ -127,10 +127,10 @@ genCode = (e) => {
 
 
         var i = 0
-        if (i == 0) {
+        if (i == 0) {   
             i = 1;
             var width = 1;
-            var id = setInterval(frame, 120000);
+            var id = setInterval(frame, 1000);
             function frame() {
                 if (width >= 100) {
                     clearInterval(id);
@@ -144,6 +144,7 @@ genCode = (e) => {
                     if (width == 100) {
                         // resendSmsCode(cardInfo).then().catch(err => console.log(err))
                         $('#loadingContainerqrc').hide()
+                        
                         // $('#resendCode').css("display", "block")
                     }
                 }
