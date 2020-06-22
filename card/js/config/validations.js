@@ -209,7 +209,7 @@ $(document).ready(function () {
         "orderId": "01112475",
         "tid": "15211001"
     }
-    validateMerchant(init).then(res => console.log(res))
+    // validateMerchant(init).then(res => console.log(res))
 
 
     console.log(sessionStorage.getItem('sessionId'))

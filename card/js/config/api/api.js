@@ -145,7 +145,7 @@ const payTransaction = (dta) => {
             },
             success: function (response) {
                 if(response.responseCode == 00){
-                    resolve(response.data.message)
+                console.log(response)
                 }else{
                     reject(response)
                 }
@@ -170,7 +170,8 @@ const payTransaction = (dta) => {
 
 // Purchase QRC API
 const purchaseQRCapi = (dta) => {
-    document.getElementById("errorMessage").style.display = "none";
+    // document.getElementById("errorMessage").style.display = "none";
+   return new Promise((resolve, reject) => {
     $.ajax({
         url: `${baseUri}/purchaseQRC/${API_VERSION}`,
         type: 'POST',
@@ -183,48 +184,54 @@ const purchaseQRCapi = (dta) => {
         }),
         success: function (response) {
             if (response.responseCode == "00") {
-                transferId = response.data.transferId;
-                document.getElementById("payButton").disabled = false;
+                console.log(response)
+                resolve(response)
+                // transferId = response.data.transferId;
+                // document.getElementById("payButton").disabled = false;
             }
         },
         error: function () {
-            document.getElementById("errorMessage").style.display = "block";
-            document.getElementById("errorMessage").value = "Error";
+            reject('err')
         }
     })
+   })
 }
 
 // inquryQRC api
 const inquiryQRCapi = (dta) => {
-    document.getElementById("errorMessage").style.display = "none";
-    $.ajax({
-        url: `${baseUri}/inquryQRC/${API_VERSION}`,
-        type: 'POST',
-        contentType: 'application/json',
-        data: JSON.stringify({
-            amount: dta.amount,
-            currency: dta.currency,
-            description: dta.description,
-            merchantId: dta.merchantId,
-            operationId: dta.operationId,
-            orderId: dta.orderId,
-            tid: dta.tid
-        }),
-        headers: {
-            "Authorization": `Bearer ${ACCESS_TOKEN}`
-        },
-        success: function (response) {
-            if (response.responseCode == "00") {
-                transferId = response.data.transferId;
-                /*console.log(response);*/
-                document.getElementById("payButton").disabled = false;
+    return new Promise((resolve, reject) => {
+        $.ajax({
+            url: `${baseUri}/inquryQRC/${API_VERSION}`,
+            type: 'POST',
+            contentType: 'application/json',
+            data: JSON.stringify({
+                amount: dta.amount,
+                currency: dta.currency,
+                description: dta.description,
+                merchantId: dta.merchantId,
+                operationId: dta.operationId,
+                orderId: dta.orderId,
+                tid: dta.tid
+            }),
+            headers: {
+                "Authorization": `${ACCESS_TOKEN}`
+            },
+            success: function (response) {
+                if (response.responseCode == "00") {
+                    console.log(response)
+                    resolve(response)
+                    transferId = response.data.transferId;
+                    /*console.log(response);*/
+                    // document.getElementById("payButton").disabled = false;
+                }
+            },
+            error: function () {
+                reject('err')
+                console.log('sds')
             }
-        },
-        error: function () {
-            document.getElementById("errorMessage").style.display = "block";
-            document.getElementById("errorMessage").value = "Error";
-        }
+        })
     })
+  
 }
 
 

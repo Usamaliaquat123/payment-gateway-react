@@ -101,7 +101,7 @@
             <i class="fa fa-angle-right" style="float:right;margin-top: 5%;" aria-hidden="true"></i>
             <p class="ccTextdesc">All card supported</p>
         </div>
-        <div class="selectCardMethod" onclick="genQRcode(this)">
+        <div class="selectCardMethod" onclick="validateQRc(this)">
             <i class="fa fa-qrcode fontPayMeth" style="font-size: 29px;"aria-hidden="true"></i>
             <span class="ccText">Scan QR code</span>
             <i class="fa fa-angle-right" style="float:right;margin-top: 5%;" aria-hidden="true"></i>
@@ -430,14 +430,22 @@
     </div>
     <div id="qrcodeContainer" class="qrContainer">
         <div id="qrcodeCardNum">
-            <p>Enter your card detail</p>
+            <p class="qrdcCCttle">Enter your card number</p>
             <input type="phone"  autocomplete="off" placeholder="Enter your card number" data-inputmask='"mask": "9999 9999 9999 9999"'
-            id="cardNumberQRC" class="inputline" maxlength="16" required>
+            id="cardNumberQRC" class="inputline" style="    width: 71%;
+            margin-left: 14%; text-align: center;" maxlength="16" required>
+                <p class="errcc" id="errccqc">Enter your valid card number..</p>
+            <div class="selectqrcmethSlide" onclick="genQRcode(this)">
+                <i class="fa fa-qrcode fontPayMeth" style="font-size: 37px;
+                position: absolute;
+                margin-top: 4px;"aria-hidden="true"></i>
+                <span class="ccTextqc">Scan QR code</span>
+                <i class="fa fa-angle-right" style="float:right;margin-top: 5%;" aria-hidden="true"></i>
+                <p class="ccTextdesc">scan the qr code</p>
+            </div>
         </div>
         <div id="qrcodeDisply">
             <p class="qrcttle">Scan the QR using any UPI app on your phone like BHIM, PhonePe, Google Pay etc.</p>
-            
-           
             <img src="./img/unionpay.png" alt="">
             <div id="qrcode"></div>
         </div>
@@ -480,18 +488,9 @@
             }, 800);
         }
 
-        function genQRcode(e){
-            $('#qrcodeloading').show()
-            $('#paymentMethods').hide()
-            
-            setTimeout(() => {
-                $('#qrcodeloading').hide()
-                $('#qrcodeContainer').show()
-                $('#qrcodeDisply').hide()
-            }, 800);
-        }
         // $('document').ready(() =>{
             $('#qrcodeloading').hide()
+            $('#errccqc').hide()
             $('#qrcodeContainer').hide()
             $('#cardContainer').hide()
             $('#paymentMethods').show()

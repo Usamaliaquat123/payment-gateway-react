@@ -402,9 +402,37 @@ outline: none;
   font-weight: bold;
 
 } 
+.qrdcCCttle{
+  text-align: center;
+  margin-top: 17%;
+  font-size: 16px;
+  font-weight: bold;
+}
 .qrcttle{
   text-align: center;
   margin-top: 17%;
   font-size: 14px;
 
+}
+.selectqrcmethSlide{
+  flex-direction: row;
+  padding: 10%;
+  margin-top: 16%;
+}
+.selectqrcmethSlide:hover{
+  background-color: #e5e5e5;
+  cursor: pointer;
+}
+.ccTextqc{
+  
+  font-size: 14px;
+    font-weight: bold;
+    margin-left: 19%;
+}
+.errcc{
+  font-size: 12px;
+  font-weight: bold;
+  text-align: center;
+  margin-top: 1%;
+  color: red;
 }
