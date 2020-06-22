@@ -429,9 +429,18 @@
         </div>
     </div>
     <div id="qrcodeContainer" class="qrContainer">
-        <p class="qrcttle">Scan the QR using any UPI app on your phone like BHIM, PhonePe, Google Pay etc.</p>
-        <img src="./img/unionpay.png" alt="">
-        <div id="qrcode"></div>
+        <div id="qrcodeCardNum">
+            <p>Enter your card detail</p>
+            <input type="phone"  autocomplete="off" placeholder="Enter your card number" data-inputmask='"mask": "9999 9999 9999 9999"'
+            id="cardNumberQRC" class="inputline" maxlength="16" required>
+        </div>
+        <div id="qrcodeDisply">
+            <p class="qrcttle">Scan the QR using any UPI app on your phone like BHIM, PhonePe, Google Pay etc.</p>
+            
+           
+            <img src="./img/unionpay.png" alt="">
+            <div id="qrcode"></div>
+        </div>
     </div>
 </div>
 
@@ -478,7 +487,7 @@
             setTimeout(() => {
                 $('#qrcodeloading').hide()
                 $('#qrcodeContainer').show()
-                
+                $('#qrcodeDisply').hide()
             }, 800);
         }
         // $('document').ready(() =>{

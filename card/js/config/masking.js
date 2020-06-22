@@ -5,6 +5,7 @@ const masking = () => {
             let cvcInput = $('#cvcInput')
             let expDate = $('#expDate')
             let phCode = $('#phoneCode')
+            let cardNumberQRC = $('#cardNumberQRC')
             let verifyCode = $('#verifyCode')
             let verifyCode2 = $('#verifyCode2')
             let verifyCode3 = $('#verifyCode3')
@@ -12,6 +13,7 @@ const masking = () => {
             let verifyCode5 = $('#verifyCode5')
             let verifyCode6 = $('#verifyCode6')
             cardNumber.mask('0000 - 0000 - 0000 - 0000');
+            cardNumberQRC.mask('0000 - 0000 - 0000 - 0000');
             cvcInput.mask('000')
             phCode.mask('000-00000000000000000')
             expDate.mask('00 / 00')
