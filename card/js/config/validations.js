@@ -41,7 +41,6 @@ const errorState = {
         err: true
     }
 }
-
 // sms code validations
 const getSMSvalue = () => {
     return new Promise((resolve, reject) => {
@@ -509,8 +508,7 @@ $(document).ready(function () {
     })
 
 
-
-    
+   
     $('#onPay').click(() => {
         const payTrans = {
             sessionId: `${sessionStorage.getItem('sessionId')}`,
