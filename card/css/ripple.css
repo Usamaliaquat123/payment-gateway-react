@@ -40,10 +40,10 @@
     height: 110px;
     display: inline-block;
     overflow: hidden;
-    position: absolute;
-    margin-left: 45%;
+    /* position: absolute; */
+    margin: 36%;
     background: transparent;
-    z-index: 3;
+    /* z-index: -1; */
     margin-top: 19%;
 }
 .ldio-onhzzwyqi0i {

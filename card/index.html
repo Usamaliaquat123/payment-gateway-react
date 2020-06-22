@@ -12,6 +12,10 @@
     <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.0.0/animate.min.css" />
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script type="text/javascript">
+        new QRCode(document.getElementById("qrcode"), "http://jindo.dev.naver.com/collie");
+        </script>
+    <script src="./js/external/qrcode.min.js"></script>
     <!-- <script src="./js/process.js"></script> -->
     <link rel="stylesheet" href="./css/smscode.css">
     <link rel="stylesheet" href="./css/ripple.css">
@@ -28,18 +32,17 @@
     <script src="./js/config/masking.js"></script>
     <script src="./js/config/validations.js"></script>
     <script src="./js/external/store.legacy.min.js"></script>
+    <script src="./js/config/qrcodeSetup.js"></script>
 
 
 </head>
 
 
 <body>
-    <!-- <div id="overlay" ></div> -->
   
 
 
-      
-
+   
 
         <div id="paymentSucess" class="animation-ctn">
             <div class="icon icon--order-success svg">
@@ -67,7 +70,7 @@
               <p class="sucessTickText">Payment Failed</p>
       </div>
       
-
+    
 
     
 
@@ -76,10 +79,12 @@
         <img class="merchLogo" src="./img/aws-logo.png" alt="">
         <span class="acnameTag">Merchant Ac Name</span>
     </div>
-
-    <div id="loading"  class="loadingio-spinner-ripple-3137eu7xzg"><div class="ldio-onhzzwyqi0i">
-        <div></div><div></div>
-        </div></div>
+    <div>
+        <div id="loading"  class="loadingio-spinner-ripple-3137eu7xzg"><div class="ldio-onhzzwyqi0i">
+            <div></div><div></div>
+            </div></div>
+    </div>
+   
     <div id="paymentMethods">
 
         <p class="selPayText">PREFERRED PAYMENT METHODS</p>
@@ -89,7 +94,7 @@
             <i class="fa fa-angle-right" style="float:right;margin-top: 5%;" aria-hidden="true"></i>
             <p class="ccTextdesc">All card supported</p>
         </div>
-        <div class="selectCardMethod">
+        <div class="selectCardMethod" onclick="genQRcode(this)">
             <i class="fa fa-qrcode fontPayMeth" style="font-size: 29px;"aria-hidden="true"></i>
             <span class="ccText">Scan QR code</span>
             <i class="fa fa-angle-right" style="float:right;margin-top: 5%;" aria-hidden="true"></i>
@@ -389,8 +394,6 @@
             </div>
         </form>
     </div>
-</div>
-
     <div id="codeSmsCard">
         <div class="container-card-sms animate__animated animate__backInDown">
             <div class="loadingContainer" id="loadingContainer"></div>
@@ -418,37 +421,56 @@
 
         </div>
     </div>
-    <div class="qrcContainer">
-        
+    <div id="qrcodeContainer" class="qrContainer">
+        <input id="text" type="text" value="https://hogangnono.com" style="width:80%" /><br />
+<div id="qrcode"></div>
     </div>
+</div>
+
+  
+
 
 
     <script src="./js/intlTelInput.js"></script>
 
     <script>
 
-        var input = document.querySelector("#phoneCode");
 
 
-        // function paymentDetail(e){
-        //     $('#loading').show()
-        //     $('#paymentMethods').hide()
-        //     setTimeout(() => {
-        //         $('#loading').hide()
-        //         $('#cardContainer').show()
-                
-        //     }, 800);
-        // }
-        $('document').ready(() =>{
-            $('#cardContainer').show()
+        // var input = document.querySelector("#phoneCode");
+
+
+        function paymentDetail(e){
+            $('#loading').show()
             $('#paymentMethods').hide()
+            setTimeout(() => {
+                $('#loading').hide()
+                $('#cardContainer').show()
+                
+            }, 800);
+        }
+
+        function genQRcode(e){
+            $('#loading').show()
+            $('#paymentMethods').hide()
+            
+
+            setTimeout(() => {
+                $('#loading').hide()
+                $('#qrcodeContainer').show()
+                
+            }, 800);
+        }
+        // $('document').ready(() =>{
+            $('#cardContainer').hide()
+            $('#paymentMethods').show()
             $('#codeSmsCard').hide()
             $('#loading').hide()
             $('#sucessTick').hide()
             $('#paymentFailed').hide()
             $('#paymentSucess').hide()
 
-        })
+        // })
         function lettersOnly(inp) {
             var regex = /[^a-z]/gi;
             inp.value = inp.value.replace(regex, "")
