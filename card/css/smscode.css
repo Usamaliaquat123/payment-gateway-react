@@ -52,6 +52,7 @@
   }
   .loadingContainer{
     width: 1%;
-    border: 1px solid #24282C;
+    background-color: #005BA9;
+    border: 1px solid #005BA9;
   }
     

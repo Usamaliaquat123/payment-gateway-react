@@ -124,8 +124,55 @@ genCode = (e) => {
         $('#qrcodeDisply').show()
         console.log(res)
 
+
+
+        var i = 0
+        if (i == 0) {
+            i = 1;
+            var width = 1;
+            var id = setInterval(frame, 120000);
+            function frame() {
+                if (width >= 100) {
+                    clearInterval(id);
+                    i = 0;
+                    console.log('asda')
+                } else {
+                    width++;
+                    $('#loadingContainerqrc').show()
+                    $('#loadingContainerqrc').css("width", `${width}%`)
+                    // $('#resendCode').hide()
+                    if (width == 100) {
+                        // resendSmsCode(cardInfo).then().catch(err => console.log(err))
+                        $('#loadingContainerqrc').hide()
+                        // $('#resendCode').css("display", "block")
+                    }
+                }
+            }
+        }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
         makeCode(res.qrString)
         $('.acnameTag').text(`${res.merchantName}`)
     }).catch(err => console.log(err))
 }
+
 
