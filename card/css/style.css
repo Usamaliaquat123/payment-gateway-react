@@ -390,5 +390,15 @@ outline: none;
 
 /* QR cONTAINER */
 .qrContainer{
-  
+
+}
+#qrcode{
+  margin-left: 18%;
+  margin-top: 14%;
+}
+.gnCodeCodeText{
+  text-align: center;
+  margin-top: 23%;
+  font-weight: bold;
+
 }

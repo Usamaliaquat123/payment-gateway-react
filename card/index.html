@@ -80,9 +80,16 @@
         <span class="acnameTag">Merchant Ac Name</span>
     </div>
     <div>
-        <div id="loading"  class="loadingio-spinner-ripple-3137eu7xzg"><div class="ldio-onhzzwyqi0i">
+        <div id="loading" class="loadingio-spinner-ripple-3137eu7xzg"><div class="ldio-onhzzwyqi0i">
             <div></div><div></div>
             </div></div>
+    </div >
+    <div id="qrcodeloading">
+        <p class="gnCodeCodeText">Generating QR Code ...</p>
+        <div class="loadingio-spinner-ripple-g6jyrpjnx6v"><div class="ldio-lz4yw135gs">
+            <div></div><div></div>
+            </div></div>
+
     </div>
    
     <div id="paymentMethods">
@@ -422,8 +429,7 @@
         </div>
     </div>
     <div id="qrcodeContainer" class="qrContainer">
-        <input id="text" type="text" value="https://hogangnono.com" style="width:80%" /><br />
-<div id="qrcode"></div>
+        <div id="qrcode"></div>
     </div>
 </div>
 
@@ -439,6 +445,31 @@
 
         // var input = document.querySelector("#phoneCode");
 
+        var qrcode = new QRCode("qrcode");
+
+function makeCode () {      
+    var elText = "00020101021215314182058600049992010210742100010520407425303586540530.005802PK5915Test Merchant 56008Karachi 626001202020061518020230093005202020061518020230093007088913100163040d79";
+    
+    // if (!elText.value) {
+    //     alert("Input a text");
+    //     elText.focus();
+    //     return;
+    // }
+    
+    qrcode.makeCode(elText);
+}
+
+makeCode();
+
+$("#text").
+    on("blur", function () {
+        makeCode();
+    }).
+    on("keydown", function (e) {
+        if (e.keyCode == 13) {
+            makeCode();
+        }
+    });
 
         function paymentDetail(e){
             $('#loading').show()
@@ -450,20 +481,21 @@
             }, 800);
         }
 
-        function genQRcode(e){
-            $('#loading').show()
-            $('#paymentMethods').hide()
+        // function genQRcode(e){
+        //     $('#qrcodeloading').show()
+        //     $('#paymentMethods').hide()
             
-
-            setTimeout(() => {
-                $('#loading').hide()
-                $('#qrcodeContainer').show()
+        //     setTimeout(() => {
+        //         $('#qrcodeloading').hide()
+        //         $('#qrcodeContainer').show()
                 
-            }, 800);
-        }
+        //     }, 800);
+        // }
         // $('document').ready(() =>{
+            $('#qrcodeloading').show()
+            $('#qrcodeContainer').hide()
             $('#cardContainer').hide()
-            $('#paymentMethods').show()
+            $('#paymentMethods').hide()
             $('#codeSmsCard').hide()
             $('#loading').hide()
             $('#sucessTick').hide()
