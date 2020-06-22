@@ -390,15 +390,21 @@ outline: none;
 
 /* QR cONTAINER */
 .qrContainer{
-
+  padding: 11%;
 }
 #qrcode{
-  margin-left: 18%;
-  margin-top: 14%;
+  margin-left: 8%;
+  margin-top: 9%;
 }
 .gnCodeCodeText{
   text-align: center;
   margin-top: 23%;
   font-weight: bold;
+
+} 
+.qrcttle{
+  text-align: center;
+  margin-top: 17%;
+  font-size: 14px;
 
 }
