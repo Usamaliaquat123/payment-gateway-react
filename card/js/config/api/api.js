@@ -168,11 +168,8 @@ const payTransaction = (dta) => {
 
 
 
-
-
-
 // Purchase QRC API
-const purchaseQRCapi = () => {
+const purchaseQRCapi = (dta) => {
     document.getElementById("errorMessage").style.display = "none";
     $.ajax({
         url: `${baseUri}/purchaseQRC/${API_VERSION}`,
@@ -180,7 +177,9 @@ const purchaseQRCapi = () => {
         contentType: 'application/json',
         data: JSON.stringify({
             // DATA
-            
+            cardNumber: dta.cardNumber,
+            merId: dta.merchantId,
+            sessionId: dta.sessionId
         }),
         success: function (response) {
             if (response.responseCode == "00") {
@@ -203,8 +202,13 @@ const inquiryQRCapi = (dta) => {
         type: 'POST',
         contentType: 'application/json',
         data: JSON.stringify({
-            
-
+            amount: dta.amount,
+            currency: dta.currency,
+            description: dta.description,
+            merchantId: dta.merchantId,
+            operationId: dta.operationId,
+            orderId: dta.orderId,
+            tid: dta.tid
         }),
         headers: {
             "Authorization": `Bearer ${ACCESS_TOKEN}`

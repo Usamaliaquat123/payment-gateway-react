@@ -460,31 +460,31 @@
 //         }
 //     });
 
-//         function paymentDetail(e){
-//             $('#loading').show()
-//             $('#paymentMethods').hide()
-//             setTimeout(() => {
-//                 $('#loading').hide()
-//                 $('#cardContainer').show()
+        function paymentDetail(e){
+            $('#loading').show()
+            $('#paymentMethods').hide()
+            setTimeout(() => {
+                $('#loading').hide()
+                $('#cardContainer').show()
                 
-//             }, 800);
-//         }
+            }, 800);
+        }
 
-        // function genQRcode(e){
-        //     $('#qrcodeloading').show()
-        //     $('#paymentMethods').hide()
+        function genQRcode(e){
+            $('#qrcodeloading').show()
+            $('#paymentMethods').hide()
             
-        //     setTimeout(() => {
-        //         $('#qrcodeloading').hide()
-        //         $('#qrcodeContainer').show()
+            setTimeout(() => {
+                $('#qrcodeloading').hide()
+                $('#qrcodeContainer').show()
                 
-        //     }, 800);
-        // }
+            }, 800);
+        }
         // $('document').ready(() =>{
             $('#qrcodeloading').hide()
-            $('#qrcodeContainer').show()
+            $('#qrcodeContainer').hide()
             $('#cardContainer').hide()
-            $('#paymentMethods').hide()
+            $('#paymentMethods').show()
             $('#codeSmsCard').hide()
             $('#loading').hide()
             $('#sucessTick').hide()
