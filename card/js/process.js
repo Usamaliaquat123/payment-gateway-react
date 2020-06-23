@@ -1,6 +1,6 @@
-const token = "";
-const smsCode = "";
-const transferId = "";
+// const token = "";
+// const smsCode = "";
+// const transferId = "";
 var merchantInfo;
 // const {validCard} = require('./components/cardVal')
 
@@ -35,48 +35,49 @@ var merchantInfo;
 
 
 
-Date.prototype.YYYYMMDDHHMMSS = function () {
-    var yyyy = this.getFullYear().toString();
-    var MM = pad(this.getMonth() + 1, 2);
-    var dd = pad(this.getDate(), 2);
-    var hh = pad(this.getHours(), 2);
-    var mm = pad(this.getMinutes(), 2)
-    var ss = pad(this.getSeconds(), 2)
+// Date.prototype.YYYYMMDDHHMMSS = function () {
+//     var yyyy = this.getFullYear().toString();
+//     var MM = pad(this.getMonth() + 1, 2);
+//     var dd = pad(this.getDate(), 2);
+//     var hh = pad(this.getHours(), 2);
+//     var mm = pad(this.getMinutes(), 2)
+//     var ss = pad(this.getSeconds(), 2)
 
-    return yyyy + MM + dd + hh + mm + ss;
-};
+//     return yyyy + MM + dd + hh + mm + ss;
+// };
 
-function getDate() {
-    d = new Date();
-}
+// function getDate() {
+//     d = new Date();
+// }
 
-function pad(number, length) {
-    var str = '' + number;
-    while (str.length < length) {
-        str = '0' + str;
-    }
-    return str;
-}
+// function pad(number, length) {
+//     var str = '' + number;
+//     while (str.length < length) {
+//         str = '0' + str;
+//     }
+//     return str;
+// }
 
 function timer() {
-    document.getElementById('timerButton').style.display = 'none';
-    document.getElementById('countdown').style.display = 'block';
-    var timeleft = 60;
+    // document.getElementById('timerButton').style.display = 'none';
+    // document.getElementById('countdown').style.display = 'block';
+    var timeleft = 120;
     var downloadTimer = setInterval(function () {
         if (timeleft <= 0) {
             clearInterval(downloadTimer);
-            document.getElementById('countdown').style.display = 'none';
-            document.getElementById('timerButton').style.display = 'none';
-            document.getElementById('resendButton').style.display = 'block';
+            // document.getElementById('countdown').style.display = 'none';
+            // document.getElementById('timerButton').style.display = 'none';
+            // document.getElementById('resendButton').style.display = 'block';
         } else {
-            document.getElementById("countdown").innerHTML = timeleft + " seconds remaining";
+            document.getElementById("countdown").innerHTML = timeleft + " seconds left";
         }
         timeleft -= 1;
     }, 1000);
 
     d = new Date();
-    authentication();
+    // authentication();
 }
+timer()
 
 // document.getElementById('payButton').onclick = function(){
 // 	console.log('payButton');

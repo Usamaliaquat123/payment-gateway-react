@@ -107,15 +107,14 @@ function validateQRc() {
         $('#qrcodeDisply').hide()
       
     }).catch(err => {
-        console.log(err)
+        $('#qrcodeloading').hide()
+        $('#qrcodeContainer').hide()
+        $('#paymentMethods').show()
     })
 }
 
 
 genCode = (e) => {
-    console.log(e)
-    console.log(sessionStorage.getItem('merchantId'))
-    console.log(sessionStorage.getItem('sessionId'))
     const dta = {
         cardNumber : e,
         merId :  sessionStorage.getItem('merchantId'),
@@ -124,14 +123,10 @@ genCode = (e) => {
     $('#qrcodeloading').show()
     $('#qrcodeCardNum').hide()
     purchaseQRCapi(dta).then(res => {
-        
+        $('.acnameTag').text(`${res.merchantName}`)
         $('#qrcodeloading').hide()
         $('#qrcodeContainer').show()
         $('#qrcodeDisply').show()
-        console.log(res)
-
-
-
         var i = 0
         if (i == 0) {   
             i = 1;
@@ -156,30 +151,14 @@ genCode = (e) => {
                 }
             }
         }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
         makeCode(res.qrString)
-        $('.acnameTag').text(`${res.merchantName}`)
-    }).catch(err => console.log(err))
+
+    }).catch(err => {
+            $('#qrcodeDisply').hide()
+            $('#qrcodeContainer').hide()
+            $('#paymentMethods').show()
+
+    })
 }
 
 
