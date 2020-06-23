@@ -27,6 +27,12 @@ let errccqc = $('#errccqc')
 
 
 
+
+$('document').ready(() => {
+    $('#loadingContainerqrc').hide()
+})
+
+
     
 function makeCode (e) {      
 

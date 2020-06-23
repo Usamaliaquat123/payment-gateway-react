@@ -46,7 +46,7 @@ const validateMerchant = (dta) => {
                 }
             },
             error: function (e) {
-                console.log(e)
+                reject('b')
             }
         })
     })
@@ -83,7 +83,7 @@ const sendSms = (dta) => {
                 }
             },
             error: function (error) {
-                console.log(e)
+                reject('b')
             }
         })
       })  
@@ -118,6 +118,10 @@ const resendSmsCode = (dta) => {
                 }
                 console.log(response)
             },
+            
+            error: function (error) {
+                reject('b')
+            }
         })
     })
    
@@ -150,6 +154,9 @@ const payTransaction = (dta) => {
                     reject(response)
                 }
             },
+            error: function (error) {
+                reject('b')
+            }
         })
       })  
 }
