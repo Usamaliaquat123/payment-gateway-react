@@ -127,6 +127,7 @@ genCode = (e) => {
         $('#qrcodeloading').hide()
         $('#qrcodeContainer').show()
         $('#qrcodeDisply').show()
+        timer()
         var i = 0
         if (i == 0) {   
             i = 1;

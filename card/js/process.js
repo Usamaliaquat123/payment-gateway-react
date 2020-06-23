@@ -36,7 +36,7 @@ var merchantInfo;
 
 
 function timer() {
-    var timeleft = 20;
+    var timeleft = 120;
     var downloadTimer = setInterval(function () {
         if (timeleft <= 0) {
             clearInterval(downloadTimer);
@@ -47,7 +47,7 @@ function timer() {
         timeleft -= 1;
     }, 1000);
 }
-timer()
+
 
 
 
