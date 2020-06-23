@@ -93,20 +93,24 @@
   $('#checkout').click(function () {
     configure({
       details: {
-        FirstName: "", //Optional
-        LastName: "", //Optional
-        Address: "", //Optional
-        MobileNumber: "", // Optional
-        EmailAddress: "", // Optional
-        orderID: "00012443",
-        merchantID: "010210742100010",
-        amount: "40.00",
-        merchantName: "",
-        currency: "586",
-        TerminalID: "15211001",
-        operationId: "",
-        description: "Purchase",
-        merchantLogo: "",
+        basic : {
+          FirstName: "", //Optional
+          LastName: "", //Optional
+          Address: "", //Optional
+          MobileNumber: "", // Optional
+          EmailAddress: "", // Optional
+        },
+        product :{
+          orderID: "00012443",
+          merchantID: "010210742100010",
+          amount: "40.00",
+          merchantName: "",
+          currency: "586",
+          TerminalID: "15211001",
+          operationId: "",
+          description: "Purchase",
+          merchantLogo: "",
+        },
       },
 
     },
@@ -116,13 +120,13 @@
       callbackUrl('url').then(res => {
         // sucess response
       }).catch(e => { /* error back */ }),
-        callbackTimeout('url').then(res => {
-          // sucess response
-        }).catch(e => { /* error back */ }),
+      callbackTimeout('url').then(res => {
+        // sucess response
+      }).catch(e => { /* error back */ }),
 
 
 
-      );
+    );
   });
 </script>
 
