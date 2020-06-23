@@ -34,17 +34,15 @@ $('document').ready(() => {
 
 
     
-function makeCode (e) {      
-
-    var elText = e;
-    
-    // if (!elText.value) {
-    //     alert("Input a text");
-    //     elText.focus();
-    //     return;
-    // }
-    
-    qrcode.makeCode(elText);
+function makeCode (e,crdName) { 
+    var qrcode = new QRCode(document.getElementById("qrcode"), {
+        text: e,
+        logo: `img/${crdName}.png`,
+        logoWidth: 50,
+        logoHeight: 50,
+        logoBackgroundColor: 'transparent',
+        logoBackgroundTransparent: false
+    });
 }
 var cardNumberQRC = $('#cardNumberQRC')
 
@@ -132,7 +130,7 @@ genCode = (e) => {
         if (i == 0) {   
             i = 1;
             var width = 1;
-            var id = setInterval(frame, 1000);
+            var id = setInterval(frame, 1200);
             function frame() {
                 if (width >= 100) {
                     clearInterval(id);
@@ -152,7 +150,7 @@ genCode = (e) => {
                 }
             }
         }
-        makeCode(res.qrString)
+        makeCode(res.qrString,'unionpay')
 
     }).catch(err => {
             $('#qrcodeDisply').hide()
