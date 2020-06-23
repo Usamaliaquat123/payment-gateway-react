@@ -33,7 +33,7 @@
 .ccText{
   font-size: 14px;
   font-weight: bold;
-  margin-left: 10%;
+  margin-left: 20%;
 }
 .ccTextdesc{
   margin-left: 19%;
@@ -424,11 +424,16 @@ outline: none;
   cursor: pointer;
 }
 .ccTextqc{
-  
   font-size: 14px;
     font-weight: bold;
     margin-left: 19%;
 }
+.ccqrCode{
+  font-size: 14px;
+  font-weight: bold;
+  margin-left: 19%;
+}
+
 .errcc{
   font-size: 12px;
   font-weight: bold;
