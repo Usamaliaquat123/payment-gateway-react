@@ -69,7 +69,7 @@ function timer() {
             // document.getElementById('timerButton').style.display = 'none';
             // document.getElementById('resendButton').style.display = 'block';
         } else {
-            document.getElementById("countdown").innerHTML = timeleft + " seconds left";
+            document.getElementById("countdown").innerHTML = timeleft + " secs";
         }
         timeleft -= 1;
     }, 1000);
