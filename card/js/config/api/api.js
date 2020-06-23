@@ -238,7 +238,6 @@ const inquiryQRCapi = (dta) => {
             },
             error: function () {
                 reject('err')
-                console.log('sds')
             }
         })
     })
