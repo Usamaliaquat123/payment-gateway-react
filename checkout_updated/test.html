@@ -57,10 +57,10 @@
 <script src="checkout.js"></script>
 <script>
 
-  
-// Promises functionsa
+
+  // Promises functionsa
   configure({
-    basicInfo : {
+    basicInfo: {
       FirstName: "", //Optional
       LastName: "", //Optional
       Address: "", //Optional
@@ -68,7 +68,7 @@
       EmailAddress: "", // Optional
       description: "Purchase",
     },
-    amountDetails : {
+    amountDetails: {
       orderID: "00012443",
       merchantID: "010210742100010",
       amount: "40.00",
@@ -77,7 +77,7 @@
       TerminalID: "15211001",
       operationId: "",
     },
-    extURLs : {
+    extURLs: {
       merchantLogo: "",
       callbackURL: "",
       callbackSucess: "",
@@ -107,25 +107,22 @@
         operationId: "",
         description: "Purchase",
         merchantLogo: "",
-        callbackURL: "",
-        callbackSucess: "",
-        callbackTimeout: ""
       },
-      
+
     },
-     callbackSucess('url').then(res => {
-     // sucess response // sucess response
-    }).catch(err => { /* error back */ }),
-    callbackUrl('url'.then(res => {
-// sucess response
-    }).catch(e => { /* error back */}),
-    callbackTimeout('url').then(res => {
-// sucess response
-    }).catch(e => { /* error back */}),
+      callbackSucess('url').then(res => {
+        // sucess response // sucess response
+      }).catch(err => { /* error back */ }),
+      callbackUrl('url').then(res => {
+        // sucess response
+      }).catch(e => { /* error back */ }),
+        callbackTimeout('url').then(res => {
+          // sucess response
+        }).catch(e => { /* error back */ }),
 
 
-    
-    ));
+
+      );
   });
 </script>
 
