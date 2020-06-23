@@ -437,10 +437,10 @@
     <div id="qrcodeContainer" class="qrContainer">
       
         <div id="qrcodeCardNum">
-            <p class="qrdcCCttle">Enter your card number</p>
+            <!-- <p class="qrdcCCttle">Enter your card number</p>
             <input type="phone"  autocomplete="off" value="6222821234560017" placeholder="Enter your card number" data-inputmask='"mask": "9999 9999 9999 9999"'
-            id="cardNumberQRC" class="inputline"  maxlength="16" required>
-                <p class="errcc" id="errccqc">Enter your valid card number..</p>
+            id="cardNumberQRC" class="inputline"  maxlength="16" required> -->
+                <!-- <p class="errcc" id="errccqc">Enter your valid card number..</p> -->
             <div class="selectqrcmethSlide" onclick="genQRcode(this)">
                 <i class="fa fa-qrcode fontPayMeth" style="font-size: 37px;
                 position: absolute;
@@ -480,6 +480,7 @@
             }, 800);
         }
 
+        // $('document').ready(() =>{
             $('#qrcodeloading').hide()
             $('#errccqc').hide()
             $('#qrcodeContainer').hide()

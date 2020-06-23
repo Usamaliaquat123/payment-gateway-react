@@ -37,7 +37,7 @@ $('document').ready(() => {
 function makeCode (e,crdName) { 
     var qrcode = new QRCode(document.getElementById("qrcode"), {
         text: e,
-        logo: `img/${crdName}.png`,
+        logo: `../img/${crdName}.png`,
         logoWidth: 50,
         logoHeight: 50,
         logoBackgroundColor: 'transparent',
@@ -60,27 +60,28 @@ $('document').ready(() => {
 
 
 function genQRcode(e){
-    console.log(cardNumVal)
-    cardNum = cardNumberQRC.val().replace(/\-/g, '') 
-    cardNum = cardNum.replace(/\s/g, '')
+    // console.log(cardNumVal)
+    // cardNum = cardNumberQRC.val().replace(/\-/g, '') 
+    // cardNum = cardNum.replace(/\s/g, '')
 
 
-    console.log(cardNum.length)
+    // console.log(cardNum.length)
 
-    if(cardNum.length == 16){
+    // if(cardNum.length == 16){
 
 
-        genCode(cardNum)
-        errccqc.hide()
-        cardNumberQRC.css('background-size', '0 2px, 100% 1px')
-        cardNumberQRC.css('outline', '')
+    //     genCode(cardNum)
+    //     errccqc.hide()
+    //     cardNumberQRC.css('background-size', '0 2px, 100% 1px')
+    //     cardNumberQRC.css('outline', '')
 
        
-    }else{
-        errccqc.show()
-        cardNumberQRC.css('background-size', '100% 1px, 100% 1px')
-        cardNumberQRC.css('outline', 'none')
-    }
+    // }else{
+    //     errccqc.show()
+    //     cardNumberQRC.css('background-size', '100% 1px, 100% 1px')
+    //     cardNumberQRC.css('outline', 'none')
+    // }
+    genCode('6222821234560017')
 }
 
 
@@ -90,7 +91,7 @@ function validateQRc() {
     const dta = {
         amount: "30.00",
         currency: "586",
-        description: "QR",
+        description: "Ecommerce",
         merchantId: "010210742100010",
         operationId: "",
         orderId: "00112475",
