@@ -2,13 +2,52 @@ var object;
 var sessionId;
 const baseURI = "http://10.0.70.64:4999"
 const payCardUri = "http://localhost:7000"
+var expression = /[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*)?/gi;
 
 
-const checkout  = (basicInformation,) => {
-    return new Promise((resolve, reject) => {
+// const checkout  = (basicInformation,) => {
+//     return new Promise((resolve, reject) => {
         
+//     })
+// }
+
+const callbackSucess = (url) => {
+    return new Promise((resolve, reject) =>{
+        var regex = new RegExp(expression);
+        if (url.match(regex)) {
+            object['callbackSucess'] = url
+            resolve({url, code: 200})
+        } else {
+            reject('Please give your valid sucess url')
+        }
     })
 }
+
+const callbackUrl = () => {
+    return new Promise((resolve, reject) => {
+        var regex = new RegExp(expression);
+        if (url.match(regex)) {
+            object['callbackURL'] = url
+            resolve({url, code: 200})
+        } else {
+            reject('Please give your valid callback url')
+        }
+    })
+}
+
+const callbackTimeout = () => {
+    return new Promise((resolve, reject) => {
+        var regex = new RegExp(expression);
+        if (url.match(regex)) {
+            object['callbackTimeout'] = url
+            resolve({url, code: 200})
+        } else {
+            reject('Please give your valid timeout url')
+        }
+    })
+}
+
+
 
 const config = (data) => {
     return new Promise((resolve, reject) => {

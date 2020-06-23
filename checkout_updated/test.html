@@ -111,8 +111,21 @@
         callbackSucess: "",
         callbackTimeout: ""
       },
+      
+    },
+     callbackSucess('url').then(res => {
+     // sucess response // sucess response
+    }).catch(err => { /* error back */ }),
+    callbackUrl('url'.then(res => {
+// sucess response
+    }).catch(e => { /* error back */}),
+    callbackTimeout('url').then(res => {
+// sucess response
+    }).catch(e => { /* error back */}),
 
-    });
+
+    
+    ));
   });
 </script>
 
