@@ -7,27 +7,6 @@ var merchantInfo;
 
 
 
-// Maksing var
-
-// var input = document.querySelector("#phoneCode");
-// // var country = document.querySelector('#selectMonth')
-
-
-// function lettersOnly(inp){
-//     var regex = /[^a-z]/gi;
-//     inp.value = inp.value.replace(regex, "")
-// }
-// window.intlTelInput(input, {
-//     initialCountry: "auto",
-//     separateDialCode: true,
-//     geoIpLookup: function (success, failure) {
-//         $.get("https://ipinfo.io", function () { }, "jsonp").always(function (resp) {
-//             var countryCode = (resp && resp.country) ? resp.country : "";
-//             success(countryCode);
-//         });
-//     },
-// })
-
 
 
 
@@ -61,7 +40,7 @@ function messageHandler(event) {
         sessionStorage.setItem('sessionId',obj.sessionId)
         // document.getElementById("amount").value = obj.product.amount
         document.getElementById("merchantName").innerHTML = "asdas"
-        $('#merchantName').text("sd")
+        $('#merchantName').text(obj.product.merchantName)
         // document.getElementById("merchantLogo").src = obj.product.merchantLogo;
 
 
