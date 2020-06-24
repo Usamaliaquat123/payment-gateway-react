@@ -56,6 +56,7 @@ function messageHandler(event) {
     const { action, key, value } = event.data
     if (action == 'save') {
         var obj = value;
+        console.log(obj)
         document.getElementById("amount").value = obj.amount;
         document.getElementById("exampleModalLabel").innerHTML = obj.merchantName;
         document.getElementById("merchantLogo").src = obj.merchantLogo;

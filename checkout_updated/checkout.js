@@ -1,22 +1,23 @@
-var object;
+var object = {product:{}, basic: {}};
 var sessionId;
-const baseURI = "http://10.0.70.64:4999"
+const baseUri = "https://gateway.paysyslabs.com"
 const payCardUri = "http://localhost:7000"
+const API_VERSION = "1.0.0" 
+const ACCESS_TOKEN = "Bearer 4c280096-0db9-44f3-8b4d-71747e630ea6"
 var expression = /[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*)?/gi;
 
 
-// const checkout  = (basicInformation,) => {
-//     return new Promise((resolve, reject) => {
-        
-//     })
-// }
+
+
+
 
 const callbackSucess = (url) => {
     return new Promise((resolve, reject) =>{
         var regex = new RegExp(expression);
         if (url.match(regex)) {
-            object['callbackSucess'] = url
-            resolve({url, code: 200})
+
+            object['product']['callbackSucess'] = url
+            resolve({url, status: 200})
         } else {
             reject('Please give your valid sucess url')
         }
@@ -28,22 +29,19 @@ const callbackUrl = () => {
         var regex = new RegExp(expression);
         if (url.match(regex)) {
             object['callbackURL'] = url
-            resolve({url, code: 200})
+            resolve({url, status: 200})
         } else {
             reject('Please give your valid callback url')
         }
     })
 }
 
-
-
-
 const callbackTimeout = () => {
     return new Promise((resolve, reject) => {
         var regex = new RegExp(expression);
         if (url.match(regex)) {
             object['callbackTimeout'] = url
-            resolve({url, code: 200})
+            resolve({url, status: 200})
         } else {
             reject('Please give your valid timeout url')
         }
@@ -52,57 +50,39 @@ const callbackTimeout = () => {
 
 
 
-const config = (data) => {
-    return new Promise((resolve, reject) => {
-        // console.log(inf.dataInfo.merchantId.length)
-        const dta = inf.dataInfo
-        const data = {}
-        if (dta.merchantId.length == 15) {
-            if (dta.orderId.length == 8) {
-                data['amount'] = ('0' + dta.amount).slice(-2)
-            } else {
-                data['amount'] = dta.amount
-            }
-            if (dta.amount.length == 1) { data['amount'] = ('0' + dta.amount).slice(-2) } else { data['amount'] = dta.amount }
-    
-            data['orderId'] = dta.orderId
-            data['currency'] = dta.currency
-            data['description'] = dta.description
-            data['merchantLogo'] = dta.merchantLogo
-            data['merchantId'] = dta.merchantId
-            data['operationId'] = dta.operationId
-            data['merchantName'] = dta.merchantName
-            data['tid'] = dta.tid
-    
-            object = data;
-            console.log(object)
-            validateMerchant();
-        }    
-    })
-}
 
 const configure = (inf) => {
-    console.log(inf.dataInfo.merchantId.length)
-    const dta = inf.dataInfo
+    console.log(inf)
+    const dta = inf.product
+    const bsc = inf.basic
     const data = {}
-    if (dta.merchantId.length == 15) {
-        if (dta.orderId.length == 8) {
-            data['amount'] = ('0' + dta.amount).slice(-2)
-        } else {
-            data['amount'] = dta.amount
-        }
-        if (dta.amount.length == 1) { data['amount'] = ('0' + dta.amount).slice(-2) } else { data['amount'] = dta.amount }
+    if (dta.merchantID.length == 15) {
+        // if (dta.orderID.length == 8) {
+        //     console.log( ('0' + dta.amount).slice(-2))
+        //     data['product']['amount'] = ('0' + dta.amount).slice(-2)
+        // } else {
+        //     data['product']['amount'] = dta.amount
+        // }
+        // if (dta.amount.length == 1) { data['product']['amount'] = ('0' + dta.amount).slice(-2) } else { data['product']['amount'] = dta.amount }
+        // ================= P R O D U C T  ========================
+        object['product']['orderId'] = dta.orderID
+        object['product']['currency'] = dta.currency
+        object['product']['description'] = dta.description
+        object['product']['merchantLogo'] = dta.merchantLogo
+        object['product']['merchantId'] = dta.merchantID
+        object['product']['amount'] = dta.amount
+        object['product']['operationId'] = dta.operationId
+        object['product']['merchantName'] = dta.merchantName
+        object['product']['tid'] = dta.TerminalID
+        // ================= B A S I C ==  I N F O ===================
+        object['basic']['FirstName'] = bsc.FirstName
+        object['basic']['LastName'] = bsc.LastName
+        object['basic']['Address'] = bsc.Address
+        object['basic']['MobileNumber'] = bsc.MobileNumber
+        object['basic']['EmailAddress'] = bsc.EmailAddress
+        // object['basic']['description'] = bsc.description
 
-        data['orderId'] = dta.orderId
-        data['currency'] = dta.currency
-        data['description'] = dta.description
-        data['merchantLogo'] = dta.merchantLogo
-        data['merchantId'] = dta.merchantId
-        data['operationId'] = dta.operationId
-        data['merchantName'] = dta.merchantName
-        data['tid'] = dta.tid
-
-        object = data;
+        // object = data;
         console.log(object)
         validateMerchant();
     } else {
@@ -111,25 +91,25 @@ const configure = (inf) => {
 
 }
 
-const validateMerchant = () => {
+const validateMerchant = (e) => {
     console.log(object)
+
+    var e = object.product
     $.ajax({
-        url: `${baseURI}/api/v1/ecommerce/validateMerchant`,
+        url: `${baseUri}/validateMerchant/${API_VERSION}`,
         type: 'POST',
         contentType: 'application/json',
         data: JSON.stringify({
-            "amount": object.amount,
-            "currency": object.currency,
-            "description": object.description,
-            "merchantId": object.merchantId,
-            "merchantLogo": object.merchantLogo,
-            "operationId": object.operationId,
-            "orderId": object.orderId,
-            "tid": object.tid ,
-            "callBackURL": ""
+        "amount": e.amount,
+        "currency": e.currency,
+        "description": e.description,
+        "merchantId": e.merchantId,
+        "operationId": e.operationId,
+        "orderId": e.orderId,
+        "tid": e.tid
         }),
         headers: {
-            "Authorization": "Basic Nzk3ZWMwOGEtMGViZC00ZTNjLWE3MjMtZDA5MmE1MWMyZDM0Ojg2ZTk3ZTYwLWU2YTgtNDc0NC1hZjA4LTQ4ZDMzYjJkYjg4NQ=="
+            "Authorization": `${ACCESS_TOKEN}`
         },
         success: (response) => {
             console.log('Response Code : ->' + response.responseCode);
