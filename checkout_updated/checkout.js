@@ -1,12 +1,14 @@
-var object = {product:{
-    callbackUrl : "",
-    callbackTimeout : "",
-    callbackSucess: ""
-}, basic: {}};
+var object = {
+    product: {
+        callbackUrl: "",
+        callbackTimeout: "",
+        callbackSucess: ""
+    }, basic: {}
+};
 var sessionId;
 const baseUri = "https://gateway.paysyslabs.com"
 const payCardUri = "http://localhost:7000"
-const API_VERSION = "1.0.0" 
+const API_VERSION = "1.0.0"
 const ACCESS_TOKEN = "Bearer 4c280096-0db9-44f3-8b4d-71747e630ea6"
 var expression = /[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*)?/gi;
 
@@ -16,11 +18,11 @@ var expression = /[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-
 
 
 const callbackSucess = (url) => {
-    return new Promise((resolve, reject) =>{
+    return new Promise((resolve, reject) => {
         var regex = new RegExp(expression);
         if (url.match(regex)) {
             object['product']['callbackSucess'] = url
-            resolve({url, status: 200})
+            resolve({ url, status: 200 })
         } else {
             reject('Please give your valid sucess url')
         }
@@ -32,7 +34,7 @@ const callbackUrl = (url) => {
         var regex = new RegExp(expression);
         if (url.match(regex)) {
             object['product']['callbackURL'] = url
-            resolve({url, status: 200})
+            resolve({ url, status: 200 })
         } else {
             reject('Please give your valid callback url')
         }
@@ -44,7 +46,7 @@ const callbackTimeout = (url) => {
         var regex = new RegExp(expression);
         if (url.match(regex)) {
             object['product']['callbackTimeout'] = url
-            resolve({url, status: 200})
+            resolve({ url, status: 200 })
         } else {
             reject('Please give your valid timeout url')
         }
@@ -60,24 +62,31 @@ const configure = (inf) => {
         const dta = inf.product
         const bsc = inf.basic
         const data = {}
-        if (dta.merchantID.length != 15) {
-            reject({status: 400, mess: "merchant ID is not valid"})
-          
-        } else if(dta.TerminalID.length !=  8) 
-     {
-        reject({status: 400, mess:"Terminal id is not valid"})   
+
+
+        // console.log()
+        // console.log(dta.merchantID.toString())
+        // if(typeof dta.merchantID == "number") {
+        // }else{
+        //     reject({status: 400, mess: "merchant ID is not valid"})
+        // }
         
-    }else if(dta.orderID.length != 8){
-        reject({status: 400, mess:"Order id is not valid"})        
-    }else if(dta.currency.length != 3){
-        reject({status: 400, mess:"currency is not valid"})        
-    }else {
+
+        if (dta.merchantID.toString().length != 15) {
+            reject({ status: 400, mess: "merchant ID is not valid" })
+        } else if (dta.TerminalID.toString().length != 8) {
+            reject({ status: 400, mess: "Terminal id is not valid" })
+        } else if (dta.orderID.toString().length != 8) {
+            reject({ status: 400, mess: "Order id is not valid" })
+        } else if (dta.currency.toString().length != 3) {
+            reject({ status: 400, mess: "currency is not valid" })
+        } else {
 
 
 
 
+``
 
-              
             // if (dta.orderID.length == 8) {
             //     console.log( ('0' + dta.amount).slice(-2))
             //     data['product']['amount'] = ('0' + dta.amount).slice(-2)
@@ -102,46 +111,47 @@ const configure = (inf) => {
             object['basic']['MobileNumber'] = bsc.MobileNumber
             object['basic']['EmailAddress'] = bsc.EmailAddress
             // object['basic']['description'] = bsc.description
-    
+
             // object = data;
-            console.log(object)
+            // console.log(object)
             validateMerchant().then(res => {
-                resolve({object, status: 200})
-                console.log(response)
                 object['sessionId'] = res
+                console.log(res)
+                resolve({ object, status: 200 })
                 showLightBox();
             }).catch(e => {
                 reject(e)
             });
         }
     })
-   
+
 
 }
 
 const validateMerchant = (e) => {
     return new Promise((resolve, reject) => {
-        console.log(object)
-        if(object.product.callbackSucess == ""){
-            reject({status: 400, mess: "provide your callbackSucess url"})
-        }else if(object.product.callbackTimeout == ""){
-            reject({status: 400, mess: "provide your callbackTimeout url"})
-        }else if(object.product.callbackURL == ""){
-            reject({status: 400, mess: "provide your callback url"})    
-        }else{
+        // console.log(object)
+        if (object.product.callbackSucess == "") {
+            reject({ status: 400, mess: "provide your callbackSucess url" })
+        } else if (object.product.callbackTimeout == "") {
+            reject({ status: 400, mess: "provide your callbackTimeout url" })
+        } else if (object.product.callbackURL == "") {
+            reject({ status: 400, mess: "provide your callback url" })
+        } else {
+            // resolve("asdsadasda")
             var e = object.product
             $.ajax({
                 url: `${baseUri}/validateMerchant/${API_VERSION}`,
                 type: 'POST',
                 contentType: 'application/json',
                 data: JSON.stringify({
-                "amount": e.amount,
-                "currency": e.currency,
-                "description": e.description,
-                "merchantId": e.merchantId,
-                "operationId": e.operationId,
-                "orderId": e.orderId,
-                "tid": e.tid
+                    "amount": e.amount,
+                    "currency": e.currency,
+                    "description": e.description,
+                    "merchantId": e.merchantId,
+                    "operationId": e.operationId,
+                    "orderId": e.orderId,
+                    "tid": e.tid
                 }),
                 headers: {
                     "Authorization": `${ACCESS_TOKEN}`

@@ -9,24 +9,6 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.15/jquery.mask.min.js"></script>
 
 
-  <!-- <script>
-    $('#checkout').click(function () {
-      Checkout.configure({
-        dataInfo: {
-          orderId: "789654",
-          merchantId: "123456789",
-          amount: document.getElementById("amountEnter").value,
-          phoneNo: "+92-3212406318",
-          merchantName: document.getElementById("merchantName").value,
-          operation: "purchase",
-          currency: "586",
-          description: "Ecommerce Secure Plus",
-          merchantLogo: "https://www.getsafepay.com/dashboard/static/media/visa.36bf2b8d.svg",
-          callbackURL: "http:localhost:8000"
-        }
-      });
-    });
-  </script> -->
 </head>
 
 <body style="background-color:transparent;">
@@ -68,8 +50,8 @@ app =() => {
     },
     product: {
       orderID: "00012443",
-      description: "asda",
-      merchantID: "01021074210001",
+      description: "QR",  
+      merchantID: "010210742100010",
       amount: "40.00",
       merchantName: document.getElementById('merchantName').value,
       currency: "586",
@@ -88,7 +70,7 @@ app =() => {
         // sucess response
       }).catch(e => { /* error back */ }),
   ).then(res => {
-    console.log('sd')
+    console.log(res)
   }).catch(err => {
     console.log(err)
   })
