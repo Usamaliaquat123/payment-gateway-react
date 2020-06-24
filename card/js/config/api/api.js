@@ -209,20 +209,18 @@ const purchaseQRCapi = (dta) => {
 
 // inquryQRC api
 const inquiryQRCapi = (dta) => {
-    console.log('sds')
     return new Promise((resolve, reject) => {
         $.ajax({
             url: `${baseUri}/inquryQRC/${API_VERSION}`,
             type: 'POST',
             contentType: 'application/json',
             data: JSON.stringify({
-                amount: dta.amount,
-                currency: dta.currency,
-                description: dta.description,
-                merchantId: dta.merchantId,
-                operationId: dta.operationId,
-                orderId: dta.orderId,
-                tid: dta.tid
+                cardNumber: dta.cardNumber,
+                currencyCode: dta.currencyCode,
+                merId: dta.merId,
+                originalOrderId: dta.originalOrderId,
+                tid: dta.tid,
+                txnAmount: dta.txnAmount
             }),
             headers: {
                 "Authorization": `${ACCESS_TOKEN}`
@@ -232,8 +230,6 @@ const inquiryQRCapi = (dta) => {
                 if (response.responseCode == "00") {
                     resolve(response)
                     transferId = response.data.transferId;
-                    /*console.log(response);*/
-                    // document.getElementById("payButton").disabled = false;
                 }
             },
             error: function () {
