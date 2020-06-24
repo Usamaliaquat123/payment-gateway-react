@@ -45,9 +45,8 @@
   </div>
   <div class="form-group">
     <div class="col-md-6" style="padding-top: 2%;">
-      <button type="button" class="btn btn-primary" id="checkout">Payment</button>
-      <button type="submit" id="externalPageButton" class="btn btn-primary" onclick="externalPageButton()">External Page
-        Popup</button>
+      <button type="button" class="btn btn-primary" id="checkout" onclick="app()">Payment</button>
+    
     </div>
   </div>
   <div id="content">
@@ -57,8 +56,9 @@
 <script src="checkout.js"></script>
 <script>
 
-  $('#checkout').click(function () {
-    configure({
+
+app =() => {
+  configure({
     basic: {
       FirstName: "", //Optional
       LastName: "", //Optional
@@ -69,7 +69,7 @@
     product: {
       orderID: "00012443",
       description: "asda",
-      merchantID: "010210742100010",
+      merchantID: "01021074210001",
       amount: "40.00",
       merchantName: document.getElementById('merchantName').value,
       currency: "586",
@@ -81,18 +81,28 @@
     console.log(res)
         // sucess response // sucess response
       }).catch(err => console.log(err)),
-      callbackUrl('url').then(res => {
+      callbackUrl('https://github.com').then(res => {
         // sucess response
       }).catch(e => { /* error back */ }),
-      callbackTimeout('url').then(res => {
+      callbackTimeout('https://github.com').then(res => {
         // sucess response
       }).catch(e => { /* error back */ }),
-  )
+  ).then(res => {
+    console.log('sd')
+  }).catch(err => {
+    console.log(err)
+  })
+}
+
+
+  
+  // $('#checkout').click(function () {
+    
      
 
 
 
-  });
+  // });
 </script>
 
 </html>
