@@ -1,7 +1,7 @@
 // import { connect } from 'react-redux'
 import React, { Component } from 'react';
 import './Resetpass.css';
-import Heads from '../../../components/heads/Heads';
+// import Heads from '../../../components/heads/Heads';
 
 
 class Resetpass extends Component {
@@ -17,7 +17,12 @@ class Resetpass extends Component {
         return (
             <div>
                  <div className="container">
-                   <Heads cmp="Paysyslabs" desc="Reset Your Password" />
+
+                 <div className="brand_logo">
+                    <p>Paysyslabs</p>
+                </div>
+                <p className="acNameText">Account Login</p>
+                   {/* <Heads cmp="Paysyslabs" desc="Reset Your Password" /> */}
                 <div className="container_box">
                     <div className="emailaddr">
                         <p>Your Email Address</p>

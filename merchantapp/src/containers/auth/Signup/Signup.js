@@ -4,7 +4,7 @@ import React, { Component } from 'react';
 import './Signup.css';
 // import { Button } from 'evergreen-ui'
 import ReactLoading from 'react-loading';
-import Heads from '../../../components/heads/Heads';
+// import Heads from '../../../components/heads/Heads';
 // import { ReactLoading } from 'react-loading';
 
 
@@ -21,7 +21,7 @@ class Signup extends Component {
 
     }
 
-    signup() {
+    login() {
         this.setState({ loading: true})
         setTimeout(() => {
             
@@ -35,11 +35,11 @@ class Signup extends Component {
         const {loading} = this.state
         return (
             <div className="container">
-                {/* <div className="brand_logo">
+                <div className="brand_logo">
                     <p>Paysyslabs</p>
                 </div>
-                <p className="acNameText">Account Login</p> */}
-                <Heads cmp="Paysyslabs" desc="Account Login"/>
+                <p className="acNameText">Account Login</p>
+                {/* <Heads cmp="Paysyslabs" desc="Account Login"/> */}
                 <div className="container_box">
 
                     {(loading == false && (
@@ -69,7 +69,7 @@ class Signup extends Component {
                                 </div>
                             </div>
                             <div className="col-sm-6">
-                                <div className="btn_signup" onClick={() => this.signup()}>
+                                <div className="btn_signup" onClick={() => this.login()}>
                                     <p>LOG IN</p>
                                 </div>
                             </div>
@@ -92,19 +92,3 @@ class Signup extends Component {
 
 
 export default Signup
-
-
-// const mapStateToProps = (state, ownProps) => {
-//     return {
-//         prop: state.prop
-//     }
-// }
-
-// const mapDispatchToProps = (dispatch, ownProps) => {
-//     return {
-
-//     }
-// }
-
-
-// export default connect(mapStateToProps, mapDispatchToProps)(Signup)
