@@ -1,32 +1,7 @@
 var qrcode = new QRCode("qrcode");
 var cardNumVal = 1
 let errccqc = $('#errccqc')
-// function makeCode () {      
-//     var elText = document.getElementById("text");
-    
-//     if (!elText.value) {
-//         alert("Input a text");
-//         elText.focus();
-//         return;
-//     }
-    
-//     qrcode.makeCode(elText.value);
-// }
-
-// makeCode();
-
-// $("#text").
-//     on("blur", function () {
-//         makeCode();
-//     }).
-//     on("keydown", function (e) {
-//         if (e.keyCode == 13) {
-//             makeCode();
-//         }
-//     });
-
-
-
+const payCardUri = "http://10.0.70.64:7000"
 
 $('document').ready(() => {
     $('#loadingContainerqrc').hide()
@@ -37,7 +12,7 @@ $('document').ready(() => {
 function makeCode (e,crdName) { 
     var qrcode = new QRCode(document.getElementById("qrcode"), {
         text: e,
-        logo: `img/${crdName}.png`,
+        logo: `${payCardUri}/img/${crdName}.png`,
         logoWidth: 50,
         logoHeight: 50,
         logoBackgroundColor: 'transparent',
@@ -58,49 +33,7 @@ $('document').ready(() => {
     })
 })
 
-
-// function genQRcode(e){
-    // console.log(cardNumVal)
-    // cardNum = cardNumberQRC.val().replace(/\-/g, '') 
-    // cardNum = cardNum.replace(/\s/g, '')
-
-
-    // console.log(cardNum.length)
-
-    // if(cardNum.length == 16){
-
-
-    //     genCode(cardNum)
-    //     errccqc.hide()
-    //     cardNumberQRC.css('background-size', '0 2px, 100% 1px')
-    //     cardNumberQRC.css('outline', '')
-
-       
-    // }else{
-    //     errccqc.show()
-    //     cardNumberQRC.css('background-size', '100% 1px, 100% 1px')
-    //     cardNumberQRC.css('outline', 'none')
-    // }
-    
-// }
-
-
-
-
-
 validateQRc = () => {
-
-
-    console.log('sadasssd')
-    // const dta = {
-    //     amount: "30.00",
-    //     currency: "586",
-    //     description: "QR",
-    //     merchantId: "010210742100010",
-    //     operationId: "",
-    //     orderId: "00112475",
-    //     tid: "89131001"
-    // }
     $('#qrcodeloading').show()
     $('#paymentMethods').hide()
 
@@ -139,21 +72,12 @@ validateQRc = () => {
             makeCode(res.qrString,'unionpay')
     
         }).catch(err => {
+            $('#qrcodeloading').hide()
                 $('#qrcodeDisply').hide()
                 $('#qrcodeContainer').hide()
                 $('#paymentMethods').show()
     
         })
-
-
-
-
-
-
-
-
-
-
 }
 
 

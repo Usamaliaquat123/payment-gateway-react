@@ -200,26 +200,25 @@ $(document).ready(function () {
 
     getSMSvalue()
 
-    const init = {
-        "amount": "30.00",
-        "currency": "586",
-        "description": "Ecommerce",
-        "merchantId": "010210742100010",
-        "operationId": "",
-        "orderId": "01112475",
-        "tid": "15211001"
-    }
+    // const init = {
+    //     "amount": "30.00",
+    //     "currency": "586",
+    //     "description": "Ecommerce",
+    //     "merchantId": "010210742100010",
+    //     "operationId": "",
+    //     "orderId": "01112475",
+    //     "tid": "15211001"
+    // }
 
 
     console.log(sessionStorage.getItem('sessionId'))
 
     cardNumber.on('keyup', (e) => {
         cardNum = e.target.value.replace(/\s/g, '')
-        // cardNum = e.target.value.replace(/\s/g, '')  
         console.log(cardNum)
         if (cardNum.length == 19) {
             errorState.cardNumber.val = e.target.value
-            errorState.cardNumber.err = false
+            errorState.cardNumber.err = e
             cardNumber.css('background-size', '0 2px, 100% 1px')
             cardNumber.css('outline', '')
         } else {
@@ -458,12 +457,6 @@ $(document).ready(function () {
         }
 
 
-       
-        // const payTrans = {
-        //     sessionId: `${localStorage.getItem('sessionId')}`,
-        //     merchantId: `${localStorage.getItem('merchantId')}`,
-        //     smsCode: `${111111}`
-        // }
 
        
         $('#cardContainer').hide()
@@ -471,6 +464,28 @@ $(document).ready(function () {
         sendSms(cardInfo).then(res => {
                 $('#loading').hide()
                 $('#codeSmsCard').show()
+                var i = 0
+                if (i == 0) {
+                    i = 1;
+                    var width = 1;
+                    var id = setInterval(frame, 60);
+                    function frame() {
+                        if (width >= 100) {
+                            clearInterval(id);
+                            i = 0;
+                        } else {
+                            width++;
+                            $('#loadingContainer').show()
+                            $('#loadingContainer').css("width", `${width}%`)
+                            $('#resendCode').hide()
+                            if (width == 100) {
+                                // resendSmsCode(cardInfo).then().catch(err => console.log(err))
+                                $('#loadingContainer').hide()
+                                $('#resendCode').css("display", "block")
+                            }
+                        }
+                    }
+                }
         }).catch(err => {
             $('#loading').hide()
             $('#paymentFailed').show()
@@ -522,8 +537,7 @@ $(document).ready(function () {
             setTimeout(() => {
                 
                 window.location = "http://www.youtube.com";
-            }, 1000);
-
+            }, 1000);s
         }).catch(err => {
             $('#loading').hide()
             $('#paymentFailed').show()

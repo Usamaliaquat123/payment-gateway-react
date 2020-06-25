@@ -5,9 +5,15 @@ var object = {
         callbackSucess: ""
     }, basic: {}
 };
+
+const dev = "localhost"
+const ser = "10.0.70.64"
+
 var sessionId;
 const baseUri = "https://gateway.paysyslabs.com"
-const payCardUri = "http://10.0.70.64:7000"
+const payCardUri = `http://${dev}:7000`
+
+// 
 const API_VERSION = "1.0.0"
 const ACCESS_TOKEN = "Bearer 4c280096-0db9-44f3-8b4d-71747e630ea6"
 var expression = /[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*)?/gi;

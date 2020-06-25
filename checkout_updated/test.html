@@ -27,7 +27,7 @@
   <div class="form-group">
     <div class="col-md-6" style="padding-top: 2%;">
       <button type="button" class="btn btn-primary" id="checkout" onclick="app()">Payment</button>
-    
+
     </div>
   </div>
   <div id="content">
@@ -38,29 +38,31 @@
 <script>
 
 
-app =() => {
-  configure({
-    basic: {
-      FirstName: "", //Optional
-      LastName: "", //Optional
-      Address: "", //Optional
-      MobileNumber: "", // Optional
-      EmailAddress: "", // Optional
+  app = () => {
+    configure({
+      basic: {
+        FirstName: "", //Optional
+        LastName: "", //Optional
+        Address: "", //Optional
+        MobileNumber: "", // Optional
+        EmailAddress: "", // Optional
+      },
+      product: {
+        orderID: "00012443",
+        description: "Ecommerce",
+        merchantID: "010210742100010",
+        amount: "30.00",
+        merchantName: document.getElementById('merchantName').value,
+        currency: "586",
+        TerminalID: "89131001",
+        operationId: "",
+        merchantLogo: "https://user-images.githubusercontent.com/33973828/85513150-271c7900-b614-11ea-945b-2b69914ca960.png"
+      },
     },
-    product: {
-      orderID: "00012443",
-      description: "QR",  
-      merchantID: "010210742100010",
-      amount: "30.00",
-      merchantName: document.getElementById('merchantName').value,
-      currency: "586",
-      TerminalID: "89131001",
-      operationId: "",
-      merchantLogo: "https://user-images.githubusercontent.com/33973828/85513150-271c7900-b614-11ea-945b-2b69914ca960.png"
-    },
-  }, 
-  callbackSucess('http://github.com').then(res => {
-    console.log(res)
+
+    // "89131001",
+      callbackSucess('http://github.com').then(res => {
+        console.log(res)
         // sucess response // sucess response
       }).catch(err => console.log(err)),
       callbackUrl('https://github.com').then(res => {
@@ -69,12 +71,12 @@ app =() => {
       callbackTimeout('https://github.com').then(res => {
         // sucess response
       }).catch(e => { /* error back */ }),
-  ).then(res => {
-    console.log(res)
-  }).catch(err => {
-    console.log(err)
-  })
-}
+    ).then(res => {
+      console.log(res)
+    }).catch(err => {
+      console.log(err)
+    })
+  }
 
 
 

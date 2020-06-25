@@ -2,32 +2,8 @@
 // const smsCode = "";
 // const transferId = "";
 var merchantInfo;
+var merchantLogo
 // const {validCard} = require('./components/cardVal')
-
-
-
-
-// Maksing var
-
-// var input = document.querySelector("#phoneCode");
-// // var country = document.querySelector('#selectMonth')
-
-
-// function lettersOnly(inp){
-//     var regex = /[^a-z]/gi;
-//     inp.value = inp.value.replace(regex, "")
-// }
-// window.intlTelInput(input, {
-//     initialCountry: "auto",
-//     separateDialCode: true,
-//     geoIpLookup: function (success, failure) {
-//         $.get("https://ipinfo.io", function () { }, "jsonp").always(function (resp) {
-//             var countryCode = (resp && resp.country) ? resp.country : "";
-//             success(countryCode);
-//         });
-//     },
-// })
-
 
 
 
@@ -56,14 +32,14 @@ function messageHandler(event) {
     const { action, key, value } = event.data
     if (action == 'save') {
         var obj = value;
-        console.log(obj.product.merchantName)
+        console.log(obj.product)
+        console.log(obj.product.merchantLogo)
         sessionStorage.setItem('merchantId',obj.product.merchantId)
         sessionStorage.setItem('sessionId',obj.sessionId)
         // document.getElementById("amount").value = obj.product.amount
-        document.getElementById("merchantName").innerHTML = "asdas"
-        $('#merchantName').text("sd")
+        $('#merchantName').text(obj.product.merchantName)
         // document.getElementById("merchantLogo").src = obj.product.merchantLogo;
-
+        $('#merchantLogo').attr("src",`${obj.product.merchantLogo}`)
 
         merchantInfo = obj;
     }

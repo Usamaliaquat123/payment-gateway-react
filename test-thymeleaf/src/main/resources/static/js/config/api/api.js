@@ -10,7 +10,6 @@
 // Send smsCode Api
 const sendSms = (dta) => {
     return new Promise((resolve, reject) => {
-        // console.log(document.getElementById("cardNumber").value.replace('-', ''))/
         $.ajax({
             url: `${baseUri}/getSmsCode/${API_VERSION}`,
             type: 'POST', 
@@ -20,7 +19,7 @@ const sendSms = (dta) => {
                 cardName: dta.cardName,
                 cardNumber: dta.cardNumber,
                 cardPin: dta.cardPin,
-                merchantId: dta.merchantId, //SHOULD BE SAME AS VALIDATE MERCHANT REQUEST
+                merchantId: dta.merchantId,
                 sessionId: dta.sessionId
             }),
             headers: {
@@ -113,7 +112,6 @@ const payTransaction = (dta) => {
       })  
 }
 
-// SEND sms code API
 
 
 
@@ -148,8 +146,6 @@ const purchaseQRCapi = (dta) => {
             console.log(response)
             if (response.responseCode == "00") {
                 resolve(response.data)
-                // transferId = response.data.transferId;
-                // document.getElementById("payButton").disabled = false;
             }
         },
         error: function () {
@@ -184,8 +180,6 @@ const inquiryQRCapi = (dta) => {
                 if (response.responseCode == "00") {
                     resolve(response)
                     transferId = response.data.transferId;
-                    /*console.log(response);*/
-                    // document.getElementById("payButton").disabled = false;
                 }
             },
             error: function () {

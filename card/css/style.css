@@ -466,3 +466,8 @@ outline: none;
     text-align: right;
     margin-right: 8%;
   }
+
+  .backTabBar{
+    width: 100%;
+    flex-direction: row;
+  }

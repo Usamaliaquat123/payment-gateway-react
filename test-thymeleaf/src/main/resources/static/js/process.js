@@ -2,11 +2,8 @@
 // const smsCode = "";
 // const transferId = "";
 var merchantInfo;
+var merchantLogo
 // const {validCard} = require('./components/cardVal')
-
-
-
-
 
 
 
@@ -35,14 +32,14 @@ function messageHandler(event) {
     const { action, key, value } = event.data
     if (action == 'save') {
         var obj = value;
-        console.log(obj.product.merchantName)
+        console.log(obj.product)
+        console.log(obj.product.merchantLogo)
         sessionStorage.setItem('merchantId',obj.product.merchantId)
         sessionStorage.setItem('sessionId',obj.sessionId)
         // document.getElementById("amount").value = obj.product.amount
-        document.getElementById("merchantName").innerHTML = "asdas"
         $('#merchantName').text(obj.product.merchantName)
         // document.getElementById("merchantLogo").src = obj.product.merchantLogo;
-
+        $('#merchantLogo').attr("src",`${obj.product.merchantLogo}`)
 
         merchantInfo = obj;
     }
