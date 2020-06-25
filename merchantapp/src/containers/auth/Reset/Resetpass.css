@@ -1,0 +1,82 @@
+.brand_logo_resetpass{
+    background-color: #009874;
+    max-width: 10em;
+    margin: 0;
+    margin-bottom: 14%;
+    padding: 1%;
+    margin: auto;
+    color: aliceblue;
+    border-bottom-left-radius: 20px;
+    border-bottom-right-radius: 20px;
+    margin-bottom: 4%;
+}
+.brand_logo_resetpass > p{
+    text-align: center;
+    margin: auto;
+}
+
+.acNameText_resetpass{
+    text-align: center;
+    font-size: 28px;
+    margin-top: 12%;
+}
+.loadingC_sigup{
+    margin:auto;
+}
+.container_box_resetpass{   
+        /* border: 1px solid grey; */
+        border-radius: 10px;
+        padding: 1%;
+        margin: auto;
+        max-width: 35em;
+        margin-bottom: 10%;
+        box-shadow: 0px 3px 10px -2px rgba(0, 0, 0, 0.1);
+}
+.inp_resetpass{
+    border-style: none;
+    border-color : "transparent";
+    padding: 2%;
+    font-size: 13px;
+    border-bottom: 1px solid grey;
+    outline: none;
+    width: 100%;
+    padding-bottom: 16px;
+    padding-top: 0px;
+}
+.textDesc{    
+    font-size: 13px;
+        color: black;
+        margin-left: 3%;
+        margin-top: 16%;
+}
+
+.btn_signup_resetpass{
+
+    float: right;
+    margin-top: 15%;
+    border: 1px solid #1E2A45;
+    background-color: #1E2A45;
+    padding: 5%;
+    width: 44%;
+    color: aliceblue;
+    border-radius: 50px;
+}
+
+.btn_signup_resetpass:hover{
+    cursor: pointer;
+}
+.btn_signup_resetpass > p {
+    text-align: center;
+    color: "#fff";
+    margin: 0;
+    font-size: 13px;
+    font-weight: bold;
+}
+
+.textTrouble_resetpass{
+    font-size: 17px;
+    color: #3d4eac;
+    margin-top: 17%;
+    margin-left: 3%;
+    cursor: pointer;
+}

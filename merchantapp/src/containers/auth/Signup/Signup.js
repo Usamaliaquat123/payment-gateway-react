@@ -5,7 +5,6 @@ import './Signup.css';
 // import { Button } from 'evergreen-ui'
 import ReactLoading from 'react-loading';
 // import Heads from '../../../components/heads/Heads';
-// import { ReactLoading } from 'react-loading';
 
 
 class Signup extends Component {
