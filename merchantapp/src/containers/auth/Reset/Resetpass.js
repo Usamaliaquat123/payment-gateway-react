@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 
 
 
-class Signup extends Component {
+class Resetpass extends Component {
     constructor(props){
         super(props)
         state = {
@@ -39,4 +39,4 @@ const mapDispatchToProps = (dispatch, ownProps) => {
 }
 
 
-export default connect(mapStateToProps, mapDispatchToProps)(Signup)
+export default connect(mapStateToProps, mapDispatchToProps)(Resetpass)
