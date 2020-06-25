@@ -4,6 +4,7 @@ import React, { Component } from 'react';
 import './Signup.css';
 // import { Button } from 'evergreen-ui'
 import ReactLoading from 'react-loading';
+import Head from '../../../components/head/Head';
 // import { ReactLoading } from 'react-loading';
 
 
@@ -34,10 +35,11 @@ class Signup extends Component {
         const {loading} = this.state
         return (
             <div className="container">
-                <div className="brand_logo">
+                {/* <div className="brand_logo">
                     <p>Paysyslabs</p>
                 </div>
-                <p className="acNameText">Account Login</p>
+                <p className="acNameText">Account Login</p> */}
+                <Head cmp="Paysyslabs" desc="Account Login"/>
                 <div className="container_box">
 
                     {(loading == false && (
