@@ -8,7 +8,6 @@ var object = {
 
 const dev = "localhost"
 const ser = "10.0.70.64"
-
 var sessionId;
 const baseUri = "https://gateway.paysyslabs.com"
 const payCardUri = `http://${dev}:7000`
