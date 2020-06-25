@@ -4,7 +4,7 @@ import React, { Component } from 'react';
 import './Signup.css';
 // import { Button } from 'evergreen-ui'
 import ReactLoading from 'react-loading';
-import Head from '../../../components/head/Head';
+import Heads from '../../../components/heads/Heads';
 // import { ReactLoading } from 'react-loading';
 
 
@@ -39,7 +39,7 @@ class Signup extends Component {
                     <p>Paysyslabs</p>
                 </div>
                 <p className="acNameText">Account Login</p> */}
-                <Head cmp="Paysyslabs" desc="Account Login"/>
+                <Heads cmp="Paysyslabs" desc="Account Login"/>
                 <div className="container_box">
 
                     {(loading == false && (
@@ -70,7 +70,7 @@ class Signup extends Component {
                             </div>
                             <div className="col-sm-6">
                                 <div className="btn_signup" onClick={() => this.signup()}>
-                                    <p>SIGN UP</p>
+                                    <p>LOG IN</p>
                                 </div>
                             </div>
                         </div>
