@@ -3,7 +3,9 @@ import React, { Component } from 'react';
 import './Resetpass.css';
 // import Heads from '../../../components/heads/Heads';
 import ReactLoading from 'react-loading';
-
+import {
+    Link,
+} from "react-router-dom";
 class Resetpass extends Component {
     constructor(props){
         super(props)
@@ -28,9 +30,9 @@ class Resetpass extends Component {
                  <div className="brand_logo_resetpass">
                     <p>Paysyslabs</p>
                 </div>
-                <p className="acNameText_resetpass">Reset Your Password </p>
+                <p className="acNameText_resetpass animate__animated animate__fadeInUp ">Reset Your Password </p>
                    {/* <Heads cmp="Paysyslabs" desc="Reset Your Password" /> */}
-                <div className="container_box_resetpass">
+                <div className="container_box_resetpass animate__animated animate__fadeInUp  ">
                     {(this.state.loading == false && (
                         <div>
                                 <div className="emailaddr_resetpass">
@@ -45,9 +47,9 @@ class Resetpass extends Component {
                     <div className="loginOtherLinks_resetpass">
                         <div className="row">
                             <div className="col-sm-6">
-                            <div className="textTrouble_resetpass">
+                            <Link className="textTrouble_resetpass" to="/">
                             <p>Back to Login</p>
-                        </div>
+                        </Link>
                             </div>
                             <div className="col-sm-6">
                             <div className="btn_signup_resetpass" onClick={() => this.reset()}>

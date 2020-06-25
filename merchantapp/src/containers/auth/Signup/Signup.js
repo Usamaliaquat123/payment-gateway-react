@@ -6,7 +6,9 @@ import './Signup.css';
 import ReactLoading from 'react-loading';
 // import Heads from '../../../components/heads/Heads';
 
-
+import {
+    Link,
+} from "react-router-dom";
 class Signup extends Component {
     constructor(props) {
         super(props)
@@ -34,10 +36,10 @@ class Signup extends Component {
                 <div className="brand_logo_sigup">
                     <p>Paysyslabs</p>
                 </div>
-                <p className="acNameText_sigup">Create An Account</p>
-                <p className="acNameText_desc">We're currently only available in Pakistan</p>
+                <p className="acNameText_sigup animate__animated animate__fadeInUp ">Create An Account</p>
+                <p className="acNameText_desc animate__animated animate__fadeInUp ">We're currently only available in Pakistan</p>
                 {/* <Heads cmp="Paysyslabs" desc="Account Login"/> */}
-                <div className="container_box_sigup">
+                <div className="container_box_sigup animate__animated animate__fadeInUp ">
 
                     {(loading == false && (
                         <div>
@@ -91,7 +93,9 @@ class Signup extends Component {
                             <div className="col-sm-6">
                                 <div className="textTrouble_sigup">
                                     <p className="textDesc">By continuing you agree to Safepay's</p>
+                                    <Link to="/">
                                     <p className="textDescLink">Terms and Conditions</p>
+                                        </Link> 
                                 </div>
                             </div>
                             <div className="col-sm-6">

@@ -10,6 +10,7 @@ import {
 import Login from "../containers/auth/Login/Login";
 import Signup from './../containers/auth/Signup/Signup';
 import Resetpass from './../containers/auth/Reset/Resetpass';
+// import Dashboard from './../containers/home/index';
 
 export default function AppNav() {
     return (
@@ -27,6 +28,7 @@ export default function AppNav() {
                 <Route path="/">
                     <Login />
                 </Route>
+
             </Switch>
         </Router>
     )

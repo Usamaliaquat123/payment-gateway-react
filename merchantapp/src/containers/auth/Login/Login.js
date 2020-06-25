@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
 import ReactLoading from 'react-loading';
 import './Login.css'
-
+import {
+    Link,
+} from "react-router-dom";
 
 class Login extends Component {
     constructor(props){
@@ -29,13 +31,12 @@ class Login extends Component {
                 <div className="brand_logo">
                     <p>Paysyslabs</p>
                 </div>
-                <p className="acNameText">Account Login</p>
+                <p className="acNameText animate__animated animate__fadeInUp ">Account Login</p>
                 {/* <Heads cmp="Paysyslabs" desc="Account Login"/> */}
-                <div className="container_box">
+                    <div className="container_box animate__animated animate__fadeInUp ">
 
                     {(loading == false && (
                         <div>
-
 <div className="emailpassaddr">
                         <p className="lblEP">Email Address</p>
                         <input
@@ -56,9 +57,10 @@ class Login extends Component {
                     <div className="loginOtherLinks">
                         <div className="row">
                             <div className="col-sm-6">
-                                <div className="textTrouble">
+                                <Link className="textTrouble" to="/reset">
                                     <p>Trouble Logging in ?</p>
-                                </div>
+                                </Link>
+                                {/* <Link to="/about">About</Link> */}
                             </div>
                             <div className="col-sm-6">
                                 <div className="btn_signup" onClick={() => this.login()}>
