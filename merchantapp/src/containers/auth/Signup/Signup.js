@@ -23,20 +23,20 @@ class Signup extends Component {
 
 
 
+export default signup
 
 
+// const mapStateToProps = (state, ownProps) => {
+//     return {
+//         prop: state.prop
+//     }
+// }
 
-const mapStateToProps = (state, ownProps) => {
-    return {
-        prop: state.prop
-    }
-}
+// const mapDispatchToProps = (dispatch, ownProps) => {
+//     return {
 
-const mapDispatchToProps = (dispatch, ownProps) => {
-    return {
-
-    }
-}
+//     }
+// }
 
 
-export default connect(mapStateToProps, mapDispatchToProps)(Signup)
+// export default connect(mapStateToProps, mapDispatchToProps)(Signup)

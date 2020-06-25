@@ -1,5 +1,5 @@
 import { connect } from 'react-redux'
-import React, { Component } from 'react';''
+// import React, { Component } from 'react';''
 
 
 
@@ -22,21 +22,21 @@ class Login extends Component {
 }
 
 
+export default Login
 
 
 
+// const mapStateToProps = (state, ownProps) => {
+//     return {
+//         prop: state.prop
+//     }
+// }
 
-const mapStateToProps = (state, ownProps) => {
-    return {
-        prop: state.prop
-    }
-}
+// const mapDispatchToProps = (dispatch, ownProps) => {
+//     return {
 
-const mapDispatchToProps = (dispatch, ownProps) => {
-    return {
-
-    }
-}
+//     }
+// }
 
 
-export default connect(mapStateToProps, mapDispatchToProps)(Login)
+// export default connect(mapStateToProps, mapDispatchToProps)(Login)
