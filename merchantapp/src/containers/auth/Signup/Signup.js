@@ -17,11 +17,7 @@ class Signup extends Component {
     }
 
 
-    componentDidMount() {
-
-    }
-
-    login() {
+    signup() {
         this.setState({ loading: true})
         setTimeout(() => {
             
@@ -39,7 +35,8 @@ class Signup extends Component {
                 <div className="brand_logo_sigup">
                     <p>Paysyslabs</p>
                 </div>
-                <p className="acNameText_sigup">Account Login</p>
+                <p className="acNameText_sigup">Create An Account</p>
+                <p className="acNameText_desc">We're currently only available in Pakistan</p>
                 {/* <Heads cmp="Paysyslabs" desc="Account Login"/> */}
                 <div className="container_box_sigup">
 
@@ -63,16 +60,44 @@ class Signup extends Component {
                             placeholder="********"
                         />
                     </div>
+                    <div className="emailpassaddr_sigup">
+                        <p className="lblEP_sigup">Phone Number</p>
+                        <input
+                            className="inp"
+                            type="phone"
+                            name="text-input-name"
+                            placeholder="03009876547"
+                        />
+                    </div>
+                    <div className="emailpassaddr_sigup">
+                        <p className="lblEP_sigup">Name</p>
+                        <input
+                            className="inp"
+                            type="text"
+                            name="text-input-name"
+                            placeholder="Your store name"
+                        />
+                    </div>
+                    <div className="emailpassaddr_sigup">
+                        <p className="lblEP_sigup">Website</p>
+                        <input
+                            className="inp"
+                            type="text"
+                            name="text-input-name"
+                            placeholder="https://mystore.com"
+                        />
+                    </div>
                     <div className="loginOtherLinks_sigup">
                         <div className="row">
                             <div className="col-sm-6">
                                 <div className="textTrouble_sigup">
-                                    <p>Trouble Logging in ?</p>
+                                    <p className="textDesc">By continuing you agree to Safepay's</p>
+                                    <p className="textDescLink">Terms and Conditions</p>
                                 </div>
                             </div>
                             <div className="col-sm-6">
-                                <div className="btn_signup_sigup" onClick={() => this.login()}>
-                                    <p>LOG IN</p>
+                                <div className="btn_signup_sigup" onClick={() => this.signup()}>
+                                    <p>SIGN UP</p>
                                 </div>
                             </div>
                         </div>

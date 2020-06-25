@@ -7,7 +7,7 @@ import Resetpass from './containers/auth/Reset/Resetpass';
 import Login from './containers/auth/Login/Login';
 function App() {
   return (
-    <Login />
+    <Signup />
   );
 }
 
