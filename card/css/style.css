@@ -70,14 +70,17 @@
 }
 
 body {
-  padding: 1em;
-  font-family: 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
-  font-size: 12px;
-  color: #b9b9b9;
-  background-color: #e3e3e3;
+  margin: 0;
+    font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol";
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #212529;
+    text-align: left;
+    background-color: transparent;
 }
 .merchLogo{
-  width: 24%;
+  width: 50px;
   height: auto;
 }
 .acnameTag {
@@ -390,7 +393,8 @@ outline: none;
 
 /* QR cONTAINER */
 .qrContainer{
-  padding: 11%;
+    padding: 11%;
+    padding-top: 5%;
 }
 #qrcode{
   margin-left: 3%;
@@ -466,8 +470,11 @@ outline: none;
     text-align: right;
     margin-right: 8%;
   }
-
-  .backTabBar{
-    width: 100%;
-    flex-direction: row;
+ .backTabBar {
+     margin-bottom: 18%;
+      cursor: pointer;
+     }
+  .backTabBarcard{
+    margin-bottom: 6%;
+    cursor: pointer;
   }

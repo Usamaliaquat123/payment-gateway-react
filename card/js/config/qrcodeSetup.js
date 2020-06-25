@@ -1,32 +1,7 @@
 var qrcode = new QRCode("qrcode");
 var cardNumVal = 1
 let errccqc = $('#errccqc')
-// function makeCode () {      
-//     var elText = document.getElementById("text");
-    
-//     if (!elText.value) {
-//         alert("Input a text");
-//         elText.focus();
-//         return;
-//     }
-    
-//     qrcode.makeCode(elText.value);
-// }
-
-// makeCode();
-
-// $("#text").
-//     on("blur", function () {
-//         makeCode();
-//     }).
-//     on("keydown", function (e) {
-//         if (e.keyCode == 13) {
-//             makeCode();
-//         }
-//     });
-
-
-
+const payCardUri = "http://10.0.70.64:7000"
 
 $('document').ready(() => {
     $('#loadingContainerqrc').hide()
@@ -37,7 +12,7 @@ $('document').ready(() => {
 function makeCode (e,crdName) { 
     var qrcode = new QRCode(document.getElementById("qrcode"), {
         text: e,
-        logo: `../img/${crdName}.png`,
+        logo: `${payCardUri}/img/${crdName}.png`,
         logoWidth: 50,
         logoHeight: 50,
         logoBackgroundColor: 'transparent',
@@ -58,107 +33,51 @@ $('document').ready(() => {
     })
 })
 
-
-function genQRcode(e){
-    // console.log(cardNumVal)
-    // cardNum = cardNumberQRC.val().replace(/\-/g, '') 
-    // cardNum = cardNum.replace(/\s/g, '')
-
-
-    // console.log(cardNum.length)
-
-    // if(cardNum.length == 16){
-
-
-    //     genCode(cardNum)
-    //     errccqc.hide()
-    //     cardNumberQRC.css('background-size', '0 2px, 100% 1px')
-    //     cardNumberQRC.css('outline', '')
-
-       
-    // }else{
-    //     errccqc.show()
-    //     cardNumberQRC.css('background-size', '100% 1px, 100% 1px')
-    //     cardNumberQRC.css('outline', 'none')
-    // }
-    genCode('6222821234560017')
-}
-
-
-
-function validateQRc() {
-    console.log('sadasssd')
-    const dta = {
-        amount: "30.00",
-        currency: "586",
-        description: "Ecommerce",
-        merchantId: "010210742100010",
-        operationId: "",
-        orderId: "00112475",
-        tid: "89131001"
-    }
+validateQRc = () => {
     $('#qrcodeloading').show()
     $('#paymentMethods').hide()
 
-    validateMerchant(dta).then(res => {
-        $('#qrcodeloading').hide()
-        $('#qrcodeContainer').show()
-        $('#qrcodeDisply').hide()
-      
-    }).catch(err => {
-        $('#qrcodeloading').hide()
-        $('#qrcodeContainer').hide()
-        $('#paymentMethods').show()
-    })
-}
-
-
-genCode = (e) => {
-    const dta = {
-        cardNumber : e,
-        merId :  sessionStorage.getItem('merchantId'),
-        sessionId : sessionStorage.getItem('sessionId')
-    }
-    $('#qrcodeloading').show()
-    $('#qrcodeCardNum').hide()
-    purchaseQRCapi(dta).then(res => {
-        $('.acnameTag').text(`${res.merchantName}`)
-        $('#qrcodeloading').hide()
-        $('#qrcodeContainer').show()
-        $('#qrcodeDisply').show()
-        timer()
-        var i = 0
-        if (i == 0) {   
-            i = 1;
-            var width = 1;
-            var id = setInterval(frame, 1200);
-            function frame() {
-                if (width >= 100) {
-                    clearInterval(id);
-                    i = 0;
-                    console.log('asda')
-                } else {
-                    width++;
-                    $('#loadingContainerqrc').show()
-                    $('#loadingContainerqrc').css("width", `${width}%`)
-                    // $('#resendCode').hide()
-                    if (width == 100) {
-                        // resendSmsCode(cardInfo).then().catch(err => console.log(err))
-                        $('#loadingContainerqrc').hide()
-                        
-                        // $('#resendCode').css("display", "block")
+        const dta = {
+            cardNumber : '6222821234560017',
+            merId :  sessionStorage.getItem('merchantId'),
+            sessionId : sessionStorage.getItem('sessionId')
+        }   
+        purchaseQRCapi(dta).then(res => {
+            $('#qrcodeloading').hide()
+            $('#qrcodeContainer').show()
+            $('#qrcodeDisply').show()
+            $('.acnameTag').text(`${res.merchantName}`)
+            timer()
+            var i = 0
+            if (i == 0) {   
+                i = 1;
+                var width = 1;
+                var id = setInterval(frame, 1200);
+                function frame() {
+                    if (width >= 100) {
+                        clearInterval(id);
+                        i = 0;
+                        console.log('asda')
+                    } else {
+                        width++;
+                        $('#loadingContainerqrc').show()
+                        $('#loadingContainerqrc').css("width", `${width}%`)
+                        // $('#resendCode').hide()
+                        if (width == 100) {
+                            $('#loadingContainerqrc').hide()
+                        }
                     }
                 }
             }
-        }
-        makeCode(res.qrString,'unionpay')
-
-    }).catch(err => {
-            $('#qrcodeDisply').hide()
-            $('#qrcodeContainer').hide()
-            $('#paymentMethods').show()
-
-    })
+            makeCode(res.qrString,'unionpay')
+    
+        }).catch(err => {
+            $('#qrcodeloading').hide()
+                $('#qrcodeDisply').hide()
+                $('#qrcodeContainer').hide()
+                $('#paymentMethods').show()
+    
+        })
 }
 
 

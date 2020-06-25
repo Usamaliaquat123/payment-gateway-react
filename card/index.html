@@ -1,20 +1,16 @@
-<!DOCTYPE html>
-<html lang="en">
-
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Card Item</title>
-    <link rel="stylesheet" href="./css/style.css">
+
+	
+	
+	
     <!-- bootstrap -->
+  
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
-    <!-- <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script> -->
+    <link rel="stylesheet" type="text/css"  href="./css/style.css" >
+   
     <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.0.0/animate.min.css" />
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-    <!-- <script type="text/javascript">
-        new QRCode(document.getElementById("qrcode"), "http://jindo.dev.naver.com/collie");
-        </script> -->
     <script src="./js/external/qrcode.min.js"></script>
     <script src="./js/external/easy.qrcode.min.js"></script>
     <!-- <script src="./js/process.js"></script> -->
@@ -32,17 +28,16 @@
     <script src="./js/config/masking.js"></script>
     <script src="./js/config/validations.js"></script>
     <script src="./js/external/store.legacy.min.js"></script>
-   
-
-
+	
+	
+	
+	
+	
 </head>
-
-
 <body>
-  
+	
 
 
-   
 
         <div id="paymentSucess" class="animation-ctn">
             <div class="icon icon--order-success svg">
@@ -76,8 +71,8 @@
 
 <div class="selectPaymentMethod">
     <div class="paymentHeader">
-        <img     width="65" height="65" src="./img/aws-logo.png" alt="">
-        <span class="acnameTag"></span>
+        <img width="65" height="65" id="merchantLogo"  >
+        <span class="acnameTag" id="merchantName">Merchant Ac Name</span>
     </div>
     <div>
         <div id="loading" class="loadingio-spinner-ripple-3137eu7xzg"><div class="ldio-onhzzwyqi0i">
@@ -85,6 +80,8 @@
             </div></div>
     </div >
     <div class="loadingContainer" id="loadingContainerqrc"></div>
+
+
     <div id="qrcodeloading">
         <p class="gnCodeCodeText">Generating QR Code ...</p>
         <div class="loadingio-spinner-ripple-g6jyrpjnx6v"><div class="ldio-lz4yw135gs">
@@ -93,10 +90,10 @@
 
     </div>
    
-    <div id="paymentMethods">
+    <div id="paymentMethods" >
 
         <p class="selPayText">PREFERRED PAYMENT METHODS</p>
-        <div class="selectCardMethod" onclick="paymentDetail(this)">
+        <div class="selectCardMethod animate__animated animate__fadeInUp" onclick="paymentDetail(this)">
             <i class="fa fa-credit-card-alt fontPayMeth" style="    font-size: 28px;
             position: absolute;
             margin-top: 1%;" aria-hidden="true"></i>
@@ -104,7 +101,7 @@
             <i class="fa fa-angle-right" style="float:right;margin-top: 5%;" aria-hidden="true"></i>
             <p class="ccTextdesc">All card supported</p>
         </div>
-        <div class="selectCardMethod" onclick="validateQRc(this)">
+        <div class="selectCardMethod animate__animated animate__fadeInUp" onclick="validateQRc(this)">
             <i class="fa fa-qrcode fontPayMeth" style="font-size: 42px;
             position: absolute;"aria-hidden="true"></i>
             <span class="ccqrCode">Scan QR code</span>
@@ -114,32 +111,38 @@
        
     </div>
 
-    <div id="cardContainer" >
-        <form id="cardDetSub">
+    <div id="cardContainer" class="animate__animated animate__fadeIn">
+        <form id="cardDetSub" class="animate__animated animate__fadeIn">
             <div class="container-card">
-                <div style="flex-direction: row;">
-                    <!-- <img id="mastercard" class="cardsImgs" src="./img/mastercard.png" /> -->
-                    <!-- <img id="visa" class="cardsImgs" src="./img/visa.png" /> -->
-                    <img id="unionpay" class="cardsImgs" src="./img/unionpay.png" />
-                    <!-- <img id="paypak" class="cardsImgs" src="./img/paypak.png" /> -->
+                <div class="backTabBarcard animate__animated animate__backInDown"onclick="back('cardContainer','paymentMethods')">
+                    <i  style="font-size: 16px;" class="fa fa-angle-left" aria-hidden="true"></i>
+                    <span style="    text-align: center;
+                    margin-left: 9%;
+                    margin-right: auto;">Card Payment</span>
                 </div>
-                <p class="expDateText">Enter your card details</p>
+                <div style="flex-direction: row;">
+                    <!-- <img id="mastercard" class="cardsImgs" src="@{/img/mastercard.png}" /> -->
+                    <!-- <img id="visa" class="cardsImgs" src="@{/img/visa.png}" /> -->
+                    <img id="unionpay" class="cardsImgs animate__animated animate__fadeIn" src="./img/unionpay.png" />
+                    <!-- <img id="paypak" class="cardsImgs" src="@{/img/paypak.png}" /> -->
+                </div>
+                <p class="expDateText animate__animated animate__fadeIn">Enter your card details</p>
                 <div style="flex-direction: row;">
                     <input type="phone"  autocomplete="off" placeholder="Enter your card number" data-inputmask='"mask": "9999 9999 9999 9999"'
-                        id="cardNumber" class="inputline" maxlength="16" required>
+                        id="cardNumber" class=" inputline animate__animated animate__fadeIn" maxlength="16" required>
                 </div>
                 <div style="flex-direction: row;">
-                    <input  autocomplete="off" class="expiryDate" type="phone" id="expDate" placeholder="MM / YY" required>
-                    <input type="password" autocomplete="off" class="cvcNumber" type="phone" id="cvcInput" placeholder="CVC" required>
-                    <img class="imgscode" src="./img/csc_other.png" alt="">
+                    <input  autocomplete="off" class=" expiryDate animate__animated animate__fadeIn"  type="phone" id="expDate" placeholder="MM / YY" required>
+                    <input type="password" class=" cvcNumber animate__animated animate__fadeIn" autocomplete="off"  id="cvcInput" placeholder="CVC" required>
+                    <img  class="imgscode animate__animated animate__fadeIn" src="./img/csc_other.png" alt="">
                 </div>
                 <div style="flex-direction: row;">
-                    <input  autocomplete="off" class="expiryDate" onkeyup="lettersOnly(this)" type="text" placeholder="First Name"
+                    <input  autocomplete="off" class="expiryDate animate__animated animate__fadeIn" onkeyup="lettersOnly(this)" type="text" placeholder="First Name"
                         id="firstname" required>
-                    <input  autocomplete="off" class="lastNames" onkeyup="lettersOnly(this)" type="text" placeholder="Last Name" id="lastname"
+                    <input  autocomplete="off" class="lastNames animate__animated animate__fadeIn" onkeyup="lettersOnly(this)" type="text" placeholder="Last Name" id="lastname"
                         required>
                 </div>
-                <div class="expDateMen">
+                <div class="expDateMen animate__animated animate__fadeIn">
                     <p class="expDateText">Enter your billing details</p>
                     <select id="selectMonth" required>
                         <option value="PK">Pakistan پاکستان </option>
@@ -392,24 +395,31 @@
                         <option value="ZM">Zambia</option>
                         <option value="ZW">Zimbabwe</option>
                     </select>
-                    <input class="cardHolderInput " placeholder="Street Address" id="streetAddr" >
-                    <input id="city" type="city" placeholder="City" class="cardHolderInput">
+                    <input class="cardHolderInput animate__animated animate__fadeIn" placeholder="Street Address" id="streetAddr" >
+                    <input id="city" type="city" placeholder="City" class="cardHolderInput animate__animated animate__fadeIn">
                 </div>
-                <p class="expDateText contactD">Enter your contact details</p>
+                <p class="expDateText contactD animate__animated animate__fadeIn">Enter your contact details</p>
                 <div style="flex-direction: row;" class="phContent">
-                    <input class="cardHolderInput" type="tel" id="phoneCode" placeholder="Contact Number">
+                    <input class="cardHolderInput animate__animated animate__fadeIn" type="tel" id="phoneCode" placeholder="Contact Number">
                 </div>
-                <input class="cardHolderInput " type="email" placeholder="Email Address" id="emailAddr" >
+                <input class="cardHolderInput animate__animated animate__fadeIn" type="email" placeholder="Email Address" id="emailAddr" >
                 <div class="row">
-                    <div id="formSub"  class="btn btn-dark btn-custom ">Proceed</div>
+                    <div id="formSub"  class="btn btn-dark btn-custom animate__animated animate__fadeIn ">Proceed</div>
                 </div>
             </div>
         </form>
     </div>
     <div id="codeSmsCard">
-        <div class="container-card-sms animate__animated animate__backInDown">
+        <div class="container-card-sms animate__animated animate__fadeIn">
             <div class="loadingContainer" id="loadingContainer"></div>
+            
             <div class="container-sms">
+                <div class="backTabBarcard animate__animated animate__backInDown"onclick="back('codeSmsCard','cardContainer')">
+                    <i  style="font-size: 16px;" class="fa fa-angle-left" aria-hidden="true"></i>
+                    <span style=" text-align: center;
+                    margin-left: 9%;
+                    margin-right: auto;">SMS verification</span>
+                </div>
                 <p class="acnameTag">Merchant Ac Name</p>
                 <p class="validCodeText">Enter 6-digit verification code</p>
                 <div class="customContainer">
@@ -418,7 +428,7 @@
                         <input  autocomplete="off" id="verifyCode2" type="password" class="vcode-input" maxlength="1">
                         <input  autocomplete="off" id="verifyCode3" type="password" style="margin-right: 5%;" class="vcode-input"
                             maxlength="1">
-                        <input  autocomplete="off"  autocomplete="off" id="verifyCode4" type="password" class="vcode-input" maxlength="1">
+                        <input  autocomplete="off" id="verifyCode4" type="password" class="vcode-input" maxlength="1">
                         <input  autocomplete="off" id="verifyCode5" type="password" class="vcode-input" maxlength="1">
                         <input  autocomplete="off" id="verifyCode6" type="password" class="vcode-input" maxlength="1">
                     </div>
@@ -434,21 +444,16 @@
         </div>
     </div>
     <div id="qrcodeContainer" class="qrContainer">
-        
-        <div id="qrcodeCardNum">
-            <div class="selectqrcmethSlide" onclick="genQRcode(this)">
-                <i class="fa fa-qrcode fontPayMeth" style="font-size: 37px;
-                position: absolute;
-                margin-top: 4px;"aria-hidden="true"></i>
-                <span class="ccTextqc">Scan QR code</span>
-                <i class="fa fa-angle-right" style="float:right;margin-top: 5%;" aria-hidden="true"></i>
-                <p class="ccTextdesc">scan the qr code</p>
-            </div>
+        <div class="backTabBar animate__animated animate__backInDown"onclick="back('qrcodeContainer','paymentMethods')">
+            <i  style="font-size: 16px;" class="fa fa-angle-left" aria-hidden="true"></i>
+            <span style="    text-align: center;
+            margin-left: 9%;
+            margin-right: auto;">UPI QR </span>
         </div>
-        <div id="qrcodeDisply">
+        <div id="qrcodeDisply ">
             <p id="countdown"></p>
-            <p class="ttleqrc">Scan to Pay</p>
-            <p class="qrcttle">Scan the QR using any UPI app on your phone like BHIM, PhonePe, Google Pay etc.</p>
+            <p class="ttleqrc animate__animated animate__backInDown">Scan to Pay</p>
+            <p class="qrcttle animate__animated animate__backInDown">Scan the QR using any UPI app on your phone like BHIM, PhonePe, Google Pay etc.</p>
             <div id="qrcode"></div>
         </div>
     </div>
@@ -461,26 +466,31 @@
 
     <script src="./js/intlTelInput.js"></script>
 
-    <script>
+    <script >
 
-
+		function back(c,b){
+			$(`#${c}`).hide()
+            $(`#${b}`).show()
+            if(c == "qrcodeContainer"){
+                $('#loadingContainerqrc').hide()
+            }
+		}
 
         function paymentDetail(e){
-            $('#loading').show()
+            // $('#loading').show()
             $('#paymentMethods').hide()
-            setTimeout(() => {
-                $('#loading').hide()
+            // setTimeout(() => {
+                // $('#loading').hide()
                 $('#cardContainer').show()
                 
-            }, 800);
+            // }, 800);
         }
 
-        // $('document').ready(() =>{
             $('#qrcodeloading').hide()
             $('#errccqc').hide()
-            $('#qrcodeContainer').show()
+            $('#qrcodeContainer').hide()
             $('#cardContainer').hide()
-            $('#paymentMethods').hide()
+            $('#paymentMethods').show()
             $('#codeSmsCard').hide()
             $('#loading').hide()
             $('#sucessTick').hide()
@@ -528,6 +538,6 @@
     </script>
     <script src="./js/process.js"></script>
     <script src="./js/config/qrcodeSetup.js"></script>
+	<script src="./js/process.js"></script>
+	
 </body>
-
-</html>
