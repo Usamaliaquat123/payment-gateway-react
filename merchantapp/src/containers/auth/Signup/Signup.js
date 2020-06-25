@@ -34,42 +34,44 @@ class Signup extends Component {
     render() {
         const {loading} = this.state
         return (
-            <div className="container">
-                <div className="brand_logo">
+            <div>
+ <div className="container">
+                <div className="brand_logo_sigup">
                     <p>Paysyslabs</p>
                 </div>
-                <p className="acNameText">Account Login</p>
+                <p className="acNameText_sigup">Account Login</p>
                 {/* <Heads cmp="Paysyslabs" desc="Account Login"/> */}
-                <div className="container_box">
+                <div className="container_box_sigup">
 
                     {(loading == false && (
                         <div>
 
-<div className="emailpassaddr">
-                        <p className="lblEP">Email Address</p>
+<div className="emailpassaddr_sigup">
+                        <p className="lblEP_sigup">Email Address</p>
                         <input
-                            className="inp"
+                            className="inp_sigup"
                             name="text-input-name"
                             placeholder="john.doe@paysyslabs.com"
                         />
                     </div>
-                    <div className="emailpassaddr">
-                        <p className="lblEP">Password</p>
+                    <div className="emailpassaddr_sigup">
+                        <p className="lblEP_sigup">Password</p>
                         <input
                             className="inp"
+                            type="password"
                             name="text-input-name"
                             placeholder="********"
                         />
                     </div>
-                    <div className="loginOtherLinks">
+                    <div className="loginOtherLinks_sigup">
                         <div className="row">
                             <div className="col-sm-6">
-                                <div className="textTrouble">
+                                <div className="textTrouble_sigup">
                                     <p>Trouble Logging in ?</p>
                                 </div>
                             </div>
                             <div className="col-sm-6">
-                                <div className="btn_signup" onClick={() => this.login()}>
+                                <div className="btn_signup_sigup" onClick={() => this.login()}>
                                     <p>LOG IN</p>
                                 </div>
                             </div>
@@ -80,11 +82,12 @@ class Signup extends Component {
                         </div>
                     ))}
                     {(loading == true && (
-                        <ReactLoading className="loadingC" type={'bubbles'} color={'#1E2A45'} height={85} width={85} />
+                        <ReactLoading className="loadingC_sigup" type={'bubbles'} color={'#1E2A45'} height={85} width={85} />
                     ))}
                 </div>
 
             </div>
+            </div>            
         );
     }
 }
