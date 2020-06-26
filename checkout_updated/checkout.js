@@ -34,11 +34,11 @@ const callbackSucess = (url) => {
     })
 }
 
-const callbackUrl = (url) => {
+const callBackError = (url) => {
     return new Promise((resolve, reject) => {
         var regex = new RegExp(expression);
         if (url.match(regex)) {
-            object['product']['callbackURL'] = url
+            object['product']['callBackError'] = url
             resolve({ url, status: 200 })
         } else {
             reject('Please give your valid callback url')
@@ -46,7 +46,7 @@ const callbackUrl = (url) => {
     })
 }
 
-const callBackError = (url) => {
+const callbackTimeout = (url) => {
     return new Promise((resolve, reject) => {
         var regex = new RegExp(expression);
         if (url.match(regex)) {
@@ -100,7 +100,7 @@ const configure = (inf) => {
             // }
             // if (dta.amount.length == 1) { data['product']['amount'] = ('0' + dta.amount).slice(-2) } else { data['product']['amount'] = dta.amount }
             // ================= P R O D U C T  ========================
-            object['product']['orderId'] = dta.orderID
+            object['product']['orderId'] = dta.orderIDss
             object['product']['currency'] = dta.currency
             object['product']['description'] = dta.description
             object['product']['merchantLogo'] = dta.merchantLogo
