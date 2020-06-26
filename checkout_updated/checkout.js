@@ -46,7 +46,7 @@ const callbackUrl = (url) => {
     })
 }
 
-const callbackTimeout = (url) => {
+const callBackError = (url) => {
     return new Promise((resolve, reject) => {
         var regex = new RegExp(expression);
         if (url.match(regex)) {

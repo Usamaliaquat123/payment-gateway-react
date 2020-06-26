@@ -65,7 +65,7 @@
         console.log(res)
         // sucess response // sucess response
       }).catch(err => console.log(err)),
-      callbackUrl('https://github.com').then(res => {
+      callBackError('https://github.com').then(res => {
         // sucess response
       }).catch(e => { /* error back */ }),
       callbackTimeout('https://github.com').then(res => {
