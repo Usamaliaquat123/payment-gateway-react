@@ -5,6 +5,46 @@
 
 
 
+const validateMerchant  = (dta) =>{
+    console.log(dta)
+    return new Promise((resolve, reject) => {
+        $.ajax({
+            url: `${baseUri}/validateMerchant/${API_VERSION}`,
+            type: 'POST', 
+            contentType: 'application/json',
+            data: JSON.stringify({
+                amount: "30.00",
+                currency: "586",
+                description: "QR",
+                merchantId: "010210742100012",
+                operationId: "",
+                orderId: "00112475",
+                tid: "00121001"
+            }),
+            headers: {
+                "Authorization": `${ACCESS_TOKEN}`
+            },
+            success: function (response) {
+                if(response.responseCode == 00){
+                    sessionStorage.setItem('currency',dta.currency)
+                    sessionStorage.setItem('originalOrderId',dta.orderId)
+                    sessionStorage.setItem('tid',dta.tid)
+                    sessionStorage.setItem('amount',dta.amount)
+                    sessionStorage.setItem('sessionId',`${response.data.sessionId}`)
+                    sessionStorage.setItem('merchantId',`${dta.merchantId}`)
+                    resolve(response)
+                }else{
+                    reject(response)
+                }
+            },
+            error: function (error) {
+                reject('b')
+            }
+        })
+    })
+}
+
+
 
 
 // Send smsCode Api
@@ -146,6 +186,8 @@ const purchaseQRCapi = (dta) => {
             console.log(response)
             if (response.responseCode == "00") {
                 resolve(response.data)
+            }else{
+                reject(response)
             }
         },
         error: function () {
@@ -157,20 +199,19 @@ const purchaseQRCapi = (dta) => {
 
 // inquryQRC api
 const inquiryQRCapi = (dta) => {
-    console.log('sds')
+    console.log(dta)
     return new Promise((resolve, reject) => {
         $.ajax({
             url: `${baseUri}/inquryQRC/${API_VERSION}`,
             type: 'POST',
             contentType: 'application/json',
             data: JSON.stringify({
-                amount: dta.amount,
-                currency: dta.currency,
-                description: dta.description,
-                merchantId: dta.merchantId,
-                operationId: dta.operationId,
-                orderId: dta.orderId,
-                tid: dta.tid
+                cardNumber: dta.crdNumber,
+                currencyCode: dta.currency,
+                merId: dta.description,
+                originalOrderId: dta.merchantId,
+                tid: dta.tid,
+                txnAmount: dta.amount	
             }),
             headers: {
                 "Authorization": `${ACCESS_TOKEN}`
@@ -180,6 +221,8 @@ const inquiryQRCapi = (dta) => {
                 if (response.responseCode == "00") {
                     resolve(response)
                     transferId = response.data.transferId;
+                }else{
+                    reject(response)
                 }
             },
             error: function () {

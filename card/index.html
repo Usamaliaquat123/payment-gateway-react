@@ -16,18 +16,20 @@
     <!-- <script src="./js/process.js"></script> -->
     <link rel="stylesheet" href="./css/smscode.css">
     <link rel="stylesheet" href="./css/ripple.css">
+    <link rel="stylesheet" href="./css/timer.css">
     <!-- external -->
     <link rel="stylesheet" href="./css/intlTelInput.css">
 
     <script src="./js/external/jquery-3.5.1.min.js"></script>
     <script src="./js/external/jquery.mask.min.js"></script>
+    <script src="https://momentjs.com/downloads/moment.js"></script>
     <!-- modules -->
     <script src="./js/config/api/api.js"></script>
     <script src="./js/process.js"></script>
     <script src="./js/verify.js"></script>
     <script src="./js/config/masking.js"></script>
     <script src="./js/config/validations.js"></script>
-    <script src="./js/external/store.legacy.min.js"></script>
+    <!-- <script src="./js/external/store.legacy.min.js"></script> -->
 	
 	
 	
@@ -39,31 +41,6 @@
 
 
 
-        <div id="paymentSucess" class="animation-ctn">
-            <div class="icon icon--order-success svg">
-                <svg xmlns="http://www.w3.org/2000/svg" width="154px" height="154px">  
-                  <g fill="none" stroke="#22AE73" stroke-width="2"> 
-                    <circle cx="77" cy="77" r="72" style="stroke-dasharray:480px, 480px; stroke-dashoffset: 960px;"></circle>
-                    <circle id="colored" fill="#22AE73" cx="77" cy="77" r="72" style="stroke-dasharray:480px, 480px; stroke-dashoffset: 960px;"></circle>
-                    <polyline class="st0" stroke="#fff" stroke-width="10" points="43.5,77.8 63.7,97.9 112.2,49.4 " style="stroke-dasharray:100px, 100px; stroke-dashoffset: 200px;"/>   
-                  </g> 
-                </svg>
-              </div>
-        <p class="sucessTickText">Payment Transfered</p>
-    </div>
-
-      <div id="paymentFailed" class="animation-ctn">
-            <div class="icon icon--order-success svg">
-                <svg xmlns="http://www.w3.org/2000/svg" width="154px" height="154px">  
-                  <g fill="none" stroke="#F44812" stroke-width="2"> 
-                    <circle cx="77" cy="77" r="72" style="stroke-dasharray:480px, 480px; stroke-dashoffset: 960px;"></circle>
-                    <circle id="colored" fill="#F44812" cx="77" cy="77" r="72" style="stroke-dasharray:480px, 480px; stroke-dashoffset: 960px;"></circle>
-                    <polyline class="st0" stroke="#fff" stroke-width="10" points="43.5,77.8  112.2,77.8 " style="stroke-dasharray:100px, 100px; stroke-dashoffset: 200px;"/>   
-                  </g> 
-                </svg>
-              </div>
-              <p class="sucessTickText">Payment Failed</p>
-      </div>
       
     
 
@@ -75,21 +52,60 @@
         <span class="acnameTag" id="merchantName">Merchant Ac Name</span>
     </div>
     <div>
-        <div id="loading" class="loadingio-spinner-ripple-3137eu7xzg"><div class="ldio-onhzzwyqi0i">
+        <!-- <div id="loading" class="loadingio-spinner-ripple-3137eu7xzg"><div class="ldio-onhzzwyqi0i">
             <div></div><div></div>
-            </div></div>
+            </div></div> -->
     </div >
-    <div class="loadingContainer" id="loadingContainerqrc"></div>
+    <!-- <div class="loadingContainer" id="loadingContainerqrc"></div> -->
 
 
     <div id="qrcodeloading">
-        <p class="gnCodeCodeText">Generating QR Code ...</p>
+        <!-- <p class="gnCodeCodeText">Generating QR Code ...</p> -->
         <div class="loadingio-spinner-ripple-g6jyrpjnx6v"><div class="ldio-lz4yw135gs">
             <div></div><div></div>
             </div></div>
 
     </div>
+    <div id="loadng">
+        <div id="wrapper">
+            <div class="loading-container">
+              <div class="bubble1 bubble"></div>
+              <div class="bubble2 bubble"></div>
+              <div class="bubble3 bubble"></div>
+            </div>
+          </div>
+    </div>
    
+
+
+    <div id="paymentSucess" class="animation-ctn">
+        <div class="icon icon--order-success svg">
+            <svg xmlns="http://www.w3.org/2000/svg" width="154px" height="154px">  
+              <g fill="none" stroke="#22AE73" stroke-width="2"> 
+                <circle cx="77" cy="77" r="72" style="stroke-dasharray:480px, 480px; stroke-dashoffset: 960px;"></circle>
+                <circle id="colored" fill="#22AE73" cx="77" cy="77" r="72" style="stroke-dasharray:480px, 480px; stroke-dashoffset: 960px;"></circle>
+                <polyline class="st0" stroke="#fff" stroke-width="10" points="43.5,77.8 63.7,97.9 112.2,49.4 " style="stroke-dasharray:100px, 100px; stroke-dashoffset: 200px;"/>   
+              </g> 
+            </svg>
+          </div>
+    <p class="sucessTickText">Payment Transfered</p>
+</div>
+
+  <div id="paymentFailed" class="animation-ctn">
+        <div class="icon icon--order-success svg">
+            <svg xmlns="http://www.w3.org/2000/svg" width="154px" height="154px">  
+              <g fill="none" stroke="#F44812" stroke-width="2"> 
+                <circle cx="77" cy="77" r="72" style="stroke-dasharray:480px, 480px; stroke-dashoffset: 960px;"></circle>
+                <circle id="colored" fill="#F44812" cx="77" cy="77" r="72" style="stroke-dasharray:480px, 480px; stroke-dashoffset: 960px;"></circle>
+                <polyline class="st0" stroke="#fff" stroke-width="10" points="43.5,77.8  112.2,77.8 " style="stroke-dasharray:100px, 100px; stroke-dashoffset: 200px;"/>   
+              </g> 
+            </svg>
+          </div>
+          <p class="sucessTickText">Payment Failed</p>
+  </div>
+  
+
+
     <div id="paymentMethods" >
 
         <p class="selPayText">PREFERRED PAYMENT METHODS</p>
@@ -110,6 +126,21 @@
         </div>
        
     </div>
+
+    <div id="emailAndPhone">
+        <div style="flex-direction: row;" class="phContent">
+            <input class="cardHolderInput animate__animated animate__fadeIn" type="tel" id="phoneCode" placeholder="Contact Number">
+        </div>
+        <div class="emailInput">
+                <input class="cardHolderInput animate__animated animate__fadeIn" type="email" placeholder="Email Address" id="emailAddr" >
+        </div>
+        <p class="textPaysy">This payment is secured by Paysyslabs.</p>
+        <div class="btnSubmitBasicInf" onclick="btnEmailPhoneProceed()" id="btnEmailPhoneProceed">
+            <p>Proceed</p>
+        </div>
+    </div>
+
+
 
     <div id="cardContainer" class="animate__animated animate__fadeIn">
         <form id="cardDetSub" class="animate__animated animate__fadeIn">
@@ -398,13 +429,10 @@
                     <input class="cardHolderInput animate__animated animate__fadeIn" placeholder="Street Address" id="streetAddr" >
                     <input id="city" type="city" placeholder="City" class="cardHolderInput animate__animated animate__fadeIn">
                 </div>
-                <p class="expDateText contactD animate__animated animate__fadeIn">Enter your contact details</p>
-                <div style="flex-direction: row;" class="phContent">
-                    <input class="cardHolderInput animate__animated animate__fadeIn" type="tel" id="phoneCode" placeholder="Contact Number">
-                </div>
-                <input class="cardHolderInput animate__animated animate__fadeIn" type="email" placeholder="Email Address" id="emailAddr" >
+                <!-- <p class="expDateText contactD animate__animated animate__fadeIn">Enter your contact details</p> -->
+               
                 <div class="row">
-                    <div id="formSub"  class="btn btn-dark btn-custom animate__animated animate__fadeIn ">Proceed</div>
+                    <div id="formSub" type="submit" class="btn btn-dark btn-custom animate__animated animate__fadeIn ">Proceed</div>
                 </div>
             </div>
         </form>
@@ -420,6 +448,7 @@
                     margin-left: 9%;
                     margin-right: auto;">SMS verification</span>
                 </div>
+                
                 <p class="acnameTag">Merchant Ac Name</p>
                 <p class="validCodeText">Enter 6-digit verification code</p>
                 <div class="customContainer">
@@ -433,8 +462,10 @@
                         <input  autocomplete="off" id="verifyCode6" type="password" class="vcode-input" maxlength="1">
                     </div>
                 </div>
+                
                 <div class="row">
                     <p class="resendCode" id="resendCode">Resend code</p>
+                    <p id="timerText"></p>
                 </div>
                 <div class="row">
                     <button round class="btn btn-dark btn-custom " id="onPay">Pay</button>
@@ -449,9 +480,11 @@
             <span style="    text-align: center;
             margin-left: 9%;
             margin-right: auto;">UPI QR </span>
+        <div id="app"></div>
         </div>
         <div id="qrcodeDisply ">
-            <p id="countdown"></p>
+            <!-- <p id="countdown"></p>
+             -->
             <p class="ttleqrc animate__animated animate__backInDown">Scan to Pay</p>
             <p class="qrcttle animate__animated animate__backInDown">Scan the QR using any UPI app on your phone like BHIM, PhonePe, Google Pay etc.</p>
             <div id="qrcode"></div>
@@ -466,15 +499,24 @@
 
     <script src="./js/intlTelInput.js"></script>
 
+    <script src="./js/config/timer.js"></script>
+    <script src="./js/config/qrcodeSetup.js"></script>
+    <script src="./js/process.js"></script>
+    <script src="./js/config/checker.js"></script>
+    <script src="./js/process.js"></script>
     <script >
 
 		function back(c,b){
 			$(`#${c}`).hide()
             $(`#${b}`).show()
             if(c == "qrcodeContainer"){
+                console.log('asdas')
                 $('#loadingContainerqrc').hide()
+                clearCode()
             }
 		}
+       
+
 
         function paymentDetail(e){
             // $('#loading').show()
@@ -486,13 +528,14 @@
             // }, 800);
         }
 
+            $('#emailAndPhone').show()
             $('#qrcodeloading').hide()
             $('#errccqc').hide()
             $('#qrcodeContainer').hide()
             $('#cardContainer').hide()
-            $('#paymentMethods').show()
+            $('#paymentMethods').hide()
             $('#codeSmsCard').hide()
-            $('#loading').hide()
+            $('#loadng').hide()
             $('#sucessTick').hide()
             $('#paymentFailed').hide()
             $('#paymentSucess').hide()
@@ -534,10 +577,15 @@
     }
 }
 
+function btnEmailPhoneProceed(){
 
+
+
+
+// $('#btnEmailPhoneProceed').on('click',() =>{
+  
+// })
+}
     </script>
-    <script src="./js/process.js"></script>
-    <script src="./js/config/qrcodeSetup.js"></script>
-	<script src="./js/process.js"></script>
 	
 </body>

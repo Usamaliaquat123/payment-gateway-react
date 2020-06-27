@@ -4,8 +4,41 @@
   box-sizing: border-box;
 }
 
+.phContent{
+  flex-direction: row;
+  width: 70%;
+  font-size: 14px;
+  margin: auto;
+  margin-top: 10%;
+}
+.emailInput{
+  margin: auto;
+  font-size: 14px;
+  margin-top: 3%;
+  width: 70%;
+}
+.btnSubmitBasicInf{
+  
+  background-color: #24282C;
+  margin: auto;
+  text-align: center;
+  width: 68%;
+  /* border: radius; */
+  border-radius: 52px;
+  color: aliceblue;
+  font-size: 15px;
+  padding: 3%;
+  cursor: pointer;
 
-
+}
+.btnSubmitBasicInf > p {
+  margin: auto;
+}
+.textPaysy{
+  text-align: center;
+  font-size: 13px;
+  margin-top: 54%;
+}
 /* ======================== */
 .paymentHeader{
   
@@ -19,7 +52,9 @@
 .selectPaymentMethod{
   max-width: 25em;
   padding: 0em 0em 3em 0em;
+  
   margin: 0em auto;
+
   background-color: #fff;
   border-radius: 4.2px;
   transition: height 2s;
@@ -214,7 +249,7 @@ select:active {
 }
 .container-card {
   max-width: 25em;
-  padding:1em 3em 3em 3em;
+  padding: 1em 3em 0em 3em;
   margin: 0em auto;
   background-color: #fff;
   border-radius: 4.2px;
@@ -397,8 +432,10 @@ outline: none;
     padding-top: 5%;
 }
 #qrcode{
-  margin-left: 3%;
-  margin-top: -42%;
+  margin-left: 16%;
+  margin-top: 12%;
+
+  /* margin-top: -42%; */
 }
 .gnCodeCodeText{
   text-align: center;
@@ -411,10 +448,11 @@ outline: none;
   font-size: 16px;
   font-weight: bold;
 }
-.qrcttle{
+.qrcttle{ 
   text-align: center;
-  margin-top: 17%;
-  font-size: 14px;
+  margin-top: 0%;
+  font-size: 12px;
+  color: #005BA9;
 
 }
 .selectqrcmethSlide{
@@ -447,15 +485,11 @@ outline: none;
 .ttleqrc{
   font-weight: bold;
   text-align: center;
+  margin-top: -16%;
   font-size: 30px;
   color: #005BA9;
 }
-.qrcttle{
-  text-align: center;
-  margin-top: 17%;
-  font-size: 14px;
-  color: #005BA9;
-}
+
 .imgUnionPay{
   margin-left: auto;
   margin-right: auto;
@@ -478,3 +512,39 @@ outline: none;
     margin-bottom: 6%;
     cursor: pointer;
   }
+
+  #wrapper{
+    text-align: center;
+    margin: 0 auto;
+    width: 195px;
+    /* background-color: #331f1f; */
+    padding: 20px;
+}
+.loading-container{
+  margin-top: 45%;
+}
+.bubble{
+  width: 17px;
+  height: 17PX;
+  background-color: #3D4EAC;
+  border-radius: 50%;
+  display: inline-block;
+  -webkit-animation: in-and-out-bubbles 1.20s infinite ease-in-out;
+  animation: in-and-out-bubbles 1.20s infinite ease-in-out;
+}
+.bubble1{
+    -webkit-animation-delay: -0.35s;
+    animation-delay: -0.35s;
+}
+.bubble2{
+    -webkit-animation-delay: -0.20s;
+    animation-delay: -0.20s; 
+}
+@keyframes in-and-out-bubbles {
+    0%,80%,100% { transform: scale(0) }
+    20% { transform: scale(1) }
+}
+@-webkit-keyframes in-and-out-bubbles {
+    0%,80%,100% { -webkit-transform: scale(0) }
+    20% { -webkit-transform: scale(1) }
+}

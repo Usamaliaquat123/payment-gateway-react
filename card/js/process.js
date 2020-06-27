@@ -40,7 +40,10 @@ function messageHandler(event) {
         $('#merchantName').text(obj.product.merchantName)
         // document.getElementById("merchantLogo").src = obj.product.merchantLogo;
         $('#merchantLogo').attr("src",`${obj.product.merchantLogo}`)
-
+        sessionStorage.setItem('curreny',obj.product.currency)
+        sessionStorage.setItem('originalOrderId',obj.product.orderId)
+        sessionStorage.setItem('tid',obj.product.tid)
+        sessionStorage.setItem('txnAmount',obj.product.amount)
         merchantInfo = obj;
     }
 }
