@@ -49,7 +49,11 @@
 <div class="selectPaymentMethod">
     <div class="paymentHeader">
         <img width="65" height="65" id="merchantLogo"  >
-        <span class="acnameTag" id="merchantName">Merchant Ac Name</span>
+        <span>
+            <span class="acnameTag" id="merchantName">Merchant Ac Name</span>
+            <p id="priceTag">1Rs</p>
+        </span>  
+        <div id="app"></div>
     </div>
     <div>
         <!-- <div id="loading" class="loadingio-spinner-ripple-3137eu7xzg"><div class="ldio-onhzzwyqi0i">
@@ -439,27 +443,27 @@
     </div>
     <div id="codeSmsCard">
         <div class="container-card-sms animate__animated animate__fadeIn">
-            <div class="loadingContainer" id="loadingContainer"></div>
+            <!-- <div class="loadingContainer" id="loadingContainer"></div> -->
             
             <div class="container-sms">
                 <div class="backTabBarcard animate__animated animate__backInDown"onclick="back('codeSmsCard','cardContainer')">
+                    <!-- <div id="app"></div> -->
                     <i  style="font-size: 16px;" class="fa fa-angle-left" aria-hidden="true"></i>
                     <span style=" text-align: center;
                     margin-left: 9%;
                     margin-right: auto;">SMS verification</span>
                 </div>
-                
                 <p class="acnameTag">Merchant Ac Name</p>
                 <p class="validCodeText">Enter 6-digit verification code</p>
                 <div class="customContainer">
                     <div class="vcode" id="vcode">
-                        <input  autocomplete="off" id="verifyCode" type="password" class="vcode-input" maxlength="1">
-                        <input  autocomplete="off" id="verifyCode2" type="password" class="vcode-input" maxlength="1">
-                        <input  autocomplete="off" id="verifyCode3" type="password" style="margin-right: 5%;" class="vcode-input"
+                        <input  autocomplete="off" id="verifyCode " type="password" class="vcode-input" maxlength="1">
+                        <input  autocomplete="off" id="verifyCode2 " type="password" class="vcode-input" maxlength="1">
+                        <input  autocomplete="off" id="verifyCode3 " type="password" style="margin-right: 5%;" class="vcode-input"
                             maxlength="1">
-                        <input  autocomplete="off" id="verifyCode4" type="password" class="vcode-input" maxlength="1">
-                        <input  autocomplete="off" id="verifyCode5" type="password" class="vcode-input" maxlength="1">
-                        <input  autocomplete="off" id="verifyCode6" type="password" class="vcode-input" maxlength="1">
+                        <input  autocomplete="off" id="verifyCode8 " type="password" class="vcode-input" maxlength="1">
+                        <input  autocomplete="off" id="verifyCode5 " type="password" class="vcode-input" maxlength="1">
+                        <input  autocomplete="off" id="verifyCode6 " type="password" class="vcode-input" maxlength="1" onkeyup="vfCodeUp(e)">
                     </div>
                 </div>
                 
@@ -480,7 +484,7 @@
             <span style="    text-align: center;
             margin-left: 9%;
             margin-right: auto;">UPI QR </span>
-        <div id="app"></div>
+    
         </div>
         <div id="qrcodeDisply ">
             <!-- <p id="countdown"></p>
@@ -506,13 +510,44 @@
     <script src="./js/process.js"></script>
     <script >
 
+
+
+$('document').ready(() => {
+
+
+    function vfCodeUp(e){
+        console.log(e.target.value)
+    }
+
+    
+    $('#verifyCode8').keyup((e) => {
+            console.log($('#verifyCode8'))
+            console.log('adas')
+            // if(($('#verifyCode').val().length == 1) &&
+            // ($('#verifyCode2').val().length == 1) && 
+            // ($('#verifyCode3').val().length == 1) && 
+            // ($('#verifyCode8').val().length == 1) &&
+            // ($('#verifyCode5').val().length == 1) && e.target.value.length == 1){
+            //    $('#onPay').show()
+            // }else{
+            //     $('#onPay').hide()
+            // }
+            
+        })
+})
+
 		function back(c,b){
 			$(`#${c}`).hide()
             $(`#${b}`).show()
             if(c == "qrcodeContainer"){
+                clearTime()
+                $('#app').hide()
                 console.log('asdas')
                 $('#loadingContainerqrc').hide()
                 clearCode()
+            }else if( c == "codeSmsCard"){
+                clearTime()
+                $('#app').hide()
             }
 		}
        
@@ -527,7 +562,7 @@
                 
             // }, 800);
         }
-
+            $('#app').hide()
             $('#emailAndPhone').show()
             $('#qrcodeloading').hide()
             $('#errccqc').hide()

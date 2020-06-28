@@ -55,7 +55,7 @@ validateQRc = () => {
             $('#qrcodeContainer').show()
             $('#qrcodeDisply').show()
             $('.acnameTag').text(`${res.merchantName}`)
-
+            $('#app').show()
             startTimer()
             // var i = 0
             // if (i == 0) {   

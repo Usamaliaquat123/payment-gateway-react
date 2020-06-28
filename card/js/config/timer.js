@@ -18,8 +18,8 @@ const COLOR_CODES = {
   }
 };
 
-const TIME_LIMIT = 120;
-let timePassed = 0;
+const TIME_LIMIT = 20;
+// let timePassed = 0;
 let timeLeft = 120;
 let timerInterval = null;
 let remainingPathColor = COLOR_CODES.info.color;
@@ -52,12 +52,16 @@ document.getElementById("app").innerHTML = `
 
 function onTimesUp() {
   clearInterval(timerInterval);
-
-  
 }
 
-function startTimer() {
+function clearTime(){
+  clearInterval(timerInterval);
+}
+
+function startTimer(c) {
+  var timePassed = 0
   timerInterval = setInterval(() => {
+
     timePassed = timePassed += 1;
     timeLeft = TIME_LIMIT - timePassed;
     document.getElementById("base-timer-label").innerHTML = formatTime(
@@ -66,6 +70,12 @@ function startTimer() {
     setCircleDasharray();
     setRemainingPathColor(timeLeft);
     if (timeLeft === 0) {
+      clearInterval(timerInterval);
+      // if(c == 'resendCode'){
+
+      // } 
+      $(`#${c}`).show()
+      $('#app').hide()
       onTimesUp();
     }
   }, 1000);

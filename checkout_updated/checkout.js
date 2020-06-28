@@ -87,9 +87,6 @@ const configure = (inf) => {
             reject({ status: 400, mess: "currency is not valid" })
         } else {
 
-
-
-
 ``
 
             // if (dta.orderID.length == 8) {

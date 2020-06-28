@@ -38,19 +38,36 @@ function messageHandler(event) {
         sessionStorage.setItem('sessionId',obj.sessionId)
         // document.getElementById("amount").value = obj.product.amount
         $('#merchantName').text(obj.product.merchantName)
+        $('#priceTag').text(`${obj.product.amount} Rs`)
         // document.getElementById("merchantLogo").src = obj.product.merchantLogo;
         $('#merchantLogo').attr("src",`${obj.product.merchantLogo}`)
         sessionStorage.setItem('curreny',obj.product.currency)
         sessionStorage.setItem('originalOrderId',obj.product.orderId)
         sessionStorage.setItem('tid',obj.product.tid)
         sessionStorage.setItem('txnAmount',obj.product.amount)
+
         merchantInfo = obj;
     }
 }
 
 function closeIFrame() {
-    var url = merchantInfo.callbackURL;
+    var url = merchantInfo.product.callbackSucess;
     parent.postMessage({ value: url }, "*");
+}
+
+function timeOutCallback(){
+    var url = merchantInfo.product.callbackTimeout;
+    parent.postMessage({ value: url }, "*")
+}
+
+function callBackError() {
+    var url = merchantInfo.product.callBackError;
+    parent.postMessage({ value: url }, "*")
+}
+
+function closePopup(){
+    var url = "close";
+    parent.postMessage({ value: url }, "*")
 }
 
 
