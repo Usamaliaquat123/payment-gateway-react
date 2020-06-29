@@ -204,5 +204,8 @@ var messageEvent = eventMethod == "attachEvent" ? "onmessage" : "message";
 
 eventer(messageEvent, function (e) {
     $('#lightbox').remove();
-    $(location).attr('href', e.data.value);
+
+    if(e.data.value != "close"){
+        $(location).attr('href', e.data.value);
+    }
 }, false);

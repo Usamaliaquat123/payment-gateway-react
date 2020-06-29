@@ -27,8 +27,8 @@
     <script src="./js/config/api/api.js"></script>
     <script src="./js/process.js"></script>
     <script src="./js/verify.js"></script>
-    <script src="./js/config/masking.js"></script>
     <script src="./js/config/validations.js"></script>
+    <script src="./js/config/masking.js"></script>
     <!-- <script src="./js/external/store.legacy.min.js"></script> -->
 	
 	
@@ -463,7 +463,8 @@
                             maxlength="1">
                         <input  autocomplete="off" id="verifyCode8 " type="password" class="vcode-input" maxlength="1">
                         <input  autocomplete="off" id="verifyCode5 " type="password" class="vcode-input" maxlength="1">
-                        <input  autocomplete="off" id="verifyCode6 " type="password" class="vcode-input" maxlength="1" onkeyup="vfCodeUp(e)">
+                        <input  autocomplete="off" id="verifyCode6 " type="password" class="vcode-input" maxlength="1">
+                        <!-- <input  autocomplete="off" id="vfi " type="password" class="vcode-input" maxlength="1"> -->
                     </div>
                 </div>
                 
@@ -512,29 +513,7 @@
 
 
 
-$('document').ready(() => {
 
-
-    function vfCodeUp(e){
-        console.log(e.target.value)
-    }
-
-    
-    $('#verifyCode8').keyup((e) => {
-            console.log($('#verifyCode8'))
-            console.log('adas')
-            // if(($('#verifyCode').val().length == 1) &&
-            // ($('#verifyCode2').val().length == 1) && 
-            // ($('#verifyCode3').val().length == 1) && 
-            // ($('#verifyCode8').val().length == 1) &&
-            // ($('#verifyCode5').val().length == 1) && e.target.value.length == 1){
-            //    $('#onPay').show()
-            // }else{
-            //     $('#onPay').hide()
-            // }
-            
-        })
-})
 
 		function back(c,b){
 			$(`#${c}`).hide()

@@ -36,8 +36,12 @@
 </body>
 <script src="checkout.js"></script>
 <script>
-  // qr merchantId 010210742100012
-  // card merchantId 010210742100010
+    
+
+    // mid:010210742100012    tid:00121001    Ecommerce    QR  ( when purchase qRC)
+    // mid:010210742100010    tid:15211001    Ecommerce    SecurePay ( when card paument)
+    
+    
 
   app = () => {
     configure({
@@ -66,7 +70,7 @@
         console.log(res)
         // sucess response // sucess response
       }).catch(err => console.log(err)),
-      callBackError('https://github.com').then(res => {
+      callBackError('https://www.dummies.com/web-design-development/web-hosting/how-to-set-up-web-hosted-error-pages/').then(res => {
         // sucess response
       }).catch(e => { /* error back */ }),
       callbackTimeout('https://github.com').then(res => {

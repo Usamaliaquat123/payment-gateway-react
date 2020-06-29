@@ -47,27 +47,27 @@ const errorState = {
     }
 }
 // sms code validations
-const getSMSvalue = () => {
-    return new Promise((resolve, reject) => {
-        try {
-            var val1 = $('#verifyCode')
-            var val2 = $('#verifyCode2')
-            var val3 = $('#verifyCode3')
-            var val4 = $('#verifyCode8')
-            var val5 = $('#verifyCode5')
-            var val6 = $('#verifyCode6')
-            val1.on('keyup', (e) => { })
-            val2.on('keyup', (e) => { })
-            val3.on('keyup', (e) => { })
-            val4.on('keyup', (e) => { })
-            val5.on('keyup', (e) => { })
-            val6.on('keyup', (e) => { })
-            resolve(true)
-        } catch (e) {
-            reject(e)
-        }
-    })
-}
+// const getSMSvalue = () => {
+//     return new Promise((resolve, reject) => {
+//         try {
+//             var val1 = $('#verifyCode')
+//             var val2 = $('#verifyCode2')
+//             var val3 = $('#verifyCode3')
+//             var val4 = $('#verifyCode8')
+//             var val5 = $('#verifyCode5')
+//             var val6 = $('#verifyCode6')
+//             val1.on('keyup', (e) => { })
+//             val2.on('keyup', (e) => { })
+//             val3.on('keyup', (e) => { })
+//             val4.on('keyup', (e) => { })
+//             val5.on('keyup', (e) => { })
+//             val6.on('keyup', (e) => { })
+//             resolve(true)
+//         } catch (e) {
+//             reject(e)
+//         }
+//     })
+// }
 // firstname and lastname 
 const mergeName = () => {
     return new Promise((resolve, reject) => {
@@ -276,7 +276,7 @@ $(document).ready(function () {
 
 
 
-    getSMSvalue()
+    // getSMSvalue()
 
     // const init = {
     //     "amount": "30.00",
@@ -491,10 +491,12 @@ $(document).ready(function () {
             startTimer('resendCode')
             console.log(res)
 
+            $('document').ready(() => {
 
-          
-        // console.log(
-            // $('#verifyCode').click(() => console.log('ss'))
+                $('#verifyCode').on("keyup",(e) => {
+                    console.log(e)
+                })
+            })
 
     }).catch(err => {
         console.log(err)
@@ -624,8 +626,20 @@ $(document).ready(function () {
 
 
 
-
-
+    // $('#vfi').keyup((e) => {
+    //     console.log($('#verifyCode8'))
+    //     console.log('adas')
+    //     // if(($('#verifyCode').val().length == 1) &&
+    //     // ($('#verifyCode2').val().length == 1) && 
+    //     // ($('#verifyCode3').val().length == 1) && 
+    //     // ($('#verifyCode8').val().length == 1) &&
+    //     // ($('#verifyCode5').val().length == 1) && e.target.value.length == 1){
+    //     //    $('#onPay').show()
+    //     // }else{
+    //     //     $('#onPay').hide()
+    //     // }
+        
+    // })
  
 
    
